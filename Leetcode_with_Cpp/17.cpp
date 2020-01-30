@@ -17,7 +17,7 @@ public:
         DFS(digits);
         return res;
     }
-    void DFS(string digits){  // »ØËÝ·¨
+    void DFS(string digits){  // å›žæº¯æ³•
         if(!digits.size())
             res.push_back(cur);
         else{
@@ -26,7 +26,7 @@ public:
             for(int i=0; i<letter.size(); i++)
             {
                 cur.push_back(letter[i]);
-                DFS(digits.substr(1));  // È¡×Ó´® ÒÀ´ÎÈ¥µô×Ö·û´®Ê××Ö·û
+                DFS(digits.substr(1));  // å–å­—ä¸² ä¾æ¬¡åŽ»æŽ‰å­—ç¬¦ä¸²é¦–å­—ç¬¦
                 cur.pop_back();
             }
         }
