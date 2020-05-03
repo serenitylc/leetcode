@@ -1,5 +1,4 @@
-#include<iostream>
-
+#include <iostream>
 using namespace std;
 
 class Solution {
@@ -26,6 +25,8 @@ int main()
 	Solution a;
 	value = a.lengthOfLongestSubstring("abcabcbb");
 	cout << "value: " << value << endl;
+    system("pause");
+    return 0;
 }
 
 /*
