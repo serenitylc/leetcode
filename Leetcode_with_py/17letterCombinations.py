@@ -11,8 +11,7 @@ class Solution(object):
                '6': ['m', 'n', 'o'],
                '7': ['p', 'q', 'r', 's'],
                '8': ['t', 'u', 'v'],
-               '9': ['w', 'x', 'y', 'z']
-        }
+               '9': ['w', 'x', 'y', 'z'] }
         if digits == '':
             return []
         ans = ['']
