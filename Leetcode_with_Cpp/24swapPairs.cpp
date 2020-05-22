@@ -24,10 +24,8 @@ public:
 
             p = node1;
         }
-
         ListNode* resNode = dHead->next;
         delete dHead;
-
         return resNode;
     }
 };
