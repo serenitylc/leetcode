@@ -3,7 +3,8 @@ public:
     bool containsNearbyAlmostDuplicate(vector<int>& nums, int k, int t) {
         set<long long> record;
         for(int i = 0; i < nums.size(); i++) {
-            if(record.lower_bound((long long)nums[i] - (long long)t) != record.end() && *record.lower_bound((long long)nums[i] - (long long)t) <= (long long)nums[i] + (long long)t)  // 可能溢出
+            if(record.lower_bound((long long)nums[i] - (long long)t) != record.end() 
+                    && *record.lower_bound((long long)nums[i] - (long long)t) <= (long long)nums[i] + (long long)t)  // 可能溢出
                 return true;
 
             record.insert(nums[i]);
