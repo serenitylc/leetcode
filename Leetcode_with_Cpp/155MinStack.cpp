@@ -28,7 +28,6 @@ public:
         return min_stack.top();
     }
 };
-
 /**
  * Your MinStack object will be instantiated and called as such:
  * MinStack* obj = new MinStack();
@@ -55,7 +54,7 @@ public:
     MinStack() {
         head = new Node(0);
     }
-    
+  
     void push(int x) {
         Node *tmp = new Node(x, head->next);
         if (head->next && x > head->next->min) {  // tmp->min 记录该节点之前所有节点最小值； 新建节点加到 head->next 以便 pop;
