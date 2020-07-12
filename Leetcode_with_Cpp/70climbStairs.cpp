@@ -6,7 +6,7 @@ public:
         int num1 = 1;
         int num2 = 2;
         int numN = 0;
-        for(int i = 2; i < n; i++){
+        for(int i = 2; i < n; i++) {
             numN = num1 + num2;
             num1 = num2;
             num2 = numN;
