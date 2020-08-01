@@ -15,7 +15,6 @@ public:
         return res;
     }
 };
-
 class Solution {
 public:
     int lengthOfLIS(vector<int>& nums) {
