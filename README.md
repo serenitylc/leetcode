@@ -1,6 +1,6 @@
-## Leetcode
+## PRACTICE MAKES PERFECT
 
-- `动态规划`的核心问题是穷举，由于这类问题存在「重叠子问题」，如果暴力穷举的话效率会极其低下，所以需要「备忘录」或者「DP table」来优化穷举过程。
+- **动态规划**的核心问题是穷举，由于这类问题存在「重叠子问题」，如果暴力穷举的话效率会极其低下，所以需要「备忘录」或者「DP table」来优化穷举过程。
 
 - 明确 base case --> 明确「状态」--> 明确「选择」 --> 定义 dp 数组/函数的含义。
 
@@ -17,7 +17,7 @@
   ```
 
 
-- `回溯问题`，实际上就是一个决策树的遍历过程，不合适就退回上一步，通过约束条件, 减少时间复杂度。
+- **回溯问题**，实际上就是一个决策树的遍历过程，不合适就退回上一步，通过约束条件, 减少时间复杂度。
 
 - 回溯算法（DFS）的框架：
 
@@ -38,7 +38,7 @@
   ```
 
 
-- `BFS`本质：从一个起点，走到终点，问最短路径。
+- **BFS**本质：从一个起点，走到终点，问最短路径。
 
   ```
   // 计算从起点 start 到终点 target 的最近距离
@@ -64,6 +64,69 @@
       step++;		// 更新步数
   }
   ```
+  
+-  基本**二分搜索**
+
+  ```
+  int binary_search(int[] nums, int target) {
+      int left = 0, right = nums.length - 1; 
+      while(left <= right) {
+          int mid = left + (right - left) / 2;
+          if (nums[mid] < target) {
+              left = mid + 1;
+          } else if (nums[mid] > target) {
+              right = mid - 1; 
+          } else if(nums[mid] == target) {
+              // 直接返回
+              return mid;
+          }
+      }
+      // 直接返回
+      return -1;
+  }
+  ```
+
+-  寻找**左、右侧边界**的二分搜索
+
+  ```
+  int left_bound(int[] nums, int target) {
+      int left = 0, right = nums.length - 1;
+      while (left <= right) {
+          int mid = left + (right - left) / 2;
+          if (nums[mid] < target) {
+              left = mid + 1;
+          } else if (nums[mid] > target) {
+              right = mid - 1;
+          } else if (nums[mid] == target) {
+              right = mid - 1;  // 锁定左侧边界
+          }
+      }
+      // 检查 left 越界的情况
+      if (left >= nums.length || nums[left] != target)
+          return -1;
+      return left;
+  }
+  
+  int right_bound(int[] nums, int target) {
+      int left = 0, right = nums.length - 1;
+      while (left <= right) {
+          int mid = left + (right - left) / 2;
+          if (nums[mid] < target) {
+              left = mid + 1;
+          } else if (nums[mid] > target) {
+              right = mid - 1;
+          } else if (nums[mid] == target) {
+              left = mid + 1;  // 锁定右侧边界
+          }
+      }
+      // 检查 right 越界的情况
+      if (right < 0 || nums[right] != target)
+          return -1;
+      return right;
+  }
+  ```
+
+  
 
 ## Python语法糖
 
