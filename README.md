@@ -1,5 +1,9 @@
 ## PRACTICE MAKES PERFECT
 
+------
+
+
+
 - **动态规划**的核心问题是穷举，由于这类问题存在「重叠子问题」，如果暴力穷举的话效率会极其低下，所以需要「备忘录」或者「DP table」来优化穷举过程。
 
 - 明确 base case --> 明确「状态」--> 明确「选择」 --> 定义 dp 数组/函数的含义。
@@ -153,9 +157,115 @@
   dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0] - prices[i])
   ```
 
+- **背包问题**：
+
+  ```
+  // 01背包  一维优化
+  // 若只使用前i个物品，当背包容量为j时，有dp[i][j]种方法可以装满背包。
+  #include <iostream>
+  #include <algorithm>
+  using namespace std;
+  const int N = 1010;
+  int v[N], w[N], f[N];
+  int main() {
+      int n, m;
+      cin >> n >> m;
+      for (int i = 1; i <= n; i++) cin >> v[i] >> w[i];
+      for (int i = 1; i <= n; i++) {
+          for (int j = m; j >= v[i]; j--) {
+              f[j] = max(f[j], f[j - v[i]] + w[i]);
+              // 朴素：f[i][j] = max(f[i - 1][j], f[i - 1][j - v[i]] + w[i])
+          }
+      }
+      cout << f[m] << endl;
+  }
+  
+  
+  // 完全背包问题 最终版
+  #include <iostream>
+  #include <algorithm>
+  using namespace std;
+  const int N = 1010;
+  int v[N], w[N], f[N];
+  int main() {
+      int n, m;
+      cin >> n >> m;
+      for (int i = 1; i <= n; i++) cin >> v[i] >> w[i];
+      for (int i = 1; i <= n; i++) {
+          for (int j = v[i]; j <= m; j++) {
+              f[j] = max(f[j], f[j - v[i]] + w[i]);
+              // 朴素：f[i][j] = max(f[i - 1][j], f[i][j - v[i]] + w[i])
+          }
+      }
+      cout << f[m] << endl;
+  }
+  
+  // 多重背包问题 朴素做法
+  #include <iostream>
+  #include <algorithm>
+  using namespace std;
+  const int N = 110;
+  int v[N], w[N], s[N];
+  int f[N][N];
+  int main() {
+      int n, m;
+      cin >> n >> m;
+      for (int i = 1; i <= n; i++)
+          cin >> v[i] >> w[i] >> s[i]; 
+      // 三重循环
+      for (int i = 1; i <= n; i++) {
+          for (int j = 0; j <= m; j++) {
+              for (int k = 0; k <= s[i] && k * v[i] <= j; k++) {
+                  f[i][j] = max(f[i][j], f[i - 1][j - k * v[i]] + k * w[i]);
+              }
+          }
+      }
+      cout << f[n][m] << endl;
+      return 0;
+  }
+  
+  // 分组背包问题
+  #include <iostream>
+  #include <algorithm>
+  using namespace std;
+  const int N = 110;
+  int v[N][N], w[N][N];
+  int f[N];
+  int s[N];
+  int n, m;
+  int main() {
+      cin >> n >>m ;
+      for (int i = 1; i <= n; i++) {
+          cin >> s[i];
+          for (int j = 1; j <= s[i]; j++) {
+              cin >> v[i][j] >> w[i][j];
+          }
+      }
+      // 01背包+每组选一种
+      /* 
+         j逆序是因为      f[j] = max(f[j],        f[j - v[i][k]]        + w[i][k])
+         等价变形是    f[i][j] = max(f[i - 1][j], f[i - 1][j - v[i][k]] + w[i][k])
+      */
+      for (int i = 1; i <= n; i++) {
+          for (int j = m; j >= 0; j--) {
+              for (int k = 1; k <= s[i]; k++) {
+                  if (j >= v[i][k])
+                      f[j] = max(f[j], f[j - v[i][k]] + w[i][k]);
+              }
+          }
+      }
+      cout << f[m] << endl;
+      return 0;
+  }
+  ```
+
   
 
 ## Python语法糖
+
+------
+
+
 
 - `str[::-1]`：取从后向前（相反）的元素
 
@@ -194,6 +304,10 @@
   - `list`的`sort()`是对已经存在的列表进行操作，无返回值；而内建函数`sorted()`方法返回的是一个新的`list`，不是在原来的基础上进行的操作。
 
 ## C++:
+
+------
+
+
 
 - C++11引入了**nullptr**关键字，不同于**NULL**这个宏定义。在C++中NULL直接定义为`0`，而在C里，NULL定义为`(void*)0`，因为C语言可以隐式转换，而C++却是需要显示的写出类型转换。于是带来一个问题，一个int类型变量在函数重载时，必定会出现非预期的结果。
   - `func(NULL) --> int`; `func(nullptr) --> char *`。
