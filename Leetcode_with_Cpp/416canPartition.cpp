@@ -2,10 +2,8 @@ class Solution {
 public:
     bool canPartition(vector<int>& nums) {
         int sum = 0;
-        for(int num : nums)    
-            sum += num;
-        if(sum % 2 != 0)
-            return false;
+        for(int num : nums)    sum += num;
+        if(sum % 2 != 0)    return false;
         vector<vector<bool>> dp(nums.size(), vector<bool>((sum/=2)+1, false)); // sum 已减半
         // dp[i][j] 考虑前i个数，是否等于j (二维数组的动态规划)
         for(int i = 0; i < nums.size(); i++)
@@ -23,8 +21,7 @@ public:
     bool canPartition(vector<int>& nums) {
         int sum = 0;
         for(int num : nums)    sum += num;
-        if(sum % 2 != 0)
-            return false;
+        if(sum % 2 != 0)    return false;
         vector<bool> dp((sum/=2)+1, false); // sum 已减半
         // dp[j] 考虑前i个数，是否等于j (后一行只依赖前一行，转换为一维数组的动态规划)
         for(int i = 0; i < nums.size(); i++)
