@@ -127,17 +127,215 @@ int coinChange(vector<int>& coins, int amount) {
 	return (dp[amount] == amount + 1) ? -1 : dp[amount];
 }
 
+
 /* DFS回溯算法 */
+result = []
+def backtrack(路径, 选择列表):
+	if 满足结束条件:
+		result.add(路径)
+		return
+	for 选择 in 选择列表:
+		做选择
+		backtrack(路径, 选择列表)
+		撤销选择
+
+/* DFS回溯算法之全排列(输入一组不重复数字，返回他们的全排列) */
+List<List<Integer>> res = new LinkedList<>();
+List<List<Integer>> permute(int[] nums) {
+	// 记录【路径】
+	LinkedList<Integer> track = new LinkedList<>();
+	backtrack(nums, track);
+	return res;
+}
+void backtrack(int[] nums, LinkedList<Integer> track) {
+	// 触发结束条件
+	if (track.size() == nums.length) {
+		res.add(new LinkedList(track));
+		return;
+	}
+	for (int i = 0; i < nums.length; i++) {
+		// 排除不合理的选择
+		if (track.contains(nums[i]))
+			continue;
+		// 做选择
+		track.add(nums[i]);
+		// 进入下一层决策树
+		backtrack(nums, track);
+		track.removeLast();
+	}
+}
+
+/* DFS回溯算法之N皇后问题 */
+vector<vector<string>> res;
+vector<vector<string>> solveNQueens(int n) {
+	vector<string> board(n, string(n, '.'));
+	backtrack(board, 0);
+	return res;
+}
+void backtrack(vector<string>& board, int row) {
+	// 触发结束条件
+	if (row == board.size()) {
+		res.push_back(board);
+		return;
+	}
+	int n = board[row].size();
+	for (int col = 0; col < n; col++) {
+		// 排除不合法选择
+		if (!isValid(board, row, col))
+			continue;
+		// 做选择
+		board[row][col] = 'Q';
+		// 进入下一行决策
+		backtrack(board, row + 1);
+		// 撤销选择
+		board[row][col] = '.';
+	}
+}
+// 是否可以在 board[row][col] 放置皇后
+bool isValid(vector<string>& board, int row, int col) {
+	int n = board.size();
+	// 检查列冲突
+	for (int i = 0; i < n; i++) {
+		if (board[i][col] == 'Q')
+			return false;
+	}
+	// 检查右上冲突
+	for (int i = row - 1, j = col + 1; i >= 0 && j < n; i--, j++) {
+		if (board[i][j] == 'Q')
+			return false;
+	}
+	// 检查左上冲突
+	for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
+		if (board[i][j] == 'Q')
+			return false;
+	}
+	return true;
+}
 
 
-/*  */
+/* BFS算法(计算最短距离) */
+int BFS(Node start, Node target) {
+	queue<Node> q;		// 核心数据结构
+	set<Node> visited;	// 避免回头路
+	q.push(start);		// 起点入队
+	visited.add(start);
+	int step = 0;		// 记录扩散步数
+	while (q not empty) {
+		int sz = q.size();
+		// 将当前队列中的所有节点向四周扩散
+		for (int i = 0; i < sz; i++) {
+			Node cur = q.pop();
+			// 判断是否到达终点
+			if (cur is target)
+				return step;
+			// cur相邻节点入队
+			for (Node x : cur.adj())
+				if (x not in visited) {
+					q.push(x);
+					visited.add(x);
+				}
+		}
+		// 搜索完一层，更新步数
+		step++;
+	}
+}
+
+/* BFS算法之二叉树最小深度 */
+int minDepth(TreeNode root) {
+	if (root == NULL) return 0;
+	queue<TreeNode> q = new LinkedList<>();
+	q.push(root);
+	int depth = 1;
+	while (!q.isEmpty()) {
+		int sz = q.size();
+		for (int i = 0; i < sz; i++) {
+			TreeNode cur = q.pop();
+			if (cur.left == NULL && cur.right == NULL)
+				return depth;
+			if (cur.left)
+				q.push(cur.left);
+			if (cur.right)
+				q.push(cur.right);
+		}
+		depth++;
+	}
+	return depth;
+}
+
+/* BFS算法之解开密码锁的最小次数 */
 
 
-/* BFS算法--最短距离 */
+/* 基本二分查找 */
+int binarySearch(int[] nums, int target) {
+	int left = 0;
+	int right = nums.length - 1;
+	while (left <= right) {
+		int mid = left + (right - left) / 2;
+		if (nums[mid] == target)
+			return mid;
+		else if (nums[mid] < target)
+			left = mid + 1;
+		else if (nums[mid] > target)
+			right = mid - 1;
+	}
+	return -1;
+}
 
+/* 寻找左侧边界的二分查找I */
+int left_bound(int[] nums, int target) {
+	if (nums.length == 0) return -1;
+	int left = 0;
+	int right = nums.length;
+	while (left < right) {
+		int mid = left + (right - left) / 2;
+		if (nums[mid] == target)
+			right = mid;
+		else if (nums[mid] < target)
+			left = mid + 1;
+		else if (nums[mid] > target)
+			right = mid;
+	}
+	return left;
+}
 
-/* 二分查找 */
+/* 寻找左侧边界的二分查找II */
+int left_bound(int[] nums, int target) {
+	if (nums.length == 0) return -1;
+	int left = 0;
+	int right = nums.length - 1;
+	while (left <= right) {
+		int mid = left + (right - left) / 2;
+		if (nums[mid] == target)
+			right = mid - 1;
+		else if (nums[mid] < target)
+			left = mid + 1;
+		else if (nums[mid] > target)
+			right = mid - 1;
+	}
+	if (left >= nums.length || nums[left] != target)
+		return -1;
+	return left;
+}
 
+/* 寻找右侧边界的二分查找 */
+int right_bound(int[] nums, int target) {
+	if (nums.length == 0) return -1;
+	int left = 0;
+	int right = nums.length - 1;
+	while (left <= right) {
+		int mid = left + (right - left) / 2;
+		if (nums[mid] == target)
+			left = mid + 1;
+		else if (nums[mid] < target)
+			left = mid + 1;
+		else if (nums[mid] > target)
+			right = mid - 1;
+	}
+	// 检查right越界
+	if (right < 0 || nums[right] != target)
+		return -1;
+	return right;
+}
 
 /*  */
 
@@ -166,29 +364,27 @@ int coinChange(vector<int>& coins, int amount) {
 using namespace std;
 
 // 频繁交换
-void insertSortBad(int *a, int n){
+void insertSortBad(int *a, int n) {
 	int i, j;
-	for (i = 1; i < n; ++i){
-		for (j = i; a[j - 1] > a[j] && j > 0; --j){
+	for (i = 1; i < n; ++i) {
+		for (j = i; a[j - 1] > a[j] && j > 0; --j)
 			swap(a[j - 1], a[j]);
-		}
 	}
 }
 // 将频繁交换转换为赋值
-void insertSort(int *a, int n){
+void insertSort(int *a, int n) {
 	// 临时变量,存放需要移动的元素
 	int temp = 0;
 	int i, j;
-	for (i = 1; i < n; ++i){
-			temp = a[i];
-			for (j = i; a[j - 1] > temp && j > 0; --j){
-				a[j] = a[j - 1];
-			}
+	for (i = 1; i < n; ++i) {
+		temp = a[i];
+		for (j = i; a[j - 1] > temp && j > 0; --j)
+			a[j] = a[j - 1];
 		a[j] = temp;
 	}
 }
 
-int main(){
+int main() {
 	int a[7] = { 2, 1, 3, 4, 5, 9, 8 };
 	insertSortBad(a, 7);
 	for (int i = 0; i < 7; ++i)
