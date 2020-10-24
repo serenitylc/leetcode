@@ -1,3 +1,103 @@
+/* C++常用数据结构 */
+/* array */
+#include <array>
+array<int, 10> arr;
+for (auto it = arr.begin(); it != arr.end(); it++)
+	cout << *it << '\t';
+arr.size();
+
+/* queue */
+#include <queue>
+queue<int> que;
+que.push(num);
+que.empty();
+que.size();
+que.front();
+que.back();
+que.pop();
+
+/* priority_queue */
+q.push();
+q.pop();
+q.top();
+
+/* stack */
+#include <stack>
+stack<int> st;
+st.push(num);
+st.empty();
+st.size();
+st.top();
+st.pop();
+
+/* list 双向链表 */
+#include <list>
+int nums[] = {1, 2, 3, 4, 5};
+list<int> li(nums, nums + sizeof(nums) / sizeof(int));
+auto it = li.begin();
+li.insert(it, num);
+li.assign();
+li.front();
+li.back();
+li.pop_front();
+li.pop_back();
+li.push_front();
+li.push_back();
+li.size();
+li.resize();
+li.unique();
+li.erase();
+li.clear();
+li.empty();
+
+/* map */
+#include <map>
+map<char, int> m;
+m['a'] = 1;
+m.insert(pair<char, int>('b', 2));
+m.erase('a');
+auto it = m.find('b');
+cout << it->first << it->second << endl;
+
+/* unordered_map */
+// find() 判断某键值是否存在, map.find(key) == map.end() 时不存在
+// count() 统计key值在map中出现的次数
+
+/* set */
+#include <set>
+int nums[] = {1, 2, 3, 4, 5};
+set<int> s(nums, nums + sizeof(nums) / sizeof(int));
+s.insert(6);
+s.erase(2);
+auto it = s.find(3);
+cout << *it << endl;
+
+/* unordered_set */
+empty()
+insert()
+erase()
+
+/* vector */
+#include <vector>
+vector<int> vec;
+vec.push_back(num);
+vec.pop_back();
+
+/* bitset */
+// bitset的大小在编译时就需要确定
+// 定义bitset, bitset<16> b;
+// b.size() 	 返回位数
+// b.count() 	 返回1的个数
+// b.any() 		 返回是否有1
+// b.none() 	 返回是否没有1
+// b.set() 		 全部变成1
+// b.set(i) 	 将i+1位变成1
+// b.set(i,x) 	 将i+1位变成x
+// b.reset() 	 全部都变成0
+// b.flip() 	 全部去翻
+// b.to_string() 转为string类型
+
+
 /* 二叉树遍历框架 */
 class TreeNode {
 	int val;
