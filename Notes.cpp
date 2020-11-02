@@ -68,13 +68,13 @@ cout << s2 << endl;    // 结果：23456，参数5表示截取的字符串的长
 
 /* queue */
 #include <queue>
-// queue<int> que;
-// que.push(num);
-// que.empty();
-// que.size();
-// que.front();
-// que.back();
-// que.pop();
+// queue<int> q;
+// q.push(num);
+// q.empty();
+// q.size();
+// q.front();
+// q.back();
+// q.pop();
 
 /* priority_queue */
 // q.push();
