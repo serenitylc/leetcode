@@ -6,12 +6,10 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
-
 class Solution {
 public:
     TreeNode* invertTree(TreeNode* root) {
-        if(root == NULL)
-            return root;
+        if(root == NULL) return root;
         invertTree(root->left);
         invertTree(root->right);
         swap(root->left, root->right);     
@@ -22,8 +20,7 @@ public:
 class Solution {
 public:
     TreeNode* invertTree(TreeNode* root) {
-        if(root == nullptr)
-            return root;
+        if(root == nullptr) return root;
         queue<TreeNode*> q;
         q.push(root);
         while(!q.empty()) {
