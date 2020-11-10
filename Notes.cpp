@@ -110,11 +110,17 @@ cout << s2 << endl;    // 结果：23456，参数5表示截取的字符串的长
 // li.clear();
 // li.empty();
 
-/* map */
+/* map 底层为红黑树, 所有元素根据键值key自动排序, 不允许有键值相同的元素,
+   multimap 中的key可以重复, 单个元素版本的 insert() 返回值不再是一个pair, 而是一个iterator, 不再提供 operator[] 接口.
+
+   C++11中4个关联式容器：unordered_map/unordered_set/unordered_multimap/unordered_multiset, 
+   unordered_map 底层实现是哈希桶, empty(), insert(), erase(), 其 erase() 操作会缩容，导致元素重新映射，降低性能.
+   若需要一个有序序列，使用红黑树系列的关联式容器; 若需要更高的查询效率，使用以哈希表为底层的关联式容器.
+*/
 #include <map>
 // map<char, int> m;
 // m['a'] = 1;
-// m.insert(pair<char, int>('b', 2));
+// m.insert(pair<char, int>('b', 2));  /* make_pair内敛函数, 返回一个pair对象 */
 // m.erase('a');
 // auto it = m.find('b');
 // cout << it->first << it->second << endl;
@@ -132,16 +138,14 @@ cout << s2 << endl;    // 结果：23456，参数5表示截取的字符串的长
 // auto it = s.find(3);
 // cout << *it << endl;
 
-/* unordered_set */
-// empty()
-// insert()
-// erase()
-
 /* vector */
 #include <vector>
 // vector<int> vec;
 // vec.push_back(num);
 // vec.pop_back();
+// back()
+// empty()
+// size()
 
 /* bitset */
 // bitset的大小在编译时就需要确定
