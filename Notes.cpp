@@ -66,29 +66,31 @@ cout << s2 << endl;    // 结果：23456，参数5表示截取的字符串的长
 // 	cout << *it << '\t';
 // arr.size();
 
-/* queue */
 #include <queue>
+/* queue */
 // queue<int> q;
-// q.push(num);
-// q.empty();
-// q.size();
-// q.front();
-// q.back();
-// q.pop();
+// q.push(num); q.empty(); q.size(); q.front(); q.back(); q.pop();
 
-/* priority_queue */
-// q.push();
-// q.pop();
-// q.top();
+/* priority_queue<Type, Container, Functional> : 优先队列具有最高级先出 (first in, largest out)的行为特征
+ * Type 数据类型
+ * Container 容器类型 (必须是用数组实现的容器, 如vector, deque等，但不能用 list, STL里默认用vector)
+ * Functional 比较方式
+ * pq.push(); pq.pop(); pq.top(); pq.empty(); pq.size()
+ * 默认是大顶堆 priority_queue<int, vector<int>, less<int>> pq;
+ * #include<functional> : greater 和 less 是 std 实现的两个仿函数 (类中实现一个operator())
+ * 用 pair 做优先队列元素：pair<int, int> 先比较第一个元素, 第一个相等比较第二个.
+ * 自定义类型做优先队列元素 :  重写仿函数
+ * struct compare {
+ *    bool operator()(type a, type b) {
+ *        return a.x < b.x;  // 大顶堆
+ *    }
+ * };
+ * priority_queue<type, vector<type>, compare> pq;
+ */
 
 /* stack */
 #include <stack>
-// stack<int> st;
-// st.push(num);
-// st.empty();
-// st.size();
-// st.top();
-// st.pop();
+// stack<int> st; st.push(num); st.empty(); st.size(); st.top(); st.pop();
 
 /* list 双向链表 */
 #include <list>
@@ -96,28 +98,17 @@ cout << s2 << endl;    // 结果：23456，参数5表示截取的字符串的长
 // list<int> li(nums, nums + sizeof(nums) / sizeof(int));
 // auto it = li.begin();
 // li.insert(it, num);
-// li.assign();
-// li.front();
-// li.back();
-// li.pop_front();
-// li.pop_back();
-// li.push_front();
-// li.push_back();
-// li.size();
-// li.resize();
-// li.unique();
-// li.erase();
-// li.clear();
-// li.empty();
+// li.front(); li.back(); li.pop_front(); li.pop_back(); li.push_back(); li.push_front();
+// li.assign(); li.size(); li.resize(); li.unique(); li.erase(); li.clear(); li.empty();
 
-/* map 底层为红黑树, 所有元素根据键值key自动排序, 不允许有键值相同的元素,
-   multimap 中的key可以重复, 单个元素版本的 insert() 返回值不再是一个pair, 而是一个iterator, 不再提供 operator[] 接口.
-
-   C++11中4个关联式容器：unordered_map/unordered_set/unordered_multimap/unordered_multiset, 
-   unordered_map 底层实现是哈希桶, empty(), insert(), erase(), 其 erase() 操作会缩容，导致元素重新映射，降低性能.
-   若需要一个有序序列，使用红黑树系列的关联式容器; 若需要更高的查询效率，使用以哈希表为底层的关联式容器.
-*/
 #include <map>
+/* map 底层为红黑树, 所有元素根据键值key自动排序, 不允许有键值相同的元素,
+ *  multimap 中的key可以重复, 单个元素版本的 insert() 返回值不再是一个pair, 而是一个iterator, 不再提供 operator[] 接口.
+ *
+ *  C++11中4个关联式容器：unordered_map/unordered_set/unordered_multimap/unordered_multiset, 
+ *  unordered_map 底层实现是哈希桶, empty(), insert(), erase(), 其 erase() 操作会缩容，导致元素重新映射，降低性能.
+ *  若需要一个有序序列，使用红黑树系列的关联式容器; 若需要更高的查询效率，使用以哈希表为底层的关联式容器.
+ */
 // map<char, int> m;
 // m['a'] = 1;
 // m.insert(pair<char, int>('b', 2));  /* make_pair内敛函数, 返回一个pair对象 */
@@ -125,9 +116,10 @@ cout << s2 << endl;    // 结果：23456，参数5表示截取的字符串的长
 // auto it = m.find('b');
 // cout << it->first << it->second << endl;
 
-/* unordered_map */
-// find() 判断某键值是否存在, map.find(key) == map.end() 时不存在
-// count() 统计key值在map中出现的次数
+/* unordered_map 
+ * find() 判断某键值是否存在, map.find(key) == map.end() 时不存在
+ * count() 统计key值在map中出现的次数
+ */
 
 /* set */
 #include <set>
@@ -140,27 +132,22 @@ cout << s2 << endl;    // 结果：23456，参数5表示截取的字符串的长
 
 /* vector */
 #include <vector>
-// vector<int> vec;
-// vec.push_back(num);
-// vec.pop_back();
-// back()
-// empty()
-// size()
+// vector<int> vec; push_back(num); pop_back(); back(); empty(); size(); reverse()
 
-/* bitset */
-// bitset的大小在编译时就需要确定
-// 定义bitset, bitset<16> b;
-// b.size() 	 返回位数
-// b.count() 	 返回1的个数
-// b.any() 		 返回是否有1
-// b.none() 	 返回是否没有1
-// b.set() 		 全部变成1
-// b.set(i) 	 将i+1位变成1
-// b.set(i,x) 	 将i+1位变成x
-// b.reset() 	 全部都变成0
-// b.flip() 	 全部去翻
-// b.to_string() 转为string类型
-
+/* bitset 
+ * bitset的大小在编译时就需要确定
+ * 定义bitset, bitset<16> b;
+ * b.size() 	 返回位数
+ * b.count() 	 返回1的个数
+ * b.any() 		 返回是否有1
+ * b.none() 	 返回是否没有1
+ * b.set() 		 全部变成1
+ * b.set(i) 	 将i+1位变成1
+ * b.set(i,x) 	 将i+1位变成x
+ * b.reset() 	 全部都变成0
+ * b.flip() 	 全部去翻
+ * b.to_string() 转为string类型
+ */
 
 /* 二叉树遍历框架 */
 class TreeNode {
