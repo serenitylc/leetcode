@@ -27,15 +27,9 @@ public:
                 if (cur == target) return step;
                 for (int j = 0; j < 4; ++j) {
                     string up = plusOne(cur, j);
-                    if (!visited.count(up)) {
-                        q.push(up);
-                        visited.insert(up);
-                    }
+                    if (!visited.count(up)) { q.push(up); visited.insert(up); }
                     string down = minusOne(cur, j);
-                    if (!visited.count(down)) {
-                        q.push(down);
-                        visited.insert(down);
-                    }            
+                    if (!visited.count(down)) { q.push(down); visited.insert(down); }            
                 }
             }
             step++;
