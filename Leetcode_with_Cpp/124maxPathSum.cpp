@@ -19,7 +19,7 @@ public:
     }
     int oneSideMax(TreeNode* root) {
         if (root == nullptr) return 0;
-        int left = max(0, oneSideMax(root->left));
+        int left = max(0, oneSideMax(root->left));  // 如果左右孩子的结果是负数, 则舍弃
         int right = max(0, oneSideMax(root->right));
         res = max(res, left + right + root->val);
         return max(left, right) + root->val;
