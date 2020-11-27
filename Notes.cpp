@@ -57,6 +57,8 @@ string s1("0123456789");
 string s2 = s1.substr(2, 5); 
 cout << s2 << endl;    // 结果：23456，参数5表示截取的字符串的长度
 
+// int转string: c++11标准增加了全局函数 std::to_string
+// string转int: 可以使用std::stoi/stol/stoll等函数
 
 /* C++ 常用数据结构 */
 /* array */
