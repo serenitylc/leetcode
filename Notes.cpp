@@ -1,77 +1,93 @@
-/* C++ string 常用函数 */
-#include <string>
-// string str;							生成空字符串
-// string s(str);						生成字符串为str的复制品
-// string s(str, str_begin, str_len);	将字符串str中从下标str_begin开始、长度为str_len的部分作为字符串初值
-// string s(cstr, char_len);			以C_string类型cstr的前char_len个字符串作为字符串s的初值
-// string s(num, char);					生成num个c字符的字符串
-// string s(str, str_index);			将字符串str中从下标str_index开始到字符串结束的位置作为字符串初值
 
-// size()、 length(): 	返回string对象的字符个数, 执行效果相同
-// max_size(): 			返回string对象最多包含的字符数，超出会抛出length_error异常
-// capacity()：			重新分配内存之前，string对象能包含的最大字符数
+/* sort(v.begin(), v,end(), compare); 
+ * bool compare(int a, int b) { return a < b; }  升序排列(默认)
+ * #include <functional>
+ * 升序: sort(begin, end, less<data-type>())
+ * 降序: sort(begin, end, greater<data-type>())
+ */
 
-// string的插入：push_back()、 insert()
-s.push_back('a');
-s.insert(s.begin(), '1');
+/* #include<numeric>
+ * accumulate(v.begin(), v.end(), 0);  累加起始值
+ */
 
-// string拼接字符串：append() 、 +
-
-// string的遍历：借助迭代器 或者 下标法
-// 正向迭代器 str.begin()、  str.end()
-// 反向迭代器 str.rbegin()、 str.rend()
-
-// string的删除：erase()
-// iterator erase(iterator p);						删除字符串中p所指的字符
-// iterator erase(iterator first, iterator last);	删除字符串中迭代器区间 [first, last) 上所有字符
-// string& erase(size_t pos, size_t len);			删除字符串中从索引位置 pos 开始的 len 个字符
-// void clear();									删除字符串中所有字符
-
-// string大小写转换：tolower() 和 toupper() 或者 STL中的 transform 算法
-
-// string的查找：find
-string s("dog bird chicken bird cat");
-// 字符串查找-----找到后返回首字母在字符串中的下标
-// 1. 查找一个字符串	
-cout << s.find("chicken") << endl;        	// 结果是：9
-// 2. 从下标为6开始找字符'i'，返回找到的第一个i的下标	
-cout << s.find('i', 6) << endl;            	// 结果是：11
-// 3. 从字符串的末尾开始查找字符串，返回的还是首字母在字符串中的下标	
-cout << s.rfind("chicken") << endl;       	// 结果是：9
-// 4. 从字符串的末尾开始查找字符   	
-cout << s.rfind('i') << endl;             	// 结果是：18
-// 5. 在该字符串中查找第一个属于字符串s的字符 		
-cout << s.find_first_of("13br98") << endl;  // 结果是：4("b")
-// 6. 在该字符串中查找第一个不属于字符串s的字符，先匹配dog，然后bird匹配不到，所以打印4 	
-cout << s.find_first_not_of("hello dog 2006") << endl; // 结果是：4
-// 7. 在该字符串从后往前查找第一个属于字符串s的字符 	
-cout << s.find_last_of("13r98") << endl;     // 结果是：19
-// 8. 在该字符串从后往前查找第一个不属于字符串s的字符，先匹配tac，然后空格匹配不到，所以打印21	
-cout << s.find_last_not_of("teac") << endl;  // 结果是：21
-
-// string的排序
-sort(iterator iter1, iterator iter2);  // 对[iter1, iter2)进行排序
-
-// string的分割/截取字符串：substr()
-string s1("0123456789");
-string s2 = s1.substr(2, 5); 
-cout << s2 << endl;    // 结果：23456，参数5表示截取的字符串的长度
-
-// int转string: c++11标准增加了全局函数 std::to_string
-// string转int: 可以使用std::stoi/stol/stoll等函数
+/* C++ string 常用函数 
+ * #include <string>
+ * string str;							生成空字符串
+ * string s(str);						生成字符串为str的复制品
+ * string s(str, str_begin, str_len);	将字符串str中从下标str_begin开始、长度为str_len的部分作为字符串初值
+ * string s(cstr, char_len);			以C_string类型cstr的前char_len个字符串作为字符串s的初值
+ * string s(num, char);					生成num个c字符的字符串
+ * string s(str, str_index);			将字符串str中从下标str_index开始到字符串结束的位置作为字符串初值
+ *
+ * size()、 length(): 	返回string对象的字符个数, 执行效果相同
+ * max_size(): 			返回string对象最多包含的字符数，超出会抛出length_error异常
+ * capacity()：			重新分配内存之前，string对象能包含的最大字符数
+ *
+ * string的插入：push_back()、 insert()
+ * s.push_back('a');
+ * s.insert(s.begin(), '1');
+ *
+ * string拼接字符串：append() 、 +
+ *
+ * string的遍历：借助迭代器 或者 下标法
+ * 正向迭代器 str.begin()、  str.end()
+ * 反向迭代器 str.rbegin()、 str.rend()
+ *
+ * string的删除：erase()
+ * iterator erase(iterator p);						删除字符串中p所指的字符
+ * iterator erase(iterator first, iterator last);	删除字符串中迭代器区间 [first, last) 上所有字符
+ * string& erase(size_t pos, size_t len);			删除字符串中从索引位置 pos 开始的 len 个字符
+ * void clear();									删除字符串中所有字符
+ *
+ * string大小写转换：tolower() 和 toupper() 或者 STL中的 transform 算法
+ *
+ * string的查找：find
+ * string s("dog bird chicken bird cat");
+ * 字符串查找-----找到后返回首字母在字符串中的下标
+ * 1. 查找一个字符串	
+ * cout << s.find("chicken") << endl;  结果是：9
+ * 2. 从下标为6开始找字符'i'，返回找到的第一个i的下标	
+ * cout << s.find('i', 6) << endl;  结果是：11
+ * 3. 从字符串的末尾开始查找字符串，返回的还是首字母在字符串中的下标	
+ * cout << s.rfind("chicken") << endl;  结果是：9
+ * 4. 从字符串的末尾开始查找字符   	
+ * cout << s.rfind('i') << endl;  结果是：18
+ * 5. 在该字符串中查找第一个属于字符串s的字符 		
+ * cout << s.find_first_of("13br98") << endl;  结果是：4("b")
+ * 6. 在该字符串中查找第一个不属于字符串s的字符，先匹配dog，然后bird匹配不到，所以打印4 	
+ * cout << s.find_first_not_of("hello dog 2006") << endl;  结果是：4
+ * 7. 在该字符串从后往前查找第一个属于字符串s的字符 	
+ * cout << s.find_last_of("13r98") << endl;   结果是：19
+ * 8. 在该字符串从后往前查找第一个不属于字符串s的字符，先匹配tac，然后空格匹配不到，所以打印21	
+ * cout << s.find_last_not_of("teac") << endl;  结果是：21
+ *
+ * string的排序
+ * sort(iterator iter1, iterator iter2);  对[iter1, iter2)进行排序
+ *
+ * string的分割/截取字符串：substr()
+ * string s1("0123456789");
+ * string s2 = s1.substr(2, 5); 
+ * cout << s2 << endl;  结果：23456，参数5表示截取的字符串的长度
+ *
+ * int转string: c++11标准增加了全局函数 std::to_string
+ * string转int: 可以使用std::stoi/stol/stoll等函数
+ */
 
 /* C++ 常用数据结构 */
-/* array */
-#include <array>
-// array<int, 10> arr;
-// for (auto it = arr.begin(); it != arr.end(); it++)
-// 	cout << *it << '\t';
-// arr.size();
+/* array
+ * #include <array>
+ * array<int, 10> arr;
+ * for (auto it = arr.begin(); it != arr.end(); it++)
+ * 	cout << *it << '\t';
+ * arr.size();
+ */
 
-#include <queue>
-/* queue */
-// queue<int> q;
-// q.push(num); q.empty(); q.size(); q.front(); q.back(); q.pop();
+
+/* queue
+ * #include <queue>
+ * queue<int> q;
+ * q.push(num); q.empty(); q.size(); q.front(); q.back(); q.pop();
+ */
 
 /* priority_queue<Type, Container, Functional> : 优先队列具有最高级先出 (first in, largest out)的行为特征
  * Type 数据类型
@@ -84,57 +100,62 @@ cout << s2 << endl;    // 结果：23456，参数5表示截取的字符串的长
  * 自定义类型做优先队列元素 :  重写仿函数
  * struct compare {
  *    bool operator()(type a, type b) {
- *        return a.x < b.x;  // 大顶堆
+ *        return a.x < b.x;   * 大顶堆
  *    }
  * };
  * priority_queue<type, vector<type>, compare> pq;
  */
 
-/* stack */
-#include <stack>
-// stack<int> st; st.push(num); st.empty(); st.size(); st.top(); st.pop();
-
-/* list 双向链表 */
-#include <list>
-// int nums[] = {1, 2, 3, 4, 5};
-// list<int> li(nums, nums + sizeof(nums) / sizeof(int));
-// auto it = li.begin();
-// li.insert(it, num);
-// li.front(); li.back(); li.pop_front(); li.pop_back(); li.push_back(); li.push_front();
-// li.assign(); li.size(); li.resize(); li.unique(); li.erase(); li.clear(); li.empty();
-
-#include <map>
-/* map 底层为红黑树, 所有元素根据键值key自动排序, 不允许有键值相同的元素,
- *  multimap 中的key可以重复, 单个元素版本的 insert() 返回值不再是一个pair, 而是一个iterator, 不再提供 operator[] 接口.
- *
- *  C++11中4个关联式容器：unordered_map/unordered_set/unordered_multimap/unordered_multiset, 
- *  unordered_map 底层实现是哈希桶, empty(), insert(), erase(), 其 erase() 操作会缩容，导致元素重新映射，降低性能.
- *  若需要一个有序序列，使用红黑树系列的关联式容器; 若需要更高的查询效率，使用以哈希表为底层的关联式容器.
+/* stack 
+ * #include <stack>
+ * stack<int> st; st.push(num); st.empty(); st.size(); st.top(); st.pop();
  */
-// map<char, int> m;
-// m['a'] = 1;
-// m.insert(pair<char, int>('b', 2));  /* make_pair内敛函数, 返回一个pair对象 */
-// m.erase('a');
-// auto it = m.find('b');
-// cout << it->first << it->second << endl;
+
+/* list 双向链表
+ * #include <list>
+ * int nums[] = {1, 2, 3, 4, 5};
+ * list<int> li(nums, nums + sizeof(nums) / sizeof(int));
+ * auto it = li.begin();
+ * li.insert(it, num);
+ * li.front(); li.back(); li.pop_front(); li.pop_back(); li.push_back(); li.push_front();
+ * li.assign(); li.size(); li.resize(); li.unique(); li.erase(); li.clear(); li.empty();
+ */
+
+/* #include <map>
+ * map 底层为红黑树, 所有元素根据键值key自动排序, 不允许有键值相同的元素,
+ * multimap 中的key可以重复, 单个元素版本的 insert() 返回值不再是一个pair, 而是一个iterator, 不再提供 operator[] 接口.
+ *
+ * C++11中4个关联式容器：unordered_map/unordered_set/unordered_multimap/unordered_multiset, 
+ * unordered_map 底层实现是哈希桶, empty(), insert(), erase(), 其 erase() 操作会缩容，导致元素重新映射，降低性能.
+ * 若需要一个有序序列，使用红黑树系列的关联式容器; 若需要更高的查询效率，使用以哈希表为底层的关联式容器.
+ *
+ * map<char, int> m;
+ * m['a'] = 1;
+ * m.insert(pair<char, int>('b', 2));  make_pair内敛函数, 返回一个pair对象
+ * m.erase('a');
+ * auto it = m.find('b');
+ * cout << it->first << it->second << endl;
+ */
 
 /* unordered_map 
  * find() 判断某键值是否存在, map.find(key) == map.end() 时不存在
  * count() 统计key值在map中出现的次数
  */
 
-/* set */
-#include <set>
-// int nums[] = {1, 2, 3, 4, 5};
-// set<int> s(nums, nums + sizeof(nums) / sizeof(int));
-// s.insert(6);
-// s.erase(2);
-// auto it = s.find(3);
-// cout << *it << endl;
+/* set
+ * #include <set>
+ * int nums[] = {1, 2, 3, 4, 5};
+ * set<int> s(nums, nums + sizeof(nums) / sizeof(int));
+ * s.insert(6);
+ * s.erase(2);
+ * auto it = s.find(3);
+ * cout << *it << endl;
+ */
 
-/* vector */
-#include <vector>
-// vector<int> vec; push_back(num); pop_back(); back(); empty(); size(); reverse()
+/* vector
+ * #include <vector>
+ * vector<int> vec; push_back(num); pop_back(); back(); empty(); size(); reverse()
+ */
 
 /* bitset 
  * bitset的大小在编译时就需要确定
