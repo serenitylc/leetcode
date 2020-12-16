@@ -511,59 +511,106 @@ int right_bound(int[] nums, int target) {
 	return right;
 }
 
-/*  */
-
-
-/*  */
-
-
-/*  */
-
-
-/*  */
-
-
-
-/*
-  插入排序，平均情况O(n^2)，最好O(n)，最坏O(n^2)，空间复杂度O(1)，稳定
-  插入排序思想：
-  a[5] = {2, 1, 3, 4, 5}
-  外层循环： a[0]不用管，默认有序，从a[1]开始往后循环
-  内层循环： 将需要移动的元素a[1]存入临时变量
-			遍历a[1]前面的元素，与当前a[1]进行比较，若遍历的当前元素大于a[1]，元素后移a[j] = a[j - 1]
-			直到数据元素小于等于临时变量
-			移动完后，将当前位置赋值为临时变量
-*/
-#include <iostream>
-using namespace std;
-
-// 频繁交换
-void insertSortBad(int *a, int n) {
-	int i, j;
-	for (i = 1; i < n; ++i) {
-		for (j = i; a[j - 1] > a[j] && j > 0; --j)
-			swap(a[j - 1], a[j]);
+/* 快速排序 Quick Sort 左闭右闭二分写法 */
+void quick_sort(vector<int>& nums, int l, int r) {
+	if (l + 1 >= r) return;
+	int first = l, last = r - 1, key = nums[first];
+	while (first < last) {
+		while (first < last && nums[last] >= key)
+			--last;
+		nums[first] = nums[last];
+		while (first < last && nums[first] <= key)
+			++first;
+		nums[last] = nums[first];
 	}
-}
-// 将频繁交换转换为赋值
-void insertSort(int *a, int n) {
-	// 临时变量,存放需要移动的元素
-	int temp = 0;
-	int i, j;
-	for (i = 1; i < n; ++i) {
-		temp = a[i];
-		for (j = i; a[j - 1] > temp && j > 0; --j)
-			a[j] = a[j - 1];
-		a[j] = temp;
-	}
+	nums[first] = key;
+	quick_sort(nums, l, first);
+	quick_sort(nums, first + 1, r);
 }
 
-int main() {
-	int a[7] = { 2, 1, 3, 4, 5, 9, 8 };
-	insertSortBad(a, 7);
-	for (int i = 0; i < 7; ++i)
-		cout << a[i] << endl;
+/* 快速选择 Quick Selection */
+int quickSelection(vector<int>& nums, int l, int r) {
+    int i = l + 1, j = r;
+    while (true) {
+        while (i < r && nums[i] <= nums[l])
+            ++i;
+        while (l < j && nums[j] >= nums[l])
+            --j;
+        if (i >= j) break;
+        swap(nums[i], nums[j]);
+    }
+    swap(nums[l], nums[j]);
+    return j;
+}
+int findKthLargest(vector<int>& nums, int k) {
+    int l = 0, r = nums.size() - 1, target = nums.size() - k;
+    while (l < r) {
+        int mid = quickSelection(nums, l, r);
+        if (mid == target) return nums[mid];
+        else if (mid < target) l = mid + 1;
+        else r = mid - 1;
+    }
+    return nums[l];
+}
 
-	system("pause");
-	return 0;
+/* 归并排序 Merge Sort 
+ * 分治法 
+ * 1.将n个元素从中间切开，分成两部分。（左边可能比右边多1个数）
+ * 2.将步骤1分成的两部分，分别进行递归分解。直到所有部分的元素个数都为1。
+ * 3.从最底层开始逐步合并两个排好序的数列。
+ * 合并: 由于两个数列都已经有序，只需从低位轮番拿出各自最小的数来PK就行，较小值放入临时数列。
+ */
+void merge_sort(vector<int>& nums, int l, int r, vector<int>& temp) {
+	if (l + 1 >= r) return;
+	// divide
+	int m = l + (r - l) / 2;
+	merge_sort(nums, l, m, temp);
+	merge_sort(nums, m, r, temp);
+	// conquer
+	int p = l, q = m, index = l;
+	while (p < m || q < r) {
+		if (q >= r || (p < m && nums[p] <= nums[q]))
+			temp[index++] = nums[p++];
+		else
+			temp[index++] = nums[q++];
+	}
+	for (index = l; index < r; index++)
+		nums[index] = temp[index];
+}
+
+/* 插入排序 Insertion Sort */
+void insertion_sort(vector<int>& nums, int n) {
+	for (int i = 0; i < n; ++i) {
+		for (int j = i; j > 0 && nums[j] < nums[j - 1]; --j) {
+			swap(nums[j], nums[j - 1]);
+		}
+	}
+}
+
+/* 冒泡排序 Bubble Sort */
+void bubble_sort(vector<int>& nums, int n) {
+	bool swapped;
+	for (int i = 1; i < n; ++i) {
+		swapped = false;
+		for (int j = 1; j < n - i - 1; ++j) {
+			if (nums[j] < nums[j - 1]) {
+				swap(nums[j], nums[j - 1]);
+				swapped = true;
+			}
+		}
+		if (!swapped) break;
+	}
+}
+
+/* 选择排序 Selection Sort */
+void selection_sort(vector<int>& nums, int n) {
+	int mid;
+	for (int i = 0; i < n - 1; ++i) {
+		mid = i;
+		for (int j = i + 1; j < n; ++j) {
+			if (nums[j] < nums[mid])
+				mid = j;
+		}
+		swap(nums[mid], nums[i]);
+	}
 }
