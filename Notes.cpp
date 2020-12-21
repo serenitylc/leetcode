@@ -614,3 +614,24 @@ void selection_sort(vector<int>& nums, int n) {
 		swap(nums[mid], nums[i]);
 	}
 }
+
+/* 桶排序求前K个最频繁的数字 topKFrequent */
+vector<int> topKFrequent(vector<int>& nums, int k) {
+	unordered_map<int, int> counts;
+	int max_count = 0;
+	for (const int & num : nums) {
+		max_count = max(max_count, ++counts[num]);
+	}
+	vector<vector<int>> buckets(max_count + 1);
+	for (const auto & p : counts) {
+		buckets[p.second].push_back(p.first);
+	}
+	vector<int> res;
+	for (int i = max_count; i >= 0 && res.size() < k; --i) {
+		for (const int & num : buckets[i]) {
+			res.push_back(num);
+			if (res.size() == k) break;
+		}
+	}
+	return res;
+}
