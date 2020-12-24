@@ -301,8 +301,68 @@ int coinChange(vector<int>& coins, int amount) {
 	return (dp[amount] == amount + 1) ? -1 : dp[amount];
 }
 
+/* DFS 深度优先搜索之最大岛屿面积 */
+class Solution {
+public:
+    vector<int> directions{-1, 0, 1, 0, -1};
+    int maxAreaOfIsland(vector<vector<int>>& grid) {
+        int m = grid.size(), n = m ? grid[0].size() : 0, local_area, area = 0, x, y;
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (grid[i][j]) {
+                    local_area = 1;
+                    grid[i][j] = 0;
+                    stack<pair<int, int>> island;
+                    island.push({i, j});
+                    while (!island.empty()) {
+                        auto [r, c] = island.top();
+                        island.pop();
+                        for (int k = 0; k < 4; ++k) {
+                            x = r + directions[k], y = c + directions[k+1];
+                            if (x >= 0 && x < m && y >= 0 && y < n && grid[x][y] == 1) {
+                                grid[x][y] = 0;
+                                ++local_area;
+                                island.push({x, y});
+                            }
+                        }
+                    }
+                    area = max(area, local_area);
+                }
+            }
+        }
+        return area;
+    }
+};
+/* 递归 主函数遍历所有搜索位置，判断是否可以开始搜索，辅函数递归进行搜索 */
+class Solution {
+public:
+    vector<int> directions{-1, 0, 1, 0, -1};
+    int maxAreaOfIsland(vector<vector<int>>& grid) {
+        if (grid.empty() || grid[0].empty()) return 0;
+        int max_area = 0;
+        for (int i = 0; i < grid.size(); ++i) {
+            for (int j = 0; j < grid[0].size(); ++j) {
+                if (grid[i][j] == 1) {
+                    max_area = max(max_area, dfs(grid, i, j));
+                }
+            }
+        }
+        return max_area;
+    }
+    int dfs(vector<vector<int>>& grid, int r, int c) {
+        if (grid[r][c] == 0) return 0;
+        grid[r][c] = 0;
+        int x, y, area = 1;
+        for (int i = 0; i < 4; ++i) {
+            x = r + directions[i], y = c + directions[i+1];
+            if (x >= 0 && x < grid.size() && y >= 0 && y < grid[0].size())
+                area += dfs(grid, x, y);
+        }
+        return area;
+    }
+};
 
-/* DFS回溯算法 */
+/* 使用 DFS 求解回溯算法 */
 result = []
 def backtrack(路径, 选择列表):
 	if 满足结束条件:
@@ -313,33 +373,7 @@ def backtrack(路径, 选择列表):
 		backtrack(路径, 选择列表)
 		撤销选择
 
-/* DFS回溯算法之全排列(输入一组不重复数字，返回他们的全排列) */
-List<List<Integer>> res = new LinkedList<>();
-List<List<Integer>> permute(int[] nums) {
-	// 记录【路径】
-	LinkedList<Integer> track = new LinkedList<>();
-	backtrack(nums, track);
-	return res;
-}
-void backtrack(int[] nums, LinkedList<Integer> track) {
-	// 触发结束条件
-	if (track.size() == nums.length) {
-		res.add(new LinkedList(track));
-		return;
-	}
-	for (int i = 0; i < nums.length; i++) {
-		// 排除不合理的选择
-		if (track.contains(nums[i]))
-			continue;
-		// 做选择
-		track.add(nums[i]);
-		// 进入下一层决策树
-		backtrack(nums, track);
-		track.removeLast();
-	}
-}
-
-/* DFS回溯算法之N皇后问题 */
+/* 回溯算法之N皇后问题 */
 vector<vector<string>> res;
 vector<vector<string>> solveNQueens(int n) {
 	vector<string> board(n, string(n, '.'));
