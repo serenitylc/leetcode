@@ -13,21 +13,19 @@ public:
         ListNode* q = l2;
         ListNode* result = new ListNode(0);
         ListNode* r = result;
-        while(p && q) {
-            if(q->val > p->val) {
+        while (p && q) {
+            if (q->val > p->val) {
                 r->next = p;
                 r = r->next;
                 p = p->next;
-            }else {
+            } else {
                 r->next = q;
                 r = r->next;
                 q = q->next;
             }
         }
-        if(q)
-            r->next = q;
-        if(p)
-            r->next = p;
+        if (q) r->next = q;
+        if (p) r->next = p;
         return result->next;
     }
 };
