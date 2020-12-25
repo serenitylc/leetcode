@@ -9,9 +9,8 @@ public:
         mp['C'] = 100;
         mp['D'] = 500;
         mp['M'] = 1000;
-        
         int pos = 0, neg = 0;
-        for (int i = 0; i < s.size()-1; ++i){
+        for (int i = 0; i < s.size() - 1; ++i) {
             if (mp[s[i]] < mp[s[i+1]])
                 neg -= mp[s[i]];
             else
