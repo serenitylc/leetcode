@@ -11,21 +11,20 @@ class Solution {
         string cur;
 public:
     vector<string> letterCombinations(string digits) {
-        if(!digits.size())
-            return res;
-        DFS(digits);
+        if (!digits.size()) return res;
+        dfs(digits);
         return res;
     }
 
-    void DFS(string digits){    // 回溯法
-        if(!digits.size())
+    void dfs(string digits) {    // 回溯法
+        if (!digits.size())
             res.push_back(cur);
-        else{
+        else {
             char num = digits[0];
             string letter = mp[num];
-            for(int i = 0; i < letter.size(); i++) {
+            for (int i = 0; i < letter.size(); i++) {
                 cur.push_back(letter[i]);
-                DFS(digits.substr(1));   // 取子串 依次去掉字符串首字符
+                dfs(digits.substr(1));   // 取子串 依次去掉字符串首字符
                 cur.pop_back();
             }
         }
