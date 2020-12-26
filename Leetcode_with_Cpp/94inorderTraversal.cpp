@@ -13,12 +13,12 @@ public:
         vector<int> ret;
         stack<TreeNode*> path;
         TreeNode* cur = root;
-        while(cur || !path.empty()) {
-            while(cur) {
+        while (cur || !path.empty()) {
+            while (cur) {
                 path.push(cur);
                 cur = cur->left;
             }
-            if(!path.empty()) {
+            if (!path.empty()) {
                 cur = path.top();
                 path.pop();
                 ret.push_back(cur->val);
