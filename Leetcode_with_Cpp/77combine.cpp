@@ -13,7 +13,7 @@ public:
             res.push_back(track);
             return;
         }
-        for (int i = start; i <= n - (k - track.size()) + 1; i++) {  // 剪枝--减少循环次数
+        for (int i = start; i <= n - (k - track.size()) + 1; ++i) {  // 剪枝--减少循环次数
             track.push_back(i);
             backtrack(n, k, i + 1, track);
             track.pop_back();
