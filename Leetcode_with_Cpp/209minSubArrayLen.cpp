@@ -4,15 +4,15 @@ public:
         int l = 0, r = -1;  // nums[l...r] 双指针滑动窗口
         int sum = 0;
         int res = nums.size() + 1;
-        while(l < nums.size()) {
-            if(sum < s && r + 1 < nums.size())     // if(sum < s && r < nums.size() - 1)  -->  该写法错误（执行顺序）
+        while (l < nums.size()) {
+            if (sum < s && r + 1 < nums.size())     // if(sum < s && r < nums.size() - 1)  -->  该写法错误（执行顺序）
                 sum += nums[++r];
             else
                 sum -= nums[l++];
-            if(sum >= s)
+            if (sum >= s)
                 res = min(res, r-l+1);
         }
-        if(res == nums.size() + 1)
+        if (res == nums.size() + 1)
             return 0;
         return res;
     }
