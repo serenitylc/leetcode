@@ -9,7 +9,7 @@
 class Solution {
 public:
     TreeNode* invertTree(TreeNode* root) {
-        if(root == NULL) return root;
+        if (root == NULL) return root;
         invertTree(root->left);
         invertTree(root->right);
         swap(root->left, root->right);     
@@ -20,18 +20,18 @@ public:
 class Solution {
 public:
     TreeNode* invertTree(TreeNode* root) {
-        if(root == nullptr) return root;
+        if (root == nullptr) return root;
         queue<TreeNode*> q;
         q.push(root);
-        while(!q.empty()) {
+        while (!q.empty()) {
             TreeNode* head = q.front();
             q.pop();
             TreeNode* tmp = head->left;
             head->left = head->right;
             head->right = tmp;
-            if(head->left != nullptr)
+            if (head->left != nullptr)
                 q.push(head->left);
-            if(head->right != nullptr)
+            if (head->right != nullptr)
                 q.push(head->right);
         }
         return root;
