@@ -21,7 +21,8 @@ public:
         int r_hight = getHight(root->right);
         if (l_hight == r_hight) 
             return (1 << l_hight) + countNodes(root->right);  // 1(根节点) + (1 << ld) - 1(左完全左子树节点数) + 右子树节点数量
-        else return (1 << r_hight) + countNodes(root->left);  // 1(根节点) + (1 << rd) - 1(右完全右子树节点数) + 左子树节点数量
+        else
+            return (1 << r_hight) + countNodes(root->left);  // 1(根节点) + (1 << rd) - 1(右完全右子树节点数) + 左子树节点数量
     }
     int getHight(TreeNode* node) {
         int high = 0;
