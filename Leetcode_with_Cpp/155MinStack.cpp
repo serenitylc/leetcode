@@ -7,14 +7,14 @@ public:
     MinStack() {}
     
     void push(int x) {
-        if(min_stack.size() == 0 || min_stack.top() >= x) {
+        if (min_stack.size() == 0 || min_stack.top() >= x) {
             min_stack.push(x);
         }
         data_stack.push(x);
     }
     
     void pop() {
-        if(data_stack.top() == min_stack.top()) {
+        if (data_stack.top() == min_stack.top()) {
             min_stack.pop();
         }
         data_stack.pop();
