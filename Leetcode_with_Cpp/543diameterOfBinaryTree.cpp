@@ -15,7 +15,6 @@ public:
         if (!root) return 0;
         oneSideMax(root);
         return res;
-
     }
     int oneSideMax(TreeNode* root) {
         if (!root->left && !root->right) return 0;
