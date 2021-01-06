@@ -1,10 +1,10 @@
 class Solution {
 public:
     int searchInsert(vector<int>& nums, int target) {
-        if(nums[nums.size()-1] < target)
+        if (nums[nums.size()-1] < target)
             return nums.size();
-        for(int i=0; i < nums.size(); i++)
-            if(nums[i] >= target)
+        for (int i = 0; i < nums.size(); i++)
+            if (nums[i] >= target)
                 return i;
         return 0;
     }
@@ -13,12 +13,11 @@ public:
 class Solution {
 public:
     int searchInsert(vector<int>& nums, int target) {
-        if(target <= nums[0])
+        if (target <= nums[0])
             return 0;
-        if(target > nums.back())
+        if (target > nums.back())
             return nums.size();
-        return (int)(lower_bound(nums.begin(), nums.end(),target)-nums.begin());
-        
+        return (int)(lower_bound(nums.begin(), nums.end(), target) - nums.begin());
     }
 };
 // lower_bound( )和upper_bound( )都是利用二分查找的方法在一个排好序的数组中进行查找的。
