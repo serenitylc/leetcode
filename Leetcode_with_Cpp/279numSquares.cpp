@@ -1,6 +1,20 @@
 class Solution {
 public:
     int numSquares(int n) {
+        vector<int> dp(n+1, INT_MAX);
+        dp[0] = 0;
+        for (int i = 1; i <= n; ++i) {
+            for (int j = 1; j * j <= i; ++j) {
+                dp[i] = min(dp[i], dp[i-j*j] + 1);
+            }
+        }
+        return dp[n];
+    }
+};
+
+class Solution {
+public:
+    int numSquares(int n) {
         queue<pair<int,int>> q;    // 借用队列解决 无权图结构的 BFS
         q.push(make_pair(n, 0));    // 建立图结构
         vector<bool> visited(n + 1, false);
