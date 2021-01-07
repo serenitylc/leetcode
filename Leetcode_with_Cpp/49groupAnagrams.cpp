@@ -8,10 +8,8 @@ public:
             sort(key.begin(), key.end());
             m[key].push_back(strs[i]);
         }
-
         for(auto it = m.begin(); it != m.end(); it ++)
             res.push_back(it->second);
-            
         return res;
     }
 };
