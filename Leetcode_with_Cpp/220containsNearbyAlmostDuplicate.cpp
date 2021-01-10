@@ -24,7 +24,7 @@ public:
             return false;
         for (int i = 0; i < nums.size(); i++) {
             for (int j = i + 1; j <= i + k && j < nums.size(); j++) {
-                i f(abs((long)nums[i] - (long)nums[j]) <= t)
+                if (abs((long)nums[i] - (long)nums[j]) <= t)
                     return true;
             }
         }
