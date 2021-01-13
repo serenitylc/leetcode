@@ -4,15 +4,15 @@ public:
         long n1 = LONG_MIN;  
         long n2 = LONG_MIN;
         long n3 = LONG_MIN;
-        for(int i = 0; i < nums.size(); i++) {
-            if(nums[i] > n1) {
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums[i] > n1) {
                 n3 = n2;
                 n2 = n1;
                 n1 = nums[i];
-            }else if(nums[i] > n2 && nums[i] != n1) {
+            } else if (nums[i] > n2 && nums[i] != n1) {
                 n3 = n2;
                 n2 = nums[i];
-            }else if(nums[i] > n3 && nums[i] != n1 && nums[i] != n2) {
+            } else if (nums[i] > n3 && nums[i] != n1 && nums[i] != n2) {
                 n3 = nums[i];
             }
         }
