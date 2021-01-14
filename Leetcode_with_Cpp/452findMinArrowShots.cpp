@@ -9,11 +9,12 @@ public:
         sort(points.begin(), points.end(), cmp);
         int res = 1;
         int end = points[0][1];
-        for (int i = 1; i < points.size(); ++i)
+        for (int i = 1; i < points.size(); ++i) {
             if (points[i][0] > end) {
                 end = points[i][1];
                 res++;
             }
+        }
         return res;
     }
 };
