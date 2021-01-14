@@ -27,7 +27,8 @@ public:
         return root;
     }
     TreeNode* getMin(TreeNode* node) {
-        while (node->left != nullptr) node = node->left;
+        while (node->left != nullptr)
+            node = node->left;
         return node;
     }
 };
