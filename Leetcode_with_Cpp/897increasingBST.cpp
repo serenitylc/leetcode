@@ -11,10 +11,8 @@ class Solution {
 public:
     TreeNode* head = new TreeNode(0);
     TreeNode* cur = head;
-
     TreeNode* increasingBST(TreeNode* root) {
-        if (!root)
-            return NULL;
+        if (!root) return NULL;
         increasingBST(root->left);
         cur->right = new TreeNode(root->val);
         cur = cur->right;
@@ -26,10 +24,8 @@ public:
 class Solution {
 public:
     stack<TreeNode *> stk;
-
     TreeNode* increasingBST(TreeNode* root) {
-        if (!root)
-            return NULL;
+        if (!root) return NULL;
         TreeNode *head = new TreeNode(0);
         TreeNode *cur = head;
         TreeNode *p = root;
