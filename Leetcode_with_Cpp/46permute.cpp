@@ -1,11 +1,9 @@
 class Solution {
-private:
-    vector<vector<int>> res;
-    vector<bool> visited;
 public:
     vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> res;
         if (nums.size() == 0) return res;
-        visited = vector<bool>(nums.size(), false);
+        vector<bool> visited(nums.size(), false);
         vector<int> track;
         backtrack(nums, track);
         return res;
