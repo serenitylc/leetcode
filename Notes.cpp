@@ -6,8 +6,9 @@
  * 降序: sort(begin, end, greater<data-type>())
  */
 
-/* #include<numeric>
+/* #include <numeric>
  * accumulate(v.begin(), v.end(), 0);  累加起始值
+ * partial_sum(first, last, dest);  部分和
  */
 
 /* C++ string 常用函数 
