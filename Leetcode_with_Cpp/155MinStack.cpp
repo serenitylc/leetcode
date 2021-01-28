@@ -3,7 +3,6 @@ private:
     stack<int> data_stack;
     stack<int> min_stack;
 public:
-    /** initialize your data structure here. */
     MinStack() {}
     
     void push(int x) {
