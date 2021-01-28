@@ -670,3 +670,38 @@ vector<int> topKFrequent(vector<int>& nums, int k) {
 	}
 	return res;
 }
+
+/* 堆（完全二叉树）的实现 */
+vector<int> heap;
+// 获取最大值
+void top() {
+	return heap[0];
+}
+// 插入任意值：把该值放到最后一位，然后上浮
+void push(int k) {
+	heap.push_back(k);
+	swim(heap.size() - 1);
+}
+// 删除最大值：把最后一位移到前面，然后下沉
+void pop() {
+	heap[0] = heap.back();
+	heap.pop_back();
+	sink(0);
+}
+// 上浮
+void swim(int pos) {
+	while (pos > 1 && heap[pos/2] < heap[pos]) {
+		swap(heap[pos/2], heap[pos]);
+		pos /= 2;
+	}
+}
+// 下沉
+void sink(int pos) {
+	while (2 * pos <= N) {
+		int i = 2 * pos;
+		if (i < N && heap[i] < heap[i+1]) ++i;
+		if (heap[pos] >= heap[i]) break;
+		swap(heap[pos], heap[i]);
+		pos = i;
+	}
+}
