@@ -1,5 +1,5 @@
 
-/* sort(v.begin(), v,end(), compare); 
+/* sort(v.begin(), v,end(), compare);
  * bool compare(int a, int b) { return a < b; }  升序排列(默认)
  * #include <functional>
  * 升序: sort(begin, end, less<data-type>())
@@ -11,10 +11,10 @@
  * partial_sum(first, last, dest);  部分和
  */
 
-/* C++ string 常用函数 
+/* C++ string
  * #include <string>
  * string str;							生成空字符串
- * string s(str);						生成字符串为str的复制品
+ * string s(str);						生成字符串为str的复制
  * string s(str, str_begin, str_len);	将字符串str中从下标str_begin开始、长度为str_len的部分作为字符串初值
  * string s(cstr, char_len);			以C_string类型cstr的前char_len个字符串作为字符串s的初值
  * string s(num, char);					生成num个c字符的字符串
@@ -45,21 +45,21 @@
  * string的查找：find
  * string s("dog bird chicken bird cat");
  * 字符串查找-----找到后返回首字母在字符串中的下标
- * 1. 查找一个字符串	
+ * 1. 查找一个字符串
  * cout << s.find("chicken") << endl;  结果是：9
- * 2. 从下标为6开始找字符'i'，返回找到的第一个i的下标	
+ * 2. 从下标为6开始找字符'i'，返回找到的第一个i的下标
  * cout << s.find('i', 6) << endl;  结果是：11
- * 3. 从字符串的末尾开始查找字符串，返回的还是首字母在字符串中的下标	
+ * 3. 从字符串的末尾开始查找字符串，返回的还是首字母在字符串中的下标
  * cout << s.rfind("chicken") << endl;  结果是：9
- * 4. 从字符串的末尾开始查找字符   	
+ * 4. 从字符串的末尾开始查找字符
  * cout << s.rfind('i') << endl;  结果是：18
- * 5. 在该字符串中查找第一个属于字符串s的字符 		
+ * 5. 在该字符串中查找第一个属于字符串s的字符
  * cout << s.find_first_of("13br98") << endl;  结果是：4("b")
- * 6. 在该字符串中查找第一个不属于字符串s的字符，先匹配dog，然后bird匹配不到，所以打印4 	
+ * 6. 在该字符串中查找第一个不属于字符串s的字符，先匹配dog，然后bird匹配不到，所以打印4
  * cout << s.find_first_not_of("hello dog 2006") << endl;  结果是：4
- * 7. 在该字符串从后往前查找第一个属于字符串s的字符 	
+ * 7. 在该字符串从后往前查找第一个属于字符串s的字符
  * cout << s.find_last_of("13r98") << endl;   结果是：19
- * 8. 在该字符串从后往前查找第一个不属于字符串s的字符，先匹配tac，然后空格匹配不到，所以打印21	
+ * 8. 在该字符串从后往前查找第一个不属于字符串s的字符，先匹配tac，然后空格匹配不到，所以打印21
  * cout << s.find_last_not_of("teac") << endl;  结果是：21
  *
  * string的排序
@@ -67,7 +67,7 @@
  *
  * string的分割/截取字符串：substr()
  * string s1("0123456789");
- * string s2 = s1.substr(2, 5); 
+ * string s2 = s1.substr(2, 5);
  * cout << s2 << endl;  结果：23456，参数5表示截取的字符串的长度
  *
  * int转string: c++11标准增加了全局函数 std::to_string
@@ -107,7 +107,7 @@
  * priority_queue<type, vector<type>, compare> pq;
  */
 
-/* stack 
+/* stack
  * #include <stack>
  * stack<int> st; st.push(num); st.empty(); st.size(); st.top(); st.pop();
  */
@@ -126,7 +126,7 @@
  * map 底层为红黑树, 所有元素根据键值key自动排序, 不允许有键值相同的元素,
  * multimap 中的key可以重复, 单个元素版本的 insert() 返回值不再是一个pair, 而是一个iterator, 不再提供 operator[] 接口.
  *
- * C++11中4个关联式容器：unordered_map/unordered_set/unordered_multimap/unordered_multiset, 
+ * C++11中4个关联式容器：unordered_map/unordered_set/unordered_multimap/unordered_multiset,
  * unordered_map 底层实现是哈希桶, empty(), insert(), erase(), 其 erase() 操作会缩容，导致元素重新映射，降低性能.
  * 若需要一个有序序列，使用红黑树系列的关联式容器; 若需要更高的查询效率，使用以哈希表为底层的关联式容器.
  *
@@ -138,7 +138,7 @@
  * cout << it->first << it->second << endl;
  */
 
-/* unordered_map 
+/* unordered_map
  * find() 判断某键值是否存在, map.find(key) == map.end() 时不存在
  * count() 统计key值在map中出现的次数
  */
@@ -158,7 +158,7 @@
  * vector<int> vec; push_back(num); pop_back(); back(); empty(); size(); reverse()
  */
 
-/* bitset 
+/* bitset
  * bitset的大小在编译时就需要确定
  * 定义bitset, bitset<16> b;
  * b.size() 	 返回位数
@@ -588,8 +588,8 @@ int findKthLargest(vector<int>& nums, int k) {
     return nums[l];
 }
 
-/* 归并排序 Merge Sort 
- * 分治法 
+/* 归并排序 Merge Sort
+ * 分治法
  * 1.将n个元素从中间切开，分成两部分。（左边可能比右边多1个数）
  * 2.将步骤1分成的两部分，分别进行递归分解。直到所有部分的元素个数都为1。
  * 3.从最底层开始逐步合并两个排好序的数列。
