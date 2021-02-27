@@ -83,20 +83,19 @@
  * arr.size();
  */
 
-
 /* queue
  * #include <queue>
  * queue<int> q;
  * q.push(num); q.empty(); q.size(); q.front(); q.back(); q.pop();
  */
 
-/* priority_queue<Type, Container, Functional> : 优先队列具有最高级先出 (first in, largest out)的行为特征
+/* priority_queue <Type, Container, Functional> : 优先队列具有最高级先出 (first in, largest out)的行为特征
  * Type 数据类型
  * Container 容器类型 (必须是用数组实现的容器, 如vector, deque等，但不能用 list, STL里默认用vector)
  * Functional 比较方式
  * pq.push(); pq.pop(); pq.top(); pq.empty(); pq.size()
  * 默认是大顶堆 priority_queue<int, vector<int>, less<int>> pq;
- * #include<functional> : greater 和 less 是 std 实现的两个仿函数 (类中实现一个operator())
+ * #include <functional> : greater 和 less 是 std 实现的两个仿函数 (类中实现一个operator())
  * 用 pair 做优先队列元素：pair<int, int> 先比较第一个元素, 第一个相等比较第二个.
  * 自定义类型做优先队列元素 :  重写仿函数
  * struct compare {
