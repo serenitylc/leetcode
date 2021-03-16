@@ -176,9 +176,9 @@
 class TreeNode {
 	int val;
 	TreeNode left, right;
-}
+};
 
-void traverse (TreeNode root) {
+void traverse(TreeNode root) {
 	// 前序遍历
 	traverse(root.left);
 	// 中序遍历
@@ -191,7 +191,7 @@ void traverse (TreeNode root) {
 class TreeNode {
 	int val;
 	TreeNode [] children;
-}
+};
 
 void traverse(TreeNode root) {
 	for (TreeNode child : root.children)
