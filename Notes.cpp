@@ -545,162 +545,306 @@ int right_bound(int[] nums, int target) {
 	return right;
 }
 
-/* 快速排序 Quick Sort 左闭右闭二分写法 */
-void quick_sort(vector<int>& nums, int l, int r) {
-	if (l + 1 >= r) return;
-	int first = l, last = r - 1, key = nums[first];
-	while (first < last) {
-		while (first < last && nums[last] >= key)
-			--last;
-		nums[first] = nums[last];
-		while (first < last && nums[first] <= key)
-			++first;
-		nums[last] = nums[first];
-	}
-	nums[first] = key;
-	quick_sort(nums, l, first);
-	quick_sort(nums, first + 1, r);
-}
-
-/* 快速选择 Quick Selection */
-int quickSelection(vector<int>& nums, int l, int r) {
-    int i = l + 1, j = r;
-    while (true) {
-        while (i < r && nums[i] <= nums[l])
-            ++i;
-        while (l < j && nums[j] >= nums[l])
-            --j;
-        if (i >= j) break;
-        swap(nums[i], nums[j]);
+class Solution {
+public:
+    string convertToBase7(int num) {
+        if (num == 0) return "0";
+        string res = "";
+        bool isNegative = num < 0;
+        if (isNegative) num = -num;
+        while (num) {
+            int a = num / 7, b = num % 7;
+            res = to_string(b) + res;
+            num = a;
+        }
+        return isNegative ? "-" + res : res;
     }
-    swap(nums[l], nums[j]);
-    return j;
-}
-int findKthLargest(vector<int>& nums, int k) {
-    int l = 0, r = nums.size() - 1, target = nums.size() - k;
-    while (l < r) {
-        int mid = quickSelection(nums, l, r);
-        if (mid == target) return nums[mid];
-        else if (mid < target) l = mid + 1;
-        else r = mid - 1;
-    }
-    return nums[l];
-}
+};
 
-/* 归并排序 Merge Sort
- * 分治法
- * 1.将n个元素从中间切开，分成两部分。（左边可能比右边多1个数）
- * 2.将步骤1分成的两部分，分别进行递归分解。直到所有部分的元素个数都为1。
- * 3.从最底层开始逐步合并两个排好序的数列。
- * 合并: 由于两个数列都已经有序，只需从低位轮番拿出各自最小的数来PK就行，较小值放入临时数列。
+n的阶乘后面有多少个0
+class Solution {
+public:
+    int trailingZeroes(int n) {
+        return n == 0 ? 0 : n / 5 + trailingZeroes(n / 5);  // 统计质因子5的个数
+    }
+};
+
+/**
+ * struct TreeNode {
+ *	int val;
+ *	struct TreeNode *left;
+ *	struct TreeNode *right;
+ * };
  */
-void merge_sort(vector<int>& nums, int l, int r, vector<int>& temp) {
-	if (l + 1 >= r) return;
-	// divide
-	int m = l + (r - l) / 2;
-	merge_sort(nums, l, m, temp);
-	merge_sort(nums, m, r, temp);
-	// conquer
-	int p = l, q = m, index = l;
-	while (p < m || q < r) {
-		if (q >= r || (p < m && nums[p] <= nums[q]))
-			temp[index++] = nums[p++];
-		else
-			temp[index++] = nums[q++];
-	}
-	for (index = l; index < r; index++)
-		nums[index] = temp[index];
-}
+class Solution {
+private:
+    vector<int> pre, mid, post;
+public:
+    vector<vector<int> > threeOrders(TreeNode* root) {
+        vector<vector<int>> res;
+        if (!root) return res;
+        preorder(root);
+        midorder(root);
+        postorder(root);
+        res = {pre, mid, post};
+        return res;
+    }
+    void preorder(TreeNode* root) {
+        if (!root) return;
+        pre.push_back(root->val);
+        preorder(root->left);
+        preorder(root->right);
+    }
+    void midorder(TreeNode* root) {
+        if (!root) return;
+        midorder(root->left);
+        mid.push_back(root->val);
+        midorder(root->right);
+    }
+    void postorder(TreeNode* root) {
+        if (!root) return;
+        postorder(root->left);
+        postorder(root->right);
+        post.push_back(root->val);
+    }
+};
 
-/* 插入排序 Insertion Sort */
-void insertion_sort(vector<int>& nums, int n) {
-	for (int i = 0; i < n; ++i) {
-		for (int j = i; j > 0 && nums[j] < nums[j - 1]; --j) {
-			swap(nums[j], nums[j - 1]);
-		}
-	}
-}
+// 406--根据身高重建队列
+class Solution {
+public:
+    vector<vector<int>> reconstructQueue(vector<vector<int>>& people) {
+        vector<vector<int>> res;
+        sort(people.begin(), people.end(), [](const vector<int>& a, const vector<int>& b) {
+            if (a[0] == b[0]) return a[1] < b[1];
+            return a[0] > b[0];
+        });
+        for (int i = 0; i < people.size(); ++i) {
+            if (people[i][1] >= res.size())
+                res.push_back(people[i]);
+            else
+                res.insert(res.begin() + people[i][1], people[i]);
+        }
+        return res;
+    }
+};
 
-/* 冒泡排序 Bubble Sort */
-void bubble_sort(vector<int>& nums, int n) {
-	bool swapped;
-	for (int i = 1; i < n; ++i) {
-		swapped = false;
-		for (int j = 1; j < n - i + 1; ++j) {
-			if (nums[j] < nums[j - 1]) {
-				swap(nums[j], nums[j - 1]);
-				swapped = true;
-			}
-		}
-		if (!swapped) break;
-	}
-}
+文件查找
+(1)find: 根据文件属性进行查找，如文件名，文件大小，所有者，所属组，是否为空，访问时间，修改时间等。 find . -name '*.txt'
+(2)grep: 根据文件内容进行查找，会对文件每一行按照给定模式(patter)进行匹配查找。 grep "text" *
 
-/* 选择排序 Selection Sort */
-void selection_sort(vector<int>& nums, int n) {
-	int mid;
-	for (int i = 0; i < n - 1; ++i) {
-		mid = i;
-		for (int j = i + 1; j < n; ++j) {
-			if (nums[j] < nums[mid])
-				mid = j;
-		}
-		swap(nums[mid], nums[i]);
-	}
-}
+ls | head -n 20
+给每项文件前面增加一个id编号: ls | cat -n
 
-/* 桶排序求前K个最频繁的数字 topKFrequent */
-vector<int> topKFrequent(vector<int>& nums, int k) {
-	unordered_map<int, int> counts;
-	int max_count = 0;
-	for (const int & num : nums) {
-		max_count = max(max_count, ++counts[num]);
-	}
-	vector<vector<int>> buckets(max_count + 1);
-	for (const auto & p : counts) {
-		buckets[p.second].push_back(p.first);
-	}
-	vector<int> res;
-	for (int i = max_count; i >= 0 && res.size() < k; --i) {
-		for (const int & num : buckets[i]) {
-			res.push_back(num);
-			if (res.size() == k) break;
-		}
-	}
-	return res;
-}
+find是实时查找,如果需要更快的查询,可试试locate,locate会为文件系统建立索引数据库,如果有文件更新,需要定期执行更新命令来更新索引库,以获得最新的文件索引信息.
 
-/* 堆（完全二叉树）的实现 */
-vector<int> heap;
-// 获取最大值
-void top() {
-	return heap[0];
-}
-// 插入任意值：把该值放到最后一位，然后上浮
-void push(int k) {
-	heap.push_back(k);
-	swim(heap.size() - 1);
-}
-// 删除最大值：把最后一位移到前面，然后下沉
-void pop() {
-	heap[0] = heap.back();
-	heap.pop_back();
-	sink(0);
-}
-// 上浮
-void swim(int pos) {
-	while (pos > 1 && heap[pos/2] < heap[pos]) {
-		swap(heap[pos/2], heap[pos]);
-		pos /= 2;
-	}
-}
-// 下沉
-void sink(int pos) {
-	while (2 * pos <= N) {
-		int i = 2 * pos;
-		if (i < N && heap[i] < heap[i+1]) ++i;
-		if (heap[pos] >= heap[i]) break;
-		swap(heap[pos], heap[i]);
-		pos = i;
-	}
-}
+top: 用户空间、内核空间CPU利用率，负载因子，内存使用情况，实时显示各进程的资源占用
+ps -ef 查看全格式的全部进程
+
+typedef与#define的区别
+typedef是编译期行为,有类型检查功能,有自己的作用域
+#define是预编译期行为，发生在预处理阶段，只进行简单文本替换，不进行任何检查,没有作用域限制
+
+MySQL数据库优化的八种方式:
+1、选取最适用的字段属性
+将表中字段宽度设得尽可能小,减少不必要的空间
+尽量把字段设置为NOTNULL,执行查询时,数据库不用去比较NULL值
+某些文本字段,如省份/性别,可以定义为ENUM类型,MySQL中ENUM类型被当作数值型数据来处理,其速度比文本类型快得多
+2、使用连接(JOIN)来代替子查询(Sub-Queries)
+连接无需在内存中创建临时表来完成逻辑上需要两个步骤的查询工作
+3、使用联合(UNION)来代替手动创建的临时表
+4、事务
+5、锁定表
+6、使用外键
+7、使用索引
+8、优化的查询语句
+
+linux可以通过ulimit命令查看栈上限和设置上限: ulimit -a (查看进程所有资源上限)
+
+同一进程间的线程共享的资源有4个：堆、全局变量、静态变量、文件等公用资源
+独享的资源有：栈、寄存器
+
+select和epoll对于用户态和内核态消耗的不同：select基于用户态，epoll红黑树基于内核态
+
+第一次握手失败：第一次SYN传输失败，两端都不会申请资源。
+第二次握手失败：服务端发送的SYN+ACK传输失败，客户端未收到响应，不会申请资源，虽然服务端申请了资源，但是迟迟收不到客户端的ACK，也会将该资源释放。
+第三次握手失败:
+第三次握手的ACK传输失败，导致服务端迟迟没有收到ACK，就会释放资源，这时客户端认为自己已经连接好了，就会给服务端发送数据，
+服务端由于没有收到第三次握手，就会以RST包对客户端响应。
+但是实际上服务端会因为没有收到客户端的ACK多次发送SYN+ACK，次数是可以设置的，如果最后还是没有收到客户端的ACK，则释放资源。
+
+拥塞控制：防止过多数据注入到网络中，使网络中的路由器或链路不致过载。
+拥塞控制所要做的都有一个前提：网络能够承受现有的网络负荷。
+拥塞控制是一个全局性的过程，涉及到所有的主机、路由器，以及与降低网络传输性能有关的所有因素。
+
+流量控制：指点对点通信量的控制，是端到端正的问题。流量控制所要做的就是抑制发送端发送数据的速率，以便使接收端来得及接收。
+拥塞控制代价：需要获得网络内部流量分布的信息。在实施拥塞控制之前，还需要在结点之间交换信息和各种命令，以便选择控制的策略和实施控制。
+这样就产生了额外的开销。拥塞控制还需要将一些资源分配给各个用户单独使用，使得网络资源不能更好地实现共享。
+
+几种拥塞控制方法：慢开始(slow-start)、拥塞避免(congestion avoidance)、快重传(fast retransmit)和快恢复(fast recovery)
+
+慢启动的阈值是在第二次握手时协商的,“慢”并非指cwnd增长速率慢,而是指在TCP开始发送报文段时先设置cwnd=1,使发送方开始时只发送一个报文段(试探网络拥塞情况),再逐渐增大cwnd
+为了防止拥塞窗口cwnd增长过大引起网络拥塞，还需要设置一个慢开始门限ssthresh状态变量。慢开始门限ssthresh的用法如下：
+当 cwnd < ssthresh 时，使用上述的慢开始算法。
+当 cwnd > ssthresh 时，停止使用慢开始算法而改用拥塞避免算法。
+当 cwnd = ssthresh 时，既可使用慢开始算法，也可使用拥塞控制避免算法。
+
+拥塞避免算法：让拥塞窗口cwnd缓慢地增大，即每经过一个往返时间RTT就把发送方的拥塞窗口cwnd加1，而不是加倍。
+这样拥塞窗口cwnd按线性规律缓慢增长，比慢开始算法的拥塞窗口增长速率缓慢得多。
+
+无论在慢开始阶段还是在拥塞避免阶段，只要发送方判断网络出现拥塞（没有收到确认），就要把慢开始门限ssthresh设置为出现拥塞时的发送方窗口值的一半（但不能小于2）。
+然后把拥塞窗口cwnd重新设置为1，执行慢开始算法。这样做的目的就是要迅速减少主机发送到网络中的分组数，使得发生 拥塞的路由器有足够时间把队列中积压的分组处理完毕。
+
+
+linux中open 和fopen的区别:
+1.层次不同,open是系统调用,返回文件句柄,即文件在文件描述符表里的索引;fopen是ANSIC标准C语言库函数，返回一个指向文件结构的指针(文件流)
+linux中的系统函数是open,fopen是其封装函数,fopen的实现要调用open。
+2.fopen和open最主要的区别是是否有缓存
+fopen用户态下有缓存,它使用FILE结构保存缓冲数据,在进行read/write时减少了用户态和内核态的切换
+open没有缓存,每次读操作都直接从文件系统中获取数据,在进行read和write的时候每次都需要进行内核态和用户态的切换
+表现为,如果顺序访问文件,fopen系列的函数要比直接调用open系列快;如果随机访问文件open要比fopen快
+3.一般用fopen打开普通文件,用open打开设备文件
+
+TCP/IP：应用层、传输层、网际层、网络接口层（强调这一层是为了解决不同网络的互联问题）
+不过从实质上讲，TCP/IP只有最上面三层，因为最下面的网络接口层并没有什么具体内容。
+因此在学习计算机网络原理时往往采取折中的办法，即综合OSI和TCP/IP的优点，采取一种只有五层协议的体系结构：物理层、数据链路层、网络层、传输层、应用层
+
+交换机工作在OSI的第2层-数据链路层，路由器工作在OSI的第3层-网络层。
+
+堆与栈的区别有：
+1、栈由系统自动分配，而堆是人为申请开辟；
+2、栈获得的空间较小，而堆获得的空间较大；
+3、栈由系统自动分配，速度较快，而堆一般速度比较慢；
+4、栈是连续的空间，而堆是不连续的空间。
+
+中断一般三类：
+外中断：由CPU外部引起，如I/O中断、时钟中断；
+内中断（异常，陷入）：CPU内部事件或程序执行中引起，例如地址越界、浮点溢出；
+在程序中使用系统调用引起。
+
+中断处理：一般分为中断响应、中断处理两个步骤，中断响应由硬件实施，中断处理主要由软件实施。
+
+中断处理程序的处理过程：
+1. 测定是否有未响应的中断信号。
+2. 保护被中断进程的CPU环境。
+3. 转入相应的设备处理程序。
+4. 中断处理。
+5. 恢复CPU的现场并退出中断。
+
+connect()在第二次握手后返回，accept()过程发生在三次握手之后，三次握手完成后，客户端和服务器就建立了tcp连接并可以进行数据交互了。这时可以调用accept函数获得此连接。
+
+为什么重载与函数返回类型无关：如果不去关心函数返回值，仅仅只是调用
+
+构造函数能不能是虚函数：不能，在调用构造函数时，虚表指针并未在对象内存空间，必须构造函数调用完成后才能形成虚表指针
+
+TCP的四次挥手过程？2MSL的MSL是什么以及作用是什么？为什么报文有最大生存时间？
+这个最大生存时间是由什么决定的（在网络传输中的哪一层及哪个设备决定,内核参数,可人为修改）？
+四次挥手能减少一次吗应该怎么设计来减少一次挥手？(我是设计说在第二次挥手的时候携带一些信息，例如是否还有信息需要传送或者直接携带上剩下需要传送的信息。)
+
+
+linux的指令中中如何查看某个端口是哪个进程在运行，如何查看占内存最多的进程
+
+
+多进程跟多线程的区别？什么时候用多进程什么时候用多线程？为什么进程开销比线程大？
+
+
+C++ static 修饰可以修饰构造函数？
+
+
+怎么保证数据一致性
+
+
+单例模式如果有两个线程都创建单例对象怎么做
+
+
+docker
+
+
+malloc底层实现，vmalloc和kmalloc的区别？
+
+
+
+// 两个有序数组，找中位数
+/* 主要思路：要找到第 k (k>1) 小的元素，那么就取 pivot1 = nums1[k/2-1] 和 pivot2 = nums2[k/2-1] 进行比较
+         * 这里的 "/" 表示整除
+         * nums1 中小于等于 pivot1 的元素有 nums1[0 .. k/2-2] 共计 k/2-1 个
+         * nums2 中小于等于 pivot2 的元素有 nums2[0 .. k/2-2] 共计 k/2-1 个
+         * 取 pivot = min(pivot1, pivot2)，两个数组中小于等于 pivot 的元素共计不会超过 (k/2-1) + (k/2-1) <= k-2 个
+         * 这样 pivot 本身最大也只能是第 k-1 小的元素
+         * 如果 pivot = pivot1，那么 nums1[0 .. k/2-1] 都不可能是第 k 小的元素。把这些元素全部 "删除"，剩下的作为新的 nums1 数组
+         * 如果 pivot = pivot2，那么 nums2[0 .. k/2-1] 都不可能是第 k 小的元素。把这些元素全部 "删除"，剩下的作为新的 nums2 数组
+         * 由于我们 "删除" 了一些元素（这些元素都比第 k 小的元素要小），因此需要修改 k 的值，减去删除的数的个数
+         */
+class Solution {
+public:
+    int getKthElement(const vector<int>& nums1, const vector<int>& nums2, int k) {
+        int m = nums1.size(), n = nums2.size();
+        int index1 = 0, index2 = 0;
+        while (true) {
+            // 边界情况
+            if (index1 == m) {
+                return nums2[index2 + k - 1];
+            }
+            if (index2 == n) {
+                return nums1[index1 + k - 1];
+            }
+            if (k == 1) {
+                return min(nums1[index1], nums2[index2]);
+            }
+            // 正常情况
+            int newIndex1 = min(index1 + k / 2 - 1, m - 1);
+            int newIndex2 = min(index2 + k / 2 - 1, n - 1);
+            int pivot1 = nums1[newIndex1], pivot2 = nums2[newIndex2];
+            if (pivot1 <= pivot2) {
+                k -= newIndex1 - index1 + 1;
+                index1 = newIndex1 + 1;
+            } else {
+                k -= newIndex2 - index2 + 1;
+                index2 = newIndex2 + 1;
+            }
+        }
+    }
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        int totalLength = nums1.size() + nums2.size();
+        if (totalLength % 2 == 1) {
+            return getKthElement(nums1, nums2, (totalLength + 1) / 2);
+        } else {
+            return (getKthElement(nums1, nums2, totalLength / 2) + getKthElement(nums1, nums2, totalLength / 2 + 1)) / 2.0;
+        }
+    }
+};
+
+
+// 实现atoi，字符串转整数
+class Solution {
+public:
+    int myAtoi(string s) {
+        long res = 0;
+        int state = 0;  //  0-初始状态  1-正数  2-负数
+        for (char c : s) {
+            if (state == 0 && c == ' ') continue;
+            else if (state == 0 && c == '+') state = 1;
+            else if (state == 0 && c == '-') state = 2;
+            else if (c >= '0' && c <= '9') {
+                if (state == 0) state = 1;
+                int tmp = c - '0';
+                res = res * 10 + tmp;
+                if (res > INT_MAX) break;
+            } else break;
+        }
+        if (state == 1 && res > INT_MAX) res = INT_MAX;
+        else if (state == 2) {
+            res = -res;
+            if (res < INT_MIN) res = INT_MIN;
+        }
+        return res;
+    }
+};
+
+// 给一个无序链表，如何排序？链表归并如何实现？首先快慢指针取中点分成两半，链表归并的时间复杂度
+// 找出数组中重复的数字、返回二叉查找树的第k大的节点、
+// 反转句子，但要以逗号作为分隔，样例如下：“hello world, god bless you” -> “world hello, you bless god”
+
+------------------------------------------------------------------------------------------------------------------
+了解云产品、docker、find ./ *.txt、tcp和udp、DNS本身、epoll为啥高并发、进程间通信方式、Redis数据类型、
+Python、https安全机制、Webbench压力测试、Mysql数据库的优化(除了语句explain分析)
+------------------------------------------------------------------------------------------------------------------
