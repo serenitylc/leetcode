@@ -36,12 +36,12 @@ public:
         vector<int> res;
         deque<int> deque;
         for (int i = 0; i < nums.size(); i++) {
-            if (!deque.empty() && deque.front() == i-k)  // 窗口大小超过 k, 弹出队头 
+            if (!deque.empty() && deque.front() == i-k)  // 窗口大小超过 k, 弹出队头 (i-k+1即为首元素index)
                 deque.pop_front();
             while (!deque.empty() && nums[i] > nums[deque.back()])  // 单调队列
                 deque.pop_back();
             deque.push_back(i);
-            if (i >= k-1) res.push_back(nums[deque.front()]);
+            if (i-k+1 >= 0) res.push_back(nums[deque.front()]);
         }
         return res;
     }
