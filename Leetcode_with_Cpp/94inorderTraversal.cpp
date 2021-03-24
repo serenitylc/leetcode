@@ -10,21 +10,21 @@
 class Solution {
 public:
     vector<int> inorderTraversal(TreeNode* root) {
-        vector<int> ret;
-        stack<TreeNode*> path;
-        TreeNode* cur = root;
-        while (cur || !path.empty()) {
-            while (cur) {
-                path.push(cur);
-                cur = cur->left;
-            }
-            if (!path.empty()) {
-                cur = path.top();
-                path.pop();
-                ret.push_back(cur->val);
-                cur = cur->right;
+        vector<int> res;
+        if (!root) return res;
+        TreeNode* p = root;
+        stack<TreeNode*> st;
+        while (p || !st.empty()) {
+            if (p) {
+                st.push(p);
+                p = p->left;
+            } else {
+                p = st.top();
+                st.pop();
+                res.push_back(p->val);
+                p = p->right;
             }
         }
-        return ret;
+        return res;
     }
 };
