@@ -63,6 +63,50 @@ public:
     }
 };
 
+// 二叉搜索树的第k大节点
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    int kthLargest(TreeNode* root, int k) {
+        vector<int> inorder;
+        InOrder(root, inorder);
+        return inorder[inorder.size()-k];
+    }
+    void InOrder(TreeNode* root, vector<int>& inorder) {
+        if (!root) return;
+        InOrder(root->left, inorder);
+        inorder.push_back(root->val);
+        InOrder(root->right, inorder);
+    }
+};
+
+class Solution {
+private:
+    unordered_map<TreeNode*, int> childNum;
+public:
+    int kthLargest(TreeNode* root, int k) {
+        if (!root) return -1;
+        int r_num = numsOfChild(root->right);
+        if (r_num + 1 == k) return root->val;
+        else if (r_num + 1 < k) return kthLargest(root->left, k - r_num - 1);
+        else return kthLargest(root->right, k);
+    }
+    int numsOfChild(TreeNode* root) {
+        if (!root) return 0;
+        if (childNum.find(root) != childNum.end()) return childNum[root];
+        childNum[root] = 1 + numsOfChild(root->left) + numsOfChild(root->right);
+        return childNum[root];
+    }
+};
+
 
 /* 归并排序 Merge Sort
  * 分治法
