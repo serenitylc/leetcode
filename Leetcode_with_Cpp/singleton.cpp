@@ -6,7 +6,7 @@
 // 饿汉式：一开始就进行实例化
 class Singleton {
 private:
-	Singleton(){};
+	Singleton(){}
 	static Singleton* Instance;
 public:
 	static Singleton* GetInstance() {
@@ -19,7 +19,7 @@ Singleton* Singleton::Instance = new Singleton;  // 在程序入口前完成单例对象初始
 // 懒汉式，第一次用到类实例时才去实例化 (多线程不安全 --> 可以使用临界区CRITICAL_SECTION或互斥量MUTEX来实现线程锁)
 class Singleton {
 private:
-	Singleton(){};
+	Singleton(){}
 	static Singleton* Instance;
 public:
 	static Singleton* GetInstance() {
@@ -59,7 +59,7 @@ static Singleton* GetInstance() {
 // 《Effective C++》系列书籍的作者 Meyers提出了C++ 11版本最简洁的跨平台方案
 class Singleton {
 private:
-    Singleton(){};
+    Singleton(){}
 public:
     static Singleton & GetInstance() {
         static Singleton Instance;  //局部静态变量
