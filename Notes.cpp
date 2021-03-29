@@ -86,7 +86,7 @@
 /* queue
  * #include <queue>
  * queue<int> q;
- * q.push(num); q.empty(); q.size(); q.front(); q.back(); q.pop();
+ * q.push(num); q.empty(); q.size(); q.top(); q.back(); q.pop();
  */
 
 /* priority_queue <Type, Container, Functional> : 优先队列具有最高级先出 (first in, largest out)的行为特征
