@@ -62,6 +62,26 @@ public:
         return res;
     }
 };
+// 维护 K 个元素的最小堆
+class Solution {
+public:
+    struct compare {
+        bool operator()(int a, int b) {
+            return a > b;
+        }
+    };
+    int findKth(vector<int> a, int n, int K) {
+        // write code here
+        priority_queue<int, vector<int>, compare> pq;
+        for (int i = 0; i < n; ++i) {
+            pq.push(a[i]);
+            if (pq.size() > K) {
+                pq.pop();
+            }
+        }
+        return pq.top();
+    }
+};
 
 // 二叉搜索树的第k大节点
 /**
