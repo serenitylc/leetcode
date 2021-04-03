@@ -172,137 +172,7 @@
  * b.to_string() 转为string类型
  */
 
-/* 二叉树遍历框架 */
-class TreeNode {
-	int val;
-	TreeNode left, right;
-};
 
-void traverse(TreeNode root) {
-	// 前序遍历
-	traverse(root.left);
-	// 中序遍历
-	traverse(root.right);
-	// 后序遍历
-}
-
-// 前序遍历
-class Solution {
-public:
-    vector<int> preorderTraversal(TreeNode* root) {
-        vector<int> res;
-        if (!root) return res;
-        stack<TreeNode*> st;
-        TreeNode* p = root;
-        while (p || !st.empty()) {
-            if (p) {
-                st.push(p);
-                res.push_back(p->val);
-                p = p->left;
-            } else {
-                p = st.top();
-                st.pop();
-                p = p->right;
-            }
-        }
-        return res;
-    }
-};
-// 中序遍历
-class Solution {
-public:
-    vector<int> inorderTraversal(TreeNode* root) {
-        vector<int> res;
-        if (!root) return res;
-        TreeNode* p = root;
-        stack<TreeNode*> st;
-        while (p || !st.empty()) {
-            if (p) {
-                st.push(p);
-                p = p->left;
-            } else {
-                p = st.top();
-                st.pop();
-                res.push_back(p->val);
-                p = p->right;
-            }
-        }
-        return res;
-    }
-};
-// 后序遍历
-class Solution {
-public:
-    vector<int> postorderTraversal(TreeNode* root) {
-        vector<int> res;
-        if (!root) return res;
-        stack<TreeNode*> st;
-        st.push(root);
-        while (!st.empty()) {
-            TreeNode* p = st.top();
-            st.pop();
-            res.push_back(p->val);
-            if (p->left) st.push(p->left);
-            if (p->right) st.push(p->right);
-        }
-        reverse(res.begin(), res.end());
-        return res;
-    }
-};
-
-/* N叉树遍历框架 */
-class TreeNode {
-	int val;
-	TreeNode [] children;
-};
-
-void traverse(TreeNode root) {
-	for (TreeNode child : root.children)
-		traverse(child);
-}
-
-/* For example: LeetCode 124 求二叉树中最大路径和 */
-class Solution {
-private:
-    int res = INT_MIN;
-public:
-    int maxPathSum(TreeNode* root) {
-        oneSideMax(root);
-        return res;
-    }
-    int oneSideMax(TreeNode* root) {
-        if (root == nullptr) return 0;
-        int left = max(0, oneSideMax(root->left));
-        int right = max(0, oneSideMax(root->right));
-        res = max(res, left + right + root->val);
-        return max(left, right) + root->val;
-    }
-};
-
-/* For example: LeetCode 105 根据前序遍历和中序遍历还原二叉树 */
-class Solution {
-public:
-    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
-        return build(preorder, 0, preorder.size() - 1, inorder, 0, inorder.size() - 1);
-    }
-    TreeNode* build(vector<int>& preorder, int preStart, int preEnd, vector<int>& inorder, int inStart, int inEnd) {
-        if (preStart > preEnd)
-            return NULL;
-        int rootVal = preorder[preStart];
-        int idx = -1;
-        for (int i = inStart; i <= inEnd; ++i) {
-            if (inorder[i] == rootVal) {
-                idx = i;
-                break;
-            }
-        }
-        int leftSize = idx - inStart;
-        TreeNode* root = new TreeNode(rootVal);
-        root->left = build(preorder, preStart + 1, preStart + leftSize, inorder, inStart, idx - 1);
-        root->right = build(preorder, preStart + leftSize + 1, preEnd, inorder, idx + 1, inEnd);
-        return root;
-    }
-};
 
 
 /* 动态规划：明确【状态】 --> 定义【dp数组/函数】的含义 --> 明确【选择】 --> 明确【base case】 */
@@ -622,7 +492,7 @@ public:
     }
 };
 
-n的阶乘后面有多少个0
+// n的阶乘后面有多少个0
 class Solution {
 public:
     int trailingZeroes(int n) {
@@ -1559,16 +1429,16 @@ public:
     }
 };
 
-// 给一个无序链表，如何排序？链表归并如何实现？首先快慢指针取中点分成两半，链表归并的时间复杂度
-// 反转句子，但要以逗号作为分隔，样例如下：“hello world, god bless you” -> “world hello, you bless god”
-
 ------------------------------------------------------------------------------------------------------------------
 了解云产品、docker、find ./ *.txt、tcp和udp、DNS本身、epoll为啥高并发、进程间通信方式、Redis数据类型、
-Python、https安全机制、Webbench压力测试、Mysql数据库的优化(除了语句explain分析)
+Python、https安全机制、Webbench压力测试、Mysql数据库的优化方式(除了语句explain分析外还了解哪些)
 ------------------------------------------------------------------------------------------------------------------
 项目(内容、分工、我负责的部分)
 常用Linux命令，Python基本数据结构（()/[]/{}），Pandas定位、筛选元素
-服务器里客户端、服务端的流程 socket--绑定ip/port--设置监听--accept()
+服务器里客户端、服务端的流程:
+socket()--connect()连接目的方ip/port--send()/recv()--close()
+socket()--bind()绑定ip/port--listen()设置监听--accept()--recv()/send()--close()
+ubuntu基本：
 sudo apt install
 sudo dpkg -i packge-name.deb
 搜索可用于安装的软件包名称: sudo apt-cache search
@@ -1732,5 +1602,3 @@ https使用的是对称加密和非对称加密的结合方式,证书验证部�
 
 因为我们经过了一系列的证书验证，确定了发送数字证书的人的身份是正确的，那我们最后的数据传输使用一个随机数，对随机数的公钥加密，私钥解密，制定最后传递数据所采用的对称加密方式序列，传递最后的数据
 
-
-SELECT DISTINCT user_id FROM table WHERE data="2021326" limit 5;
