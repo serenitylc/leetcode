@@ -13,8 +13,7 @@ public:
         return build(preorder, 0, preorder.size() - 1, inorder, 0, inorder.size() - 1);
     }
     TreeNode* build(vector<int>& preorder, int preStart, int preEnd, vector<int>& inorder, int inStart, int inEnd) {
-        if (preStart > preEnd)
-            return NULL;
+        if (preStart > preEnd) return NULL;
         int rootVal = preorder[preStart];
         int idx = -1;
         for (int i = inStart; i <= inEnd; ++i) {
