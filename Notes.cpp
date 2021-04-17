@@ -1430,7 +1430,7 @@ public:
         int res = 0;
         while (x) {
             int tmp = x % 10;
-            if (res > (MAX_INT - tmp) / 10)) return -1;
+            if (x / 10 == 0 && res > (MAX_INT - tmp) / 10)) return -1;
             res  = res * 10 + tmp;
             x /= 10;
         }
