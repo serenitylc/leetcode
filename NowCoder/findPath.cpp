@@ -1,3 +1,32 @@
+/*
+struct TreeNode {
+	int val;
+	struct TreeNode *left;
+	struct TreeNode *right;
+	TreeNode(int x) :
+			val(x), left(NULL), right(NULL) {
+	}
+};*/
+class Solution {
+public:
+    void dfs(TreeNode* root, int exp, vector<int>& path, vector<vector<int> >& res) {
+        path.push_back(root->val);
+        if (root->val == exp && !root->left && !root->right) {
+            res.push_back(path);
+        }
+        if (root->left) dfs(root->left, exp - root->val, path, res);
+        if (root->right) dfs(root->right, exp - root->val, path, res);
+        path.pop_back();
+    }
+    vector<vector<int> > FindPath(TreeNode* root,int expectNumber) {
+        vector<vector<int> > res;
+        vector<int> path;
+        if (!root) return res;
+        dfs(root, expectNumber, path, res);
+        return res;
+    }
+};
+
 // 查找二叉树根节点到任意结点的路径
 class Solution {
 public:
