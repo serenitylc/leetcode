@@ -14,11 +14,9 @@ class Solution(object):
         """
         if not preorder:
             return None
-            
         rootVal = preorder.pop(0)
         root = TreeNode(rootVal)
         idx = inorder.index(rootVal)
-
         root.left = self.buildTree(preorder[:idx], inorder[:idx])
         root.right = self.buildTree(preorder[idx:], inorder[idx + 1:])
         return root

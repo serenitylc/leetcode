@@ -11,7 +11,6 @@ class Solution(object):
             return []
         candidates.sort()
         res = []
-
         def backtrace(candidates, target, temp_list):
             if target == 0:
                 res.append(temp_list)

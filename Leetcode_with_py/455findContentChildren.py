@@ -8,7 +8,7 @@ class Solution(object):
         g.sort(reverse=True)
         s.sort(reverse=True)
         gi, si, res =0, 0, 0
-        while gi <len(g) and si < len(s):
+        while gi < len(g) and si < len(s):
             if s[si] >= g[gi]:
                 res += 1
                 si += 1

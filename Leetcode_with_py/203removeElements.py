@@ -12,14 +12,14 @@ class Solution(object):
         :rtype: ListNode
         """
         while head != None and val == head.val:
-            head=head.next
-        if head==None:
+            head = head.next
+        if head == None:
             return None
         else:
             node = head
             while node.next != None:
-                if node.next.val==val:
+                if node.next.val == val:
                     node.next = node.next.next
                 else:
-                    node=node.next
+                    node = node.next
             return head

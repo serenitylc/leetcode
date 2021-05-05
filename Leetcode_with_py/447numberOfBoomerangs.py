@@ -4,9 +4,9 @@ class Solution(object):
         :type points: List[List[int]]
         :rtype: int
         """
-        res=0
+        res = 0
         for i in points:
-            dic={}
+            dic = {}
             for j in points:
                 distance = (i[0] - j[0])**2 + (i[1] - j[1])**2
                 if distance not in dic:

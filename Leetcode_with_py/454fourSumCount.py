@@ -12,11 +12,9 @@ class Solution(object):
         for a in A:
             for b in B:
                 ab_map[a + b] = ab_map.get(a + b, 0) + 1
-            
         for c in C:
             for d in D:
                 s = -(c + d)
                 if s in ab_map:
                     count += ab_map[s]
-        
         return count

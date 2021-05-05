@@ -22,10 +22,10 @@ class Solution(object):
 
 class Solution(object):
     def sortColors(self, nums):
-        result=[]
-        res=[0 for i in range(3)]
+        result = []
+        res = [0 for i in range(3)]
         for i in range(len(nums)):
             res[nums[i]] += 1
         for i in range(3):
             result = result + res[i] * [i]
-        nums[:]=result
+        nums[:] = result

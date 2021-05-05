@@ -12,10 +12,8 @@ class Solution(object):
                 nums_freq_dict[i] += 1
             else:
                 nums_freq_dict[i] = 1
-                
         for num, freq in nums_freq_dict.items():
             res[freq].append(num)
-        
         ans = []
         for i in range(len(nums), 0, -1):
             if len(res[i]) == 0:

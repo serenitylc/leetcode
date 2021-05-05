@@ -19,7 +19,6 @@ class Solution(object):
                     stack.append(root.children[idx])
         return res
 
-
 class Solution(object):
     def preorder(self, root):
         """

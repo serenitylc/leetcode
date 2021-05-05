@@ -22,8 +22,7 @@ class Solution(object):
         if p2 >= 0:
             nums1[:p2 + 1] = nums2[:p2 + 1]
 
-
 class Solution(object):
     def merge(self, nums1, m, nums2, n):
         nums1[m : m + n] = nums2
-        nums1.sort() 
+        nums1.sort()

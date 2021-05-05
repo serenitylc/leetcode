@@ -7,7 +7,7 @@ class Solution(object):
         """
         low = 0
         high = len(nums)
-        while low < high:       # ¶þ·Ö²éÕÒ
+        while low < high:
             mid = low + (high - low) / 2
             if nums[mid] > target:
                 high = mid;

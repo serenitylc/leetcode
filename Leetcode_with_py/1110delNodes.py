@@ -16,7 +16,7 @@ class Solution(object):
         res = []
         # 使用flag标记当前节点的父节点是否需要删除
         def dfs(root, flag):
-            if not root: return 
+            if not root: return
             if root.val in to_delete:
                 dfs(root.left, 1)
                 dfs(root.right, 1)
@@ -27,7 +27,6 @@ class Solution(object):
                 # 父节点在需要删除的时候才加入结果
                 flag and res.append(root)
             return root
-
         # 根节点的父节点默认需要删除
         dfs(root, 1)
         return res

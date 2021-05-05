@@ -16,8 +16,6 @@ class Solution(object):
             head, head.next, head.next.next = head.next, head, self.swapPairs(head.next.next)
             return head
 
-
-
 class Solution(object):
     def swapPairs(self, head):
         """

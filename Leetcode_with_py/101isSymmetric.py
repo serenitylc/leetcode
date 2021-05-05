@@ -16,13 +16,10 @@ class Solution(object):
                 return True
             elif not p1 or not p2:
                 return False
-            
             if p1.val != p2.val:
                 return False
             return isMirror(p1.left, p2.right) and isMirror(p1.right, p2.left)
-        
         return isMirror(root, root)
-
 
 # Python 迭代：层序遍历，然后检查每一层是不是回文数组
 class Solution(object):
@@ -31,10 +28,8 @@ class Solution(object):
         :type root : TreeNode
         :rtype: bool
         """
-
         queue = [root]
-
-        while(queue):
+        while (queue):
             next_queue = list()
             layer = list()
             for node in queue:
@@ -43,12 +38,9 @@ class Solution(object):
                     continue
                 next_queue.append(node.left)
                 next_queue.append(node.right)
-
                 layer.append(node.val)
-
             if layer != layer[::-1]:
                 return False
             queue = next_queue
-
         return True
 

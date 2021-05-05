@@ -8,7 +8,6 @@ class Solution(object):
             return []
         n = len(nums)
         res = []
-
         def backtrace(nums, tmp_list, pos):
             if pos == n and tmp_list not in res:
                 res.append(tmp_list)

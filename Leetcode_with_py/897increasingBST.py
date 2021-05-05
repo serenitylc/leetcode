@@ -18,7 +18,6 @@ class Solution(object):
                 self.cur.right = node
                 self.cur = node
                 inorder(node.right)
-
         ans = self.cur = TreeNode(None)
         inorder(root)
         return ans.right

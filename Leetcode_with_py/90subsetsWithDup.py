@@ -22,6 +22,5 @@ class Solution(object):
                 if i > idx and  nums[i] == nums[i - 1]:
                     continue
                 helper2(i + 1, n, temp_list + [nums[i]])
-
         helper2(0, n, [])
         return res

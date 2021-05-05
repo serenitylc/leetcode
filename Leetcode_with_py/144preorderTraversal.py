@@ -16,7 +16,6 @@ class Solution(object):
             return []
         return [root.val] + self.preorderTraversal(root.left) + self.preorderTraversal(root.right)
 
-
 # ·ÇµÝ¹é
 class Solution(object):
     def preorderTraversal(self, root):
@@ -26,12 +25,11 @@ class Solution(object):
         """
         if not root:
             return []
-        
         stack = [root]
         res = []
         while stack:
             cur = stack.pop()
-            res.append(cur.val)            
+            res.append(cur.val)
             if cur.right:
                 stack.append(cur.right)
             if cur.left:

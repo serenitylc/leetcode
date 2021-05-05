@@ -11,7 +11,6 @@ class Solution(object):
                 res = max(res, max(i * (n-i), i * breakInteger(n-i)))
             memo[n] = res;
             return res
-
         return breakInteger(n)
 
 class Solution(object):
@@ -23,5 +22,4 @@ class Solution(object):
             # Çó½âdp[i]
             for j in range(1, i):
                 dp[i] = max(dp[i], max(j * (i-j), j*dp[i-j]))
-        
         return dp[n]
