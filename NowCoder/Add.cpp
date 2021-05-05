@@ -7,7 +7,7 @@ public:
             i = (num1 & num2) << 1;  // ½øÎ»
             num1 = res;
             num2 = i;
-        } while(i != 0);
+        } while (i != 0);
         return res;
     }
 };
