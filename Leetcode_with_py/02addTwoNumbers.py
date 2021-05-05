@@ -14,17 +14,17 @@ class Solution(object):
         re = ListNode(0)
         r = re
         carry = 0
-        while(l1 or l2):
+        while (l1 or l2):
             x = l1.val if l1 else 0
             y = l2.val if l2 else 0
-            s = x + y +carry
+            s = x + y + carry
             carry = s // 10
-            r.next = ListNode(s%10)
+            r.next = ListNode(s % 10)
             r = r.next
-            if(l1):
+            if (l1):
                 l1 = l1.next
-            if(l2):
+            if (l2):
                 l2 = l2.next
-        if(carry > 0):
+        if (carry > 0):
             r.next = ListNode(1)
         return re.next
