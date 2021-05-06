@@ -22,7 +22,7 @@ public:
                 --r;
             }
         }
-        return isFind ? vector<int>{array[res_l],array[res_r]} : vector<int>{};
+        return isFind ? vector<int>{array[res_l], array[res_r]} : vector<int>{};
     }
 };
 
