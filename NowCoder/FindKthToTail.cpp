@@ -10,7 +10,7 @@ public:
     ListNode* FindKthToTail(ListNode* pHead, int k) {
         if (!pHead || k <= 0) return nullptr;
         ListNode *p = pHead, *q = pHead;
-        while ( p && k) {
+        while (p && k) {
             --k;
             p = p->next;
         }
