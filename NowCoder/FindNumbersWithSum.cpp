@@ -37,9 +37,9 @@ public:
             mp[array[i]] = i;
         }
         for (int i = 0; i < array.size(); ++i) {
-            if (mp.find(sum-array[i]) != mp.end()) {
-                int j = mp[sum-array[i]];
-                if ( j > i && array[i]*array[j] < tmp) {
+            if (mp.find(sum - array[i]) != mp.end()) {
+                int j = mp[sum - array[i]];
+                if (j > i && array[i] * array[j] < tmp) {
                     tmp = array[i] * array[j];
                     ret = {i, j};
                 }

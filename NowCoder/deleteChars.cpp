@@ -12,7 +12,7 @@ char *deleteChars(char *first, char *second) {
 	memset(hashTable, 0, sizeof(hashTable));
 	while (*second != '\0') {
 		if (!hashTable[*second]) {
-			hashTable[ *second ] = true;
+			hashTable[*second] = true;
 		}
 		second ++;
 	}
