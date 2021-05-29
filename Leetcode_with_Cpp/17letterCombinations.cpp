@@ -16,7 +16,7 @@ public:
         dfs(digits);
         return res;
     }
-    void dfs(string digits) {    // 回溯法
+    void dfs(string digits) {
         if (!digits.size()) {
             res.push_back(cur);
         } else {
@@ -24,7 +24,7 @@ public:
             string letter = mp[num];
             for (int i = 0; i < letter.size(); i++) {
                 cur.push_back(letter[i]);
-                dfs(digits.substr(1));   // 取子串 依次去掉字符串首字符
+                dfs(digits.substr(1));   // 依次去掉字符串首字符
                 cur.pop_back();
             }
         }
