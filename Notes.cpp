@@ -1,4 +1,19 @@
 
+/* Vscode
+ * 行移动：Alt + ↑/↓
+ * 行复制：Shift + Alt + ↑/↓
+ * 块注释：Shit + Alt + A
+ * 向右/左缩进：Ctrl + ]/[
+ * 切换到下一个/上一个文件编辑点：Alt + → / ←
+ * 跳转到相应括号位置：Ctrl + Shift + \
+ * 打开/折叠代码区域：Ctrl + Shift + [/]
+ * 代码定义以浮窗形式覆盖在当前页面上：Alt + F12
+ * 跳转到代码定义位置：F12
+ * 文件内查找/替换：Ctrl + F / H
+ * 工作区内查找/替换：Ctrl + Shift + F / H
+ * 打开调试面板：Ctrl + Shift + D
+ */
+
 /* sort(v.begin(), v,end(), compare);
  * bool compare(int a, int b) { return a < b; }  升序排列(默认)
  * #include <functional>
@@ -13,7 +28,6 @@
 
 /* C++ string
  * #include <string>
- * string str;							生成空字符串
  * string s(str);						生成字符串为str的复制
  * string s(str, str_begin, str_len);	将字符串str中从下标str_begin开始、长度为str_len的部分作为字符串初值
  * string s(cstr, char_len);			以C_string类型cstr的前char_len个字符串作为字符串s的初值
@@ -24,25 +38,25 @@
  * max_size(): 			返回string对象最多包含的字符数，超出会抛出length_error异常
  * capacity()：			重新分配内存之前，string对象能包含的最大字符数
  *
- * string的插入：push_back()、 insert()
+ * 插入：push_back()、 insert()
  * s.push_back('a');
  * s.insert(s.begin(), '1');
  *
- * string拼接字符串：append() 、 +
+ * 拼接：append() 、 +
  *
- * string的遍历：借助迭代器 或者 下标法
+ * 遍历：借助迭代器 或者 下标法
  * 正向迭代器 str.begin()、  str.end()
  * 反向迭代器 str.rbegin()、 str.rend()
  *
- * string的删除：erase()
+ * 删除：erase()
  * iterator erase(iterator p);						删除字符串中p所指的字符
  * iterator erase(iterator first, iterator last);	删除字符串中迭代器区间 [first, last) 上所有字符
  * string& erase(size_t pos, size_t len);			删除字符串中从索引位置 pos 开始的 len 个字符
  * void clear();									删除字符串中所有字符
  *
- * string大小写转换：tolower() 和 toupper() 或者 STL中的 transform 算法
+ * 大小写转换：tolower() 和 toupper() 或者 STL中的 transform 算法
  *
- * string的查找：find
+ * 查找：find
  * string s("dog bird chicken bird cat");
  * 字符串查找-----找到后返回首字母在字符串中的下标
  * 1. 查找一个字符串
@@ -62,10 +76,10 @@
  * 8. 在该字符串从后往前查找第一个不属于字符串s的字符，先匹配tac，然后空格匹配不到，所以打印21
  * cout << s.find_last_not_of("teac") << endl;  结果是：21
  *
- * string的排序
+ * 排序
  * sort(iterator iter1, iterator iter2);  对[iter1, iter2)进行排序
  *
- * string的分割/截取字符串：substr()
+ * 分割/截取字符串：substr()
  * string s1("0123456789");
  * string s2 = s1.substr(2, 5);
  * cout << s2 << endl;  结果：23456，参数5表示截取的字符串的长度
@@ -122,7 +136,7 @@
  */
 
 /* #include <map>
- * map 底层为红黑树, 所有元素根据键值key自动排序, 不允许有键值相同的元素,
+ * map 底层为红黑树, 所有元素根据键值key自动排序, 不允许有键值相同的元素
  * multimap 中的key可以重复, 单个元素版本的 insert() 返回值不再是一个pair, 而是一个iterator, 不再提供 operator[] 接口.
  *
  * C++11中4个关联式容器：unordered_map/unordered_set/unordered_multimap/unordered_multiset,
@@ -295,7 +309,7 @@ public:
 result = []
 def backtrack(路径, 选择列表):
 	if 满足结束条件:
-		result.add(路径)
+		result.append(路径)
 		return
 	for 选择 in 选择列表:
 		做选择
@@ -354,7 +368,7 @@ int BFS(Node start, Node target) {
 	queue<Node> q;		// 核心数据结构
 	set<Node> visited;	// 避免回头路
 	q.push(start);		// 起点入队
-	visited.add(start);
+	visited.push(start);
 	int step = 0;		// 记录扩散步数
 	while (q not empty) {
 		int sz = q.size();
@@ -554,8 +568,8 @@ public:
 };
 
 文件查找
-(1)find: 根据文件属性进行查找，如文件名，文件大小，所有者，所属组，是否为空，访问时间，修改时间等。 find . -name '*.txt'
-(2)grep: 根据文件内容进行查找，会对文件每一行按照给定模式(patter)进行匹配查找。 grep "text" *
+find: 根据文件属性进行查找，如文件名，文件大小，所有者，所属组，是否为空，访问时间，修改时间等。 find . -name '*.txt'
+grep: 根据文件内容进行查找，会对文件每一行按照给定模式(patter)进行匹配查找。 grep "text" *
 
 ls | head -n 20
 给每项文件前面增加一个id编号: ls | cat -n
@@ -583,7 +597,7 @@ MySQL数据库优化的八种方式:
 7、使用索引
 8、优化的查询语句
 
-linux通过ulimit命令查看栈上限和设置上限: ulimit -a (查看进程所有资源上限)
+linux查看栈上限和设置上限: ulimit -a (查看进程所有资源上限)
 
 同一进程间的线程共享的资源有4个：堆、全局变量、静态变量、文件等公用资源
 独享的资源有：栈、寄存器
@@ -617,7 +631,7 @@ select和epoll对于用户态和内核态消耗的不同：select基于用户态
 这样拥塞窗口cwnd按线性规律缓慢增长，比慢开始算法的拥塞窗口增长速率缓慢得多。
 
 无论在慢开始阶段还是在拥塞避免阶段，只要发送方判断网络出现拥塞（没有收到确认），就要把慢开始门限ssthresh设置为出现拥塞时的发送方窗口值的一半（但不能小于2）。
-然后把拥塞窗口cwnd重新设置为1，执行慢开始算法。这样做的目的就是要迅速减少主机发送到网络中的分组数，使得发生 拥塞的路由器有足够时间把队列中积压的分组处理完毕。
+然后把拥塞窗口cwnd重新设置为1，执行慢开始算法。这样做的目的就是要迅速减少主机发送到网络中的分组数，使得发生拥塞的路由器有足够时间把队列中积压的分组处理完毕。
 
 linux中open和fopen的区别:
 1.层次不同,open是系统调用,返回文件句柄,即文件在文件描述符表里的索引;fopen是ANSIC标准C语言库函数，返回一个指向文件结构的指针(文件流)
@@ -774,13 +788,13 @@ C++中public、protect、private的访问权限控制
 
 继承权限
 public继承
-派生类通过public继承，基类的各种权限不变 。
+派生类通过public继承，基类的各种权限不变。
 派生类的成员函数，可以访问基类的public成员、protected成员，但是无法访问基类的private成员。
 派生类的实例变量，可以访问基类的public成员，但是无法访问protected、private成员，仿佛基类的成员之间加到了派生类一般。
 可以将public继承看成派生类将基类的public,protected成员囊括到派生类，但是不包括private成员。
 
 protected继承
- 派生类通过protected继承，基类的public成员在派生类中的权限变成了protected 。protected和private不变。
+派生类通过protected继承，基类的public成员在派生类中的权限变成了protected 。protected和private不变。
 派生类的成员函数，可以访问基类的public成员、protected成员，但是无法访问基类的private成员。
 派生类的实例变量，无法访问基类的任何成员，因为基类的public成员在派生类中变成了protected。
 可以将protected继承看成派生类将基类的public,protected成员囊括到派生类，全部作为派生类的protected成员，但是不包括private成员。
@@ -799,7 +813,7 @@ private成员是基类内部的隐私，除了友元，所有人员都不得窥�
 通过private继承，所有基类成员（除了private），public、protected都到了派生类里面，private筛眼最小，所有过来的成员都变成了private。
 
 extern：置于变量或函数前，标示其定义在别的文件中，提示编译器在其他模块中寻找。也可用来指定链接。
-extern “C”：C++调用C函数需要extern C，因为C语言没有函数重载。
+extern “C”：C++调用C函数需要extern C，因为C语言没有函数重载.
 
 static：修饰局部变量时，使得被修饰的变量成为静态变量，存储在静态区。其生命周期与程序相同，在main函数之前初始化，程序退出时销毁。（无论是局部静态还是全局静态）。
 此外，static限制了链接属性，被修饰的全局变量只能被包含该定义的文件访问（多文件编译时，隐藏），在C++中还可以实现不同对象之间数据共享。
@@ -821,7 +835,6 @@ C++中四种类型转换是：static_cast, dynamic_cast, const_cast, reinterpret
 向下转换：指的是基类向子类的转换
 它通过判断在执行到该语句的时候变量的运行时类型和要转换的类型是否相同来判断是否能够进行向下转换。
 4、reinterpret_cast：几乎什么都可以转，比如将int转指针，可能会出问题，尽量少用；
-
 5、为什么不使用C的强制转换？
 C的强制转换表面上看起来功能强大什么都能转，但是转化不够明确，不能进行错误检查，容易出错。
 
@@ -838,16 +851,16 @@ C/C++ 中指针和引用的区别？
 
 一个一维int数组的数组名实际上是一个int* const 类型；
 一个二维int数组的数组名实际上是一个int (*const p)[n];
-数组名做参数会退化为指针，除了sizeof
+数组名做参数会退化为指针
 
-内存对齐的原则
+内存对齐原则
 从0位置开始存储；
 变量存储的起始位置是该变量大小的整数倍；
 结构体总的大小是其最大元素的整数倍，不足的后面要补齐；
 结构体中包含结构体，从结构体中最大元素的整数倍开始存；
 如果加入pragma pack(n) ，取n和变量自身大小较小的一个。
-内联函数有什么优点？内联函数与宏定义的区别？
 
+内联函数有什么优点？内联函数与宏定义的区别？
 宏定义在预编译的时候就会进行宏替换；
 内联函数在编译阶段，在调用内联函数的地方进行替换，减少了函数的调用过程，但是使得编译文件变大。
 因此，内联函数适合简单函数，对于复杂函数，即使定义了内联编译器可能也不会按照内联的方式进行编译。
@@ -1107,7 +1120,7 @@ STL内存分配分为一级分配器和二级分配器，一级分配器就是�
 
 set和map都是基于红黑树实现的。
 红黑树是一种平衡二叉查找树，与AVL树的区别是什么？AVL树是完全平衡的，红黑树基本上是平衡的。
-为什么选用红黑数呢？因为红黑数是平衡二叉树，其插入和删除的效率都是N(logN)，与AVL相比红黑数插入和删除最多只需要3次旋转，而AVL树为了维持其完全平衡性，在坏的情况下要旋转的次数太多。
+为什么选用红黑数呢？因为红黑数是平衡二叉树，其插入和删除的效率都是N(logN)，与AVL相比红黑数插入和删除最多只需要3次旋转，而AVL树为了维持其完全平衡性，插入和删除的时候在最坏的情况下要旋转logN次。
 红黑树的定义：
 (1) 节点是红色或者黑色；
 (2) 父节点是红色的话，子节点就不能为红色；
@@ -1126,10 +1139,6 @@ set和map都是基于红黑树实现的。
 (1)在windows平台下通过CRT中的库函数进行检测；
 (2)在可能泄漏的调用前后生成块的快照，比较前后的状态，定位泄漏的位置
 (3)Linux下通过工具valgrind检测
-
-红黑树与AVL树的区别
-红黑树与AVL树都是平衡树，但是AVL是完全平衡的(平衡就是值树中任意节点的左子树和右子树高度差不超过1)；
-红黑树效率更高，因为AVL为了保证其完全平衡，插入和删除的时候在最坏的情况下要旋转logN次，而红黑树插入和删除的旋转次数要比AVL少。
 
 Trie树(字典树)
 每个节点保存一个字符
@@ -1252,17 +1261,12 @@ mysql 的索引模型：自适应哈希索引、B+树索引、有序数组索引
 幻读产生的根本原因是采用的行级锁，所以只针对脏读和重复读有用
 幻读的解决方案：表级锁，mysql innodb自带版本控制
 
-1、mysql默认引擎
-mysql-5.1版本之前默认引擎是MyISAM，之后是innoDB
-
-2、关系
 MyISAM是非集聚引擎，支持全文索引；不支持事务；它是表级锁；会保存表的具体行数
 innoDB是集聚引擎，5.6以后才有全文索引；支持事务；它是行级锁；不会保存表的具体行数
 
 一般：不用事务,count计算多的时候适合myisam引擎，对可靠性要求高就用innodby引擎。
 
-3、索引分类
-
+索引分类
 1.普通索引index :加速查找
 2.唯一索引
 主键索引：primary key ：加速查找+约束（不为空且唯一）
@@ -1598,7 +1602,6 @@ https使用的是对称加密和非对称加密的结合方式,证书验证部�
 
 因为我们经过了一系列的证书验证，确定了发送数字证书的人的身份是正确的，那我们最后的数据传输使用一个随机数，对随机数的公钥加密，私钥解密，制定最后传递数据所采用的对称加密方式序列，传递最后的数据
 
-
 TCP可靠连接怎么体现？接收端没收到报文时发送端如何重传？TCP建立连接的过程？
 1.三次握手建立连接通道;
 2.传输过程中有确认机制和重传机制，配合流量控制和拥塞控制，使传输效率更高效可靠;
@@ -1610,7 +1613,6 @@ TCP可靠连接怎么体现？接收端没收到报文时发送端如何重传�
 在应答报文ACK中就将自身缓冲区的剩余大小，放入16窗口大小中。这个大小随数据传输情况而变，窗口越大，网络吞吐量越高，
 而一旦接收方发现自身的缓冲区快满了，就将窗口设置为更小的值通知发送方。
 如果缓冲区满，就将窗口置为0，发送方收到后就不再发送数据，但是需要定期发送一个窗口探测数据段，使接收端把窗口大小告诉发送端。
-
 
 socket编程判断对端断开：
 1.当recv()返回值小于等于0时，socket连接断开。但是还需要判断 errno是否等于 EINTR,
