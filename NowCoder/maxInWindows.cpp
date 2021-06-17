@@ -7,7 +7,7 @@ public:
         for (int i = 0; i < num.size(); i++) {
             if (!deque.empty() && deque.front() == i - size)  // 窗口大小超过 size, 弹出队头 (i-size+1即为首元素index)
                 deque.pop_front();
-            while (!deque.empty() && num[i] > num[deque.back()])  // 单调队列
+            while (!deque.empty() && num[i] > num[deque.back()])
                 deque.pop_back();
             deque.push_back(i);
             if (i + 1 >= size) res.push_back(num[deque.front()]);
