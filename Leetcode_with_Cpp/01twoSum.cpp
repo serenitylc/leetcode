@@ -14,10 +14,11 @@ public:
     }
 };
 
-#include <iostream>
+/* #include <iostream>
 #include <vector>
 #include <cassert>
-#include <unordered_map>
+#include <unordered_map> */
+#include <bits/stdc++.h>
 using namespace std;
 
 class Solution {
@@ -40,7 +41,7 @@ public:
 int main() {
 	Solution s;
 	vector<int> res;
-	int arr[4]={2, 7, 11, 15};
+	int arr[4] = {2, 7, 11, 15};
 	vector<int> nums(arr, arr+4);
 	res = s.twoSum(nums, 9);
 	for (vector<int>::iterator it = res.begin(); it != res.end(); it++)
