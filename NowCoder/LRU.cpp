@@ -12,12 +12,6 @@ struct Node {
 
 class Solution {
 public:
-    /**
-     * lru design
-     * @param operators int整型vector<vector<>> the ops
-     * @param k int整型 the k
-     * @return int整型vector
-     */
     vector<int> LRU(vector<vector<int> >& operators, int k) {
         // write code here
         cap = k;

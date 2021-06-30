@@ -30,7 +30,7 @@ public:
         TreeNode *left, *right;
         q1.push(pRoot->left);
         q2.push(pRoot->right);
-        while(!q1.empty() && !q2.empty()) {
+        while (!q1.empty() && !q2.empty()) {
             left = q1.front();
             q1.pop();
             right = q2.front();

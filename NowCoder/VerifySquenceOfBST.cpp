@@ -14,6 +14,6 @@ public:
             if (sequence[tmp] <= root) return false;
             ++tmp;
         }
-        return VerifySquenceOfBST(sequence, left, l-1) && VerifySquenceOfBST(sequence, l, right-1);
+        return VerifySquenceOfBST(sequence, left, l - 1) && VerifySquenceOfBST(sequence, l, right - 1);
     }
 };

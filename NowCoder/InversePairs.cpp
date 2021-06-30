@@ -35,7 +35,7 @@ public:
             mergesort(data, temp, begin, mid);
             mergesort(data, temp, mid+1, end);
             merge(data, temp, begin, mid, end);
-          }
+        }
     }
     void merge(vector<int>& data, vector<int>& temp, int begin, int mid, int end) {
         int i = begin, j = mid+1, k = begin;
@@ -57,5 +57,4 @@ public:
             data[i] = temp[i];
         }
     }
-
 };
