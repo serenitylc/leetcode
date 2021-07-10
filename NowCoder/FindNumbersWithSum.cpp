@@ -1,6 +1,6 @@
 class Solution {
 public:
-    vector<int> FindNumbersWithSum(vector<int> array,int sum) {
+    vector<int> FindNumbersWithSum(vector<int> array, int sum) {
         if (array.empty()) return vector<int>{};
         int mul = INT_MAX;
         int res_l;
@@ -28,7 +28,7 @@ public:
 
 class Solution {
 public:
-    vector<int> FindNumbersWithSum(vector<int> array,int sum) {
+    vector<int> FindNumbersWithSum(vector<int> array, int sum) {
         if (array.empty()) return vector<int>();
         int tmp = INT_MAX;
         pair<int, int> ret;
