@@ -71,7 +71,6 @@ public:
         }
     };
     int findKth(vector<int> a, int n, int K) {
-        // write code here
         priority_queue<int, vector<int>, compare> pq;
         for (int i = 0; i < n; ++i) {
             pq.push(a[i]);
