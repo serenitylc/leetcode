@@ -6,6 +6,7 @@
  *
  * $ git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
  * $ gitk   							图形化查看分支演变
+ * $ git config merge.tool vimdiff				使用 git mergetool
  * 
  * $ git config --global user.name "Your Name"			配置所有 Git 仓库的 用户名 和 email, 去掉--global 则配置当前 Git 仓库的 用户名 和 email
  * $ git config --global user.email "youremail@example.com" 
@@ -51,7 +52,7 @@
  * $ git branch dev   						创建 dev 分支
  * $ git branch -d dev                           		删除 dev 分支
  * $ git branch -D dev                           		强制删除 dev 分支
- * $ git branch --set-upstream-to=origin/dev dev  指定本地 dev 分支与远程 origin/dev 分支的链接
+ * $ git branch --set-upstream-to=origin/dev dev  		指定本地 dev 分支与远程 origin/dev 分支的链接
  *
  * $ git switch dev                              		切换到 dev 分支  (git checkout dev)
  * $ git switch -c dev                           		创建并切换到新的 dev 分支  (git checkout -b dev)
