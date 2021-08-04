@@ -102,6 +102,39 @@
  * git pull -r (git pull --rebase): git fetch + git rebase
  */
 
+/* 命令提示符
+ * Windows + X 按 A 		打开命令提示符的管理员模式
+ * Alt + F4 或 exit 		关闭命令提示符
+ * Alt + Enter 		在全屏或窗口模式之间切换
+ * 
+ * 移动光标
+ * Ctrl + ← / →		将光标移动到上一个或下一个单词
+ * Ctrl + ↑ / ↓		下滚动内容
+ * 选择文本
+ * Shift + ← / →		向左或右扩展一个字符的选区范围
+ * Shift + ↑ / ↓		向上或下扩展选区范围
+ * Shift + Ctrl + ← / →	向左或右扩展一个单词的选区范围
+ * Shift + Home		选中当前字符至行首
+ * Shift + End		选中当前字符至行尾
+ * Ctrl + Shift + Home / End	选中当前字符至屏幕缓冲区开头或结尾
+ * 
+ * 浏览器
+ * Ctrl + N 			打开新窗口
+ * Ctrl + T 			打开新标签页
+ * Ctrl + Shift + T 		重新打开上次关闭的标签页
+ * Ctrl + W			关闭当前标签页或弹出窗口
+ * Ctrl + L   /   Alt+D 		突出显示网址
+ * Ctrl + 1 - 8 		切换到标签栏中指定位置编号所对应的标签页
+ * Ctrl + 9 			切换到最后一个标签页
+ * Ctrl + Tab 		切换到下一个标签页
+ * Ctrl + Shift +Tab 		 切换到上一个标签页
+ * Alt + F4 			关闭当前窗口
+ * Ctrl + F5 / Shift + F5 	重新载入当前网页，忽略缓存的内容
+ * Ctrl + D 			将当前网页保存为书签
+ * Ctrl + j 			在新标签页中打开“下载内容”页
+ * Ctrl + Shift + j / F12 	打开“开发者工具”
+ */
+
 /* Vscode
  * 行移动：Alt + ↑/↓
  * 行复制：Shift + Alt + ↑/↓
