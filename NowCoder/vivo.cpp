@@ -12,7 +12,9 @@ int main() {
                 flag = true;
                 ++res;
                 break;
-            } else num = num * 10 + (str[j] - '0');
+            } else {
+                num = num * 10 + (str[i] - '0');
+            }
         }
         if (!flag && num % 7 == 0) ++res;
     }
