@@ -33,9 +33,13 @@ int findKthLargest(vector<int>& nums, int k) {
     int l = 0, r = nums.size() - 1, target = nums.size() - k;
     while (l < r) {
         int mid = quickSelection(nums, l, r);
-        if (mid == target) return nums[mid];
-        else if (mid < target) l = mid + 1;
-        else r = mid - 1;
+        if (mid == target) {
+			return nums[mid];
+		} else if (mid < target) {
+			l = mid + 1;
+		} else {
+			r = mid - 1;
+		}
     }
     return nums[l];
 }
@@ -56,9 +60,13 @@ public:
             if (i < j) swap(a[i], a[j]);
         }
         swap(a[start], a[j]);
-        if (n - j == k) return a[j];
-        else if (n - j < k) res = quick_sort(a, start, j-1, n, k);
-        else if (n - j > k) res = quick_sort(a, j+1, end, n, k);
+        if (n - j == k) {
+			return a[j];
+		} else if (n - j < k) {
+			res = quick_sort(a, start, j-1, n, k);
+		} else if (n - j > k) {
+			res = quick_sort(a, j+1, end, n, k);
+		}
         return res;
     }
 };
@@ -114,9 +122,13 @@ public:
     int kthLargest(TreeNode* root, int k) {
         if (!root) return -1;
         int r_num = numsOfChild(root->right);
-        if (r_num + 1 == k) return root->val;
-        else if (r_num + 1 < k) return kthLargest(root->left, k - r_num - 1);
-        else return kthLargest(root->right, k);
+        if (r_num + 1 == k) {
+			return root->val;
+		} else if (r_num + 1 < k) {
+			return kthLargest(root->left, k - r_num - 1);
+		} else {
+			return kthLargest(root->right, k);
+		}
     }
     int numsOfChild(TreeNode* root) {
         if (!root) return 0;
@@ -178,14 +190,14 @@ void bubble_sort(vector<int>& nums, int n) {
 
 /* —°‘Ò≈≈–Ú Selection Sort */
 void selection_sort(vector<int>& nums, int n) {
-	int mid;
+	int index;
 	for (int i = 0; i < n - 1; ++i) {
-		mid = i;
+		index = i;
 		for (int j = i + 1; j < n; ++j) {
-			if (nums[j] < nums[mid])
-				mid = j;
+			if (nums[j] < nums[index])
+				index = j;
 		}
-		swap(nums[mid], nums[i]);
+		swap(nums[index], nums[i]);
 	}
 }
 

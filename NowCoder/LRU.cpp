@@ -13,12 +13,14 @@ struct Node {
 class Solution {
 public:
     vector<int> LRU(vector<vector<int> >& operators, int k) {
-        // write code here
         cap = k;
         vector<int> res;
         for (auto & input : operators) {
-            if (input[0] == 1) set(input[1], input[2]);
-            else res.push_back(get(input[1]));
+            if (input[0] == 1) {
+                set(input[1], input[2]);
+            } else {
+                res.push_back(get(input[1]));
+            }
         }
         return res;
     }
@@ -40,7 +42,9 @@ public:
     }
     void set(int k, int v) {
         auto it = H.find(k);
-        if (it != H.end()) remove(it->second);
+        if (it != H.end()) {
+            remove(it->second);
+        }
         add(k, v);
     }
     int get(int k) {

@@ -17,7 +17,10 @@ public:
                 }
             }
         }
-        if (maxLen == 0) return "";
-        else return str1.substr(index - maxLen, maxLen);
+        if (maxLen == 0) {
+            return "";
+        } else {
+            return str1.substr(index - maxLen, maxLen);
+        }
     }
 };
