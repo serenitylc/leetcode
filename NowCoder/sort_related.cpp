@@ -105,7 +105,7 @@ public:
     int kthLargest(TreeNode* root, int k) {
         vector<int> inorder;
         InOrder(root, inorder);
-        return inorder[inorder.size()-k];
+        return inorder[inorder.size() - k];
     }
     void InOrder(TreeNode* root, vector<int>& inorder) {
         if (!root) return;
@@ -132,12 +132,13 @@ public:
     }
     int numsOfChild(TreeNode* root) {
         if (!root) return 0;
-        if (childNum.find(root) != childNum.end()) return childNum[root];
+        if (childNum.find(root) != childNum.end()) {
+			return childNum[root];
+		}
         childNum[root] = 1 + numsOfChild(root->left) + numsOfChild(root->right);
         return childNum[root];
     }
 };
-
 
 /* 归并排序 Merge Sort
  * 分治法
@@ -155,10 +156,11 @@ void merge_sort(vector<int>& nums, int l, int r, vector<int>& temp) {
 	// conquer
 	int p = l, q = m, index = l;
 	while (p < m || q < r) {
-		if (q >= r || (p < m && nums[p] <= nums[q]))
+		if (q >= r || (p < m && nums[p] <= nums[q])) {
 			temp[index++] = nums[p++];
-		else
+		} else {
 			temp[index++] = nums[q++];
+		}
 	}
 	for (index = l; index < r; index++)
 		nums[index] = temp[index];
