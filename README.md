@@ -1,4 +1,4 @@
-## PRACTICE MAKES PERFECT (让我们一起带上痛苦面具！)
+## PRACTICE MAKES PERFECT (Once for all? ! No way!)
 ------
 - **动态规划**的核心问题是穷举，由于这类问题存在「重叠子问题」，如果暴力穷举的话效率会极其低下，所以需要「备忘录」或者「DP table」来优化穷举过程。
 - 明确 base case --> 明确「状态」--> 明确「选择」 --> 定义 dp 数组/函数的含义。

@@ -17,7 +17,7 @@ public:
                 }           
                 if (dp[i][j] && j-i+1 >= len) {
                     len = j-i+1;
-                    res = s.substr(i,j-i+1);  // 更新最长回文子串
+                    res = s.substr(i, len);  // 更新最长回文子串
                 }
             }
         }
