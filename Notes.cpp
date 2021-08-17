@@ -1487,51 +1487,41 @@ string、list、set、zset、hash这五种基本数据结构，string底层是�
 
 
 // 两个有序数组，找中位数
-/* 主要思路：要找到第 k (k>1) 小的元素，那么就取 pivot1 = nums1[k/2-1] 和 pivot2 = nums2[k/2-1] 进行比较
-         * 这里的 "/" 表示整除
-         * nums1 中小于等于 pivot1 的元素有 nums1[0 .. k/2-2] 共计 k/2-1 个
-         * nums2 中小于等于 pivot2 的元素有 nums2[0 .. k/2-2] 共计 k/2-1 个
-         * 取 pivot = min(pivot1, pivot2)，两个数组中小于等于 pivot 的元素共计不会超过 (k/2-1) + (k/2-1) <= k-2 个
-         * 这样 pivot 本身最大也只能是第 k-1 小的元素
-         * 如果 pivot = pivot1，那么 nums1[0 .. k/2-1] 都不可能是第 k 小的元素。把这些元素全部 "删除"，剩下的作为新的 nums1 数组
-         * 如果 pivot = pivot2，那么 nums2[0 .. k/2-1] 都不可能是第 k 小的元素。把这些元素全部 "删除"，剩下的作为新的 nums2 数组
-         * 由于我们 "删除" 了一些元素（这些元素都比第 k 小的元素要小），因此需要修改 k 的值，减去删除的数的个数
-         */
 class Solution {
 public:
     int getKthElement(const vector<int>& nums1, const vector<int>& nums2, int k) {
         int m = nums1.size(), n = nums2.size();
-        int index1 = 0, index2 = 0;
+        int i = 0, j = 0;
         while (true) {
             // 边界情况
-            if (index1 == m) {
-                return nums2[index2 + k - 1];
+            if (i == m) {
+                return nums2[j + k - 1];
             }
-            if (index2 == n) {
-                return nums1[index1 + k - 1];
+            if (j == n) {
+                return nums1[i + k - 1];
             }
             if (k == 1) {
-                return min(nums1[index1], nums2[index2]);
+                return min(nums1[i], nums2[j]);
             }
             // 正常情况
-            int newIndex1 = min(index1 + k / 2 - 1, m - 1);
-            int newIndex2 = min(index2 + k / 2 - 1, n - 1);
-            int pivot1 = nums1[newIndex1], pivot2 = nums2[newIndex2];
+            int newI = min(i + k / 2 - 1, m - 1);
+            int newJ = min(j + k / 2 - 1, n - 1);
+            int pivot1 = nums1[newI], pivot2 = nums2[newJ];
             if (pivot1 <= pivot2) {
-                k -= newIndex1 - index1 + 1;
-                index1 = newIndex1 + 1;
+                k -= newI - i + 1;
+                i = newI + 1;
             } else {
-                k -= newIndex2 - index2 + 1;
-                index2 = newIndex2 + 1;
+                k -= newJ - j + 1;
+                j = newJ + 1;
             }
         }
     }
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
-        int totalLength = nums1.size() + nums2.size();
-        if (totalLength % 2 == 1) {
-            return getKthElement(nums1, nums2, (totalLength + 1) / 2);
+        int len = nums1.size() + nums2.size();
+        if (len % 2 == 1) {
+            return getKthElement(nums1, nums2, (len + 1) / 2);
         } else {
-            return (getKthElement(nums1, nums2, totalLength / 2) + getKthElement(nums1, nums2, totalLength / 2 + 1)) / 2.0;
+            return (getKthElement(nums1, nums2, len / 2) + getKthElement(nums1, nums2, len / 2 + 1)) / 2.0;
         }
     }
 };
@@ -1829,7 +1819,9 @@ epoll中的读、写、关闭、连接都转化成了事件，然后利用epoll�
 
 为什么Redis是单线程的
 官方答案：因为Redis是基于内存的操作，CPU不是Redis的瓶颈，瓶颈最有可能是机器内存的大小或者网络带宽(IO)。
-进程调度算法：先来先服务、轮转法、最短进程、最短剩余时间、优先权调度算法、多级反馈队列调度算法
+
+进程调度算法：先来先服务FCFS、轮转法、最短进程、最短剩余时间、优先权调度算法、多级反馈队列调度算法
+页面调度算法：先入先出FIFO、最佳页面置换OPT、最近最少使用LRU、最近未使用CLOCK(NRU，判断读R写M标志位的状态)
 
 实际业务中如果真有并发读写 map 的场景，除了加锁的方法，有其他方式去保证线程安全么？
 关于并发，四个选择（1最易读，4性能最好。得根据业务trade-off）：
