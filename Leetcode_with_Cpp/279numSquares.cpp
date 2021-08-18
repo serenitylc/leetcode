@@ -1,3 +1,24 @@
+/* dp æ—¶é—´å¤æ‚åº¦O(nlogn),ç©ºé—´å¤æ‚åº¦O(n).
+ * å®šä¹‰ä¸€ä¸ªå‡½æ•°f(n)è¡¨ç¤ºæˆ‘ä»¬è¦æ±‚çš„è§£ã€‚f(n)çš„æ±‚è§£è¿‡ç¨‹ä¸ºï¼š
+ * f(n) = 1 + min {
+ *              f(n-1^2), f(n-2^2), f(n-3^2), f(n-4^2), ... , f(n-k^2) //(kä¸ºæ»¡è¶³k^2<=nçš„æœ€å¤§çš„k)
+ *           }
+ */
+class Solution {
+public:
+    int numSquares(int n) {
+        vector<int> dp(n+1, 0);
+        for (int i = 1; i <= n; ++i) {
+            int minVal = INT_MAX;
+            for (int j = 1; j*j <= i; ++j) {
+                minVal  = min(minVal , dp[i-j*j] + 1);
+            }
+            dp[i] = minVal;
+        }
+        return dp[n];
+    }
+};
+
 class Solution {
 public:
     int numSquares(int n) {
@@ -15,21 +36,21 @@ public:
 class Solution {
 public:
     int numSquares(int n) {
-        queue<pair<int,int>> q;    // ½èÓÃ¶ÓÁĞ½â¾ö ÎŞÈ¨Í¼½á¹¹µÄ BFS
-        q.push(make_pair(n, 0));    // ½¨Á¢Í¼½á¹¹
-        vector<bool> visited(n + 1, false);
-        visited[n] = true;          // Í¼½á¹¹ËÑË÷Â·¾­¿ÉÄÜÖØ¸´
+        queue<pair<int, int>> q;    // å€Ÿç”¨é˜Ÿåˆ—è§£å†³ æ— æƒå›¾ç»“æ„çš„ BFS
+        q.push(make_pair(n, 0));    // å»ºç«‹å›¾ç»“æ„
+        vector<bool> visited(n+1, false);
+        visited[n] = true;          // å›¾ç»“æ„æœç´¢è·¯ç»å¯èƒ½é‡å¤
         while (!q.empty()) {
             int num = q.front().first;
             int step = q.front().second;
             q.pop();
             for (int i = 1;  ; i++) {
-                int a = num - i * i;    // ¼õÈ¥Æ½·½Êı£¬»ñµÃÏÂÒ»¸öÍ¼½ÚµãÎ»ÖÃ£¬¼´ÊÇstep + 1²ã¡£¿ÉÄÜÓĞ¶àÖÖÇé¿ö£¬»áµ½´ï¶à¸ö½Úµã¡£
+                int a = num - i * i;    // å‡å»å¹³æ–¹æ•°ï¼Œè·å¾—ä¸‹ä¸€ä¸ªå›¾èŠ‚ç‚¹ä½ç½®ï¼Œå³æ˜¯step + 1å±‚ã€‚å¯èƒ½æœ‰å¤šç§æƒ…å†µï¼Œä¼šåˆ°è¾¾å¤šä¸ªèŠ‚ç‚¹ã€‚
                 if (a < 0) break;
-                if (a == 0)           // µ±µ½´ï0½Úµã£¬ËµÃ÷ÒÑ¾­×ßÍêÁË¡£ÓÉÓÚÊÇ²ãĞòµÄ£¬µÚÒ»¸öµ½´ï0½Úµã¾ÍÖ±½Ó·µ»Ø²½Êı¡£
+                if (a == 0)           // å½“åˆ°è¾¾0èŠ‚ç‚¹ï¼Œè¯´æ˜å·²ç»èµ°å®Œäº†ã€‚ç”±äºæ˜¯å±‚åºçš„ï¼Œç¬¬ä¸€ä¸ªåˆ°è¾¾0èŠ‚ç‚¹å°±ç›´æ¥è¿”å›æ­¥æ•°ã€‚
                     return step + 1;
                 if (!visited[a]) {
-                    q.push(make_pair(a, step + 1));     // ¼ÇÂ¼µ½´ïµ±Ç°½Úµã£¬ÒÑ¾­×ßÁËµÄ²½Êı¡£
+                    q.push(make_pair(a, step + 1));     // è®°å½•åˆ°è¾¾å½“å‰èŠ‚ç‚¹ï¼Œå·²ç»èµ°äº†çš„æ­¥æ•°ã€‚
                     visited[a] = true;
                 }
             }
