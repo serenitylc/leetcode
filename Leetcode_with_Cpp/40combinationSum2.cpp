@@ -14,12 +14,12 @@ public:
         }
         for (int i = pos; i < candidates.size(); ++i) {
             if (target - candidates[i] >= 0) {
-                if (i != pos && candidates[i] == candidates[i-1]) // È¥µôÖØ¸´
+                if (i != pos && candidates[i] == candidates[i-1])  // å»æ‰é‡å¤
                     continue;
                 track.push_back(candidates[i]);
                 backtrace(candidates, track, i + 1, target-candidates[i]);
                 track.pop_back();
-            } else { // ¼ôÖ¦
+            } else {  // å‰ªæ
                 break;
             }
         }
