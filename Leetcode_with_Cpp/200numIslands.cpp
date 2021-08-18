@@ -6,7 +6,7 @@ private:
     bool isArea(int x, int y) {
         return x >= 0 && x < m && y >=0 && y < n;
     }
-    // ´Ó grid[x][y] Î»ÖÃ¿ªÊ¼£¬½øÐÐ floodfill
+    // ä»Ž grid[x][y] ä½ç½®å¼€å§‹ï¼Œè¿›è¡Œ floodfill
     void dfs(vector<vector<char>>& grid, int x, int y) {
         visited[x][y] = true;
         for (int i = 0; i < 4; i++) {
@@ -20,17 +20,18 @@ private:
 public:
     int numIslands(vector<vector<char>>& grid) {
         m = grid.size();
-        if (m == 0)
-            return 0;
+        if (m == 0) return 0;
         n = grid[0].size();
         visited = vector<vector<bool>>(m, vector<bool>(n, false));
         int res = 0;
-        for (int i = 0; i < m; i++)
-            for (int j = 0; j < n; j++)
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
                 if (grid[i][j] == '1' && !visited[i][j]) {
                     res++;
                     dfs(grid, i, j);
                 }
+            }
+        }
         return res;
     }
 };
