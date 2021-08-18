@@ -1,6 +1,6 @@
 class Solution {
 public:
-    vector<int> directions{-1, 0, 1, 0, -1};
+    vector<int> dire{-1, 0, 1, 0, -1};
     int maxAreaOfIsland(vector<vector<int>>& grid) {
         int m = grid.size(), n = m ? grid[0].size() : 0, local_area, area = 0, x, y;
         for (int i = 0; i < m; ++i) {
@@ -14,7 +14,7 @@ public:
                         auto [r, c] = island.top();
                         island.pop();
                         for (int k = 0; k < 4; ++k) {
-                            x = r + directions[k], y = c + directions[k+1];
+                            x = r + dire[k], y = c + dire[k+1];
                             if (x >= 0 && x < m && y >= 0 && y < n && grid[x][y] == 1) {
                                 grid[x][y] = 0;
                                 ++local_area;
@@ -30,10 +30,9 @@ public:
     }
 };
 
-// ตÝน้
 class Solution {
 public:
-    vector<int> directions{-1, 0, 1, 0, -1};
+    vector<int> dire{-1, 0, 1, 0, -1};
     int maxAreaOfIsland(vector<vector<int>>& grid) {
         if (grid.empty() || grid[0].empty()) return 0;
         int max_area = 0;
@@ -51,7 +50,7 @@ public:
         grid[r][c] = 0;
         int x, y, area = 1;
         for (int i = 0; i < 4; ++i) {
-            x = r + directions[i], y = c + directions[i+1];
+            x = r + dire[i], y = c + dire[i+1];
             if (x >= 0 && x < grid.size() && y >= 0 && y < grid[0].size())
                 area += dfs(grid, x, y);
         }
