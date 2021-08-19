@@ -4,9 +4,13 @@ public:
         int l = 0, r = nums.size() - 1, target = nums.size() - k;
         while (l < r) {
             int mid = quickSelection(nums, l, r);
-            if (mid == target) return nums[mid];
-            else if (mid < target) l = mid + 1;
-            else r = mid - 1;
+            if (mid == target) {
+                return nums[mid];
+            } else if (mid < target) {
+                l = mid + 1;
+            } else {
+                r = mid - 1;
+            }
         }
         return nums[l];
     }
