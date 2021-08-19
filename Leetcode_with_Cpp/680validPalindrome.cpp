@@ -1,21 +1,21 @@
 class Solution {
 public:
     bool validPalindrome(string s) {
-        int left = 0, right = s.size() - 1;
-        while (left < right) {
-            if (s[left] != s[right]) {
-                return isValid(s, left + 1, right) || isValid(s, left, right - 1);
+        int l = 0, r = s.size() - 1;
+        while (l < r) {
+            if (s[l] != s[r]) {
+                return isValid(s, l + 1, r) || isValid(s, l, r - 1);
             }
-            ++left;
-            --right;
+            ++l;
+            --r;
         }
         return true;
     }
-    bool isValid(string & s, int left, int right) {
-        while (left < right) {
-            if (s[left] != s[right]) return false;
-            ++left;
-            --right;
+    bool isValid(string & s, int l, int r) {
+        while (l < r) {
+            if (s[l] != s[r]) return false;
+            ++l;
+            --r;
         }
         return true;
     }
