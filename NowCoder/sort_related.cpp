@@ -1,4 +1,4 @@
-/* ¿ìËÙÅÅĞò Quick Sort ×ó±ÕÓÒ±Õ¶ş·ÖĞ´·¨ */
+/* å¿«é€Ÿæ’åº Quick Sort å·¦é—­å³é—­äºŒåˆ†å†™æ³• */
 void quick_sort(vector<int>& nums, int l, int r) {
 	if (l + 1 >= r) return;
 	int first = l, last = r - 1, key = nums[first];
@@ -15,7 +15,7 @@ void quick_sort(vector<int>& nums, int l, int r) {
 	quick_sort(nums, first + 1, r);
 }
 
-/* ¿ìËÙÑ¡Ôñ Quick Selection */
+/* å¿«é€Ÿé€‰æ‹© Quick Selection */
 int quickSelection(vector<int>& nums, int l, int r) {
     int i = l + 1, j = r;
     while (true) {
@@ -70,7 +70,7 @@ public:
         return res;
     }
 };
-// Î¬»¤ K ¸öÔªËØµÄ×îĞ¡¶Ñ
+// ç»´æŠ¤ K ä¸ªå…ƒç´ çš„æœ€å°å †
 class Solution {
 public:
     struct compare {
@@ -90,7 +90,7 @@ public:
     }
 };
 
-// ¶ş²æËÑË÷Ê÷µÄµÚk´ó½Úµã
+// äºŒå‰æœç´¢æ ‘çš„ç¬¬kå¤§èŠ‚ç‚¹
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -140,12 +140,12 @@ public:
     }
 };
 
-/* ¹é²¢ÅÅĞò Merge Sort
- * ·ÖÖÎ·¨
- * 1.½«n¸öÔªËØ´ÓÖĞ¼äÇĞ¿ª£¬·Ö³ÉÁ½²¿·Ö¡££¨×ó±ß¿ÉÄÜ±ÈÓÒ±ß¶à1¸öÊı£©
- * 2.½«²½Öè1·Ö³ÉµÄÁ½²¿·Ö£¬·Ö±ğ½øĞĞµİ¹é·Ö½â¡£Ö±µ½ËùÓĞ²¿·ÖµÄÔªËØ¸öÊı¶¼Îª1¡£
- * 3.´Ó×îµ×²ã¿ªÊ¼Öğ²½ºÏ²¢Á½¸öÅÅºÃĞòµÄÊıÁĞ¡£
- * ºÏ²¢: ÓÉÓÚÁ½¸öÊıÁĞ¶¼ÒÑ¾­ÓĞĞò£¬Ö»Ğè´ÓµÍÎ»ÂÖ·¬ÄÃ³ö¸÷×Ô×îĞ¡µÄÊıÀ´PK¾ÍĞĞ£¬½ÏĞ¡Öµ·ÅÈëÁÙÊ±ÊıÁĞ¡£
+/* å½’å¹¶æ’åº Merge Sort
+ * åˆ†æ²»æ³•
+ * 1.å°†nä¸ªå…ƒç´ ä»ä¸­é—´åˆ‡å¼€ï¼Œåˆ†æˆä¸¤éƒ¨åˆ†ã€‚ï¼ˆå·¦è¾¹å¯èƒ½æ¯”å³è¾¹å¤š1ä¸ªæ•°ï¼‰
+ * 2.å°†æ­¥éª¤1åˆ†æˆçš„ä¸¤éƒ¨åˆ†ï¼Œåˆ†åˆ«è¿›è¡Œé€’å½’åˆ†è§£ã€‚ç›´åˆ°æ‰€æœ‰éƒ¨åˆ†çš„å…ƒç´ ä¸ªæ•°éƒ½ä¸º1ã€‚
+ * 3.ä»æœ€åº•å±‚å¼€å§‹é€æ­¥åˆå¹¶ä¸¤ä¸ªæ’å¥½åºçš„æ•°åˆ—ã€‚
+ * åˆå¹¶: ç”±äºä¸¤ä¸ªæ•°åˆ—éƒ½å·²ç»æœ‰åºï¼Œåªéœ€ä»ä½ä½è½®ç•ªæ‹¿å‡ºå„è‡ªæœ€å°çš„æ•°æ¥PKå°±è¡Œï¼Œè¾ƒå°å€¼æ”¾å…¥ä¸´æ—¶æ•°åˆ—ã€‚
  */
 void merge_sort(vector<int>& nums, int l, int r, vector<int>& temp) {
 	if (l + 1 >= r) return;
@@ -166,7 +166,7 @@ void merge_sort(vector<int>& nums, int l, int r, vector<int>& temp) {
 		nums[index] = temp[index];
 }
 
-/* ²åÈëÅÅĞò Insertion Sort */
+/* æ’å…¥æ’åº Insertion Sort */
 void insertion_sort(vector<int>& nums, int n) {
 	for (int i = 0; i < n; ++i) {
 		for (int j = i; j > 0 && nums[j] < nums[j - 1]; --j) {
@@ -175,7 +175,7 @@ void insertion_sort(vector<int>& nums, int n) {
 	}
 }
 
-/* Ã°ÅİÅÅĞò Bubble Sort */
+/* å†’æ³¡æ’åº Bubble Sort */
 void bubble_sort(vector<int>& nums, int n) {
 	bool swapped;
 	for (int i = 1; i < n; ++i) {
@@ -190,7 +190,7 @@ void bubble_sort(vector<int>& nums, int n) {
 	}
 }
 
-/* Ñ¡ÔñÅÅĞò Selection Sort */
+/* é€‰æ‹©æ’åº Selection Sort */
 void selection_sort(vector<int>& nums, int n) {
 	int index;
 	for (int i = 0; i < n - 1; ++i) {
@@ -203,7 +203,7 @@ void selection_sort(vector<int>& nums, int n) {
 	}
 }
 
-/* Í°ÅÅĞòÇóÇ°K¸ö×îÆµ·±µÄÊı×Ö topKFrequent */
+/* æ¡¶æ’åºæ±‚å‰Kä¸ªæœ€é¢‘ç¹çš„æ•°å­— topKFrequent */
 vector<int> topKFrequent(vector<int>& nums, int k) {
 	unordered_map<int, int> counts;
 	int max_count = 0;
@@ -224,31 +224,31 @@ vector<int> topKFrequent(vector<int>& nums, int k) {
 	return res;
 }
 
-/* ¶Ñ£¨ÍêÈ«¶ş²æÊ÷£©µÄÊµÏÖ */
+/* å †ï¼ˆå®Œå…¨äºŒå‰æ ‘ï¼‰çš„å®ç° */
 vector<int> heap;
-// »ñÈ¡×î´óÖµ
+// è·å–æœ€å¤§å€¼
 void top() {
 	return heap[0];
 }
-// ²åÈëÈÎÒâÖµ£º°Ñ¸ÃÖµ·Åµ½×îºóÒ»Î»£¬È»ºóÉÏ¸¡
+// æ’å…¥ä»»æ„å€¼ï¼šæŠŠè¯¥å€¼æ”¾åˆ°æœ€åä¸€ä½ï¼Œç„¶åä¸Šæµ®
 void push(int k) {
 	heap.push_back(k);
 	swim(heap.size() - 1);
 }
-// É¾³ı×î´óÖµ£º°Ñ×îºóÒ»Î»ÒÆµ½Ç°Ãæ£¬È»ºóÏÂ³Á
+// åˆ é™¤æœ€å¤§å€¼ï¼šæŠŠæœ€åä¸€ä½ç§»åˆ°å‰é¢ï¼Œç„¶åä¸‹æ²‰
 void pop() {
 	heap[0] = heap.back();
 	heap.pop_back();
 	sink(0);
 }
-// ÉÏ¸¡
+// ä¸Šæµ®
 void swim(int pos) {
 	while (pos >= 1 && heap[pos/2] < heap[pos]) {
 		swap(heap[pos/2], heap[pos]);
 		pos /= 2;
 	}
 }
-// ÏÂ³Á
+// ä¸‹æ²‰
 void sink(int pos) {
 	while (2 * pos <= N) {
 		int i = 2 * pos;
@@ -256,5 +256,31 @@ void sink(int pos) {
 		if (heap[pos] >= heap[i]) break;
 		swap(heap[pos], heap[i]);
 		pos = i;
+	}
+}
+
+// å †æ’åº
+void HeapSort(vector<int>& nums, int size) {
+	for (int i = size / 2 - 1; i >= 0; i--) {
+		adjust(nums, size, i);
+	}
+	for (int i = size - 1; i >= 1; i--) {
+		swap(nums[0], nums[i]);        
+		adjust(nums, i, 0);              
+	}
+}
+void adjust(vector<int>& nums, int len, int index) {
+	int left = 2*index + 1;   // indexå·¦å­èŠ‚ç‚¹
+	int right = 2*index + 2;  // indexå³å­èŠ‚ç‚¹
+	int maxIdx = index;
+	if (left < len && nums[left] > nums[maxIdx]) {
+		maxIdx = left;
+	}
+	if (right < len && nums[right] > nums[maxIdx]) {
+		maxIdx = right;
+	}
+	if (maxIdx != index) {
+		swap(nums[maxIdx], nums[index]);
+		adjust(nums, len, maxIdx);
 	}
 }
