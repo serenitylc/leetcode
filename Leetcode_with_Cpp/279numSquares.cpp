@@ -7,11 +7,11 @@
 class Solution {
 public:
     int numSquares(int n) {
-        vector<int> dp(n+1, 0);
+        vector<int> dp(n + 1, 0);
         for (int i = 1; i <= n; ++i) {
             int minVal = INT_MAX;
             for (int j = 1; j*j <= i; ++j) {
-                minVal  = min(minVal , dp[i-j*j] + 1);
+                minVal = min(minVal , dp[i - j*j] + 1);
             }
             dp[i] = minVal;
         }
@@ -22,11 +22,11 @@ public:
 class Solution {
 public:
     int numSquares(int n) {
-        vector<int> dp(n+1, INT_MAX);
+        vector<int> dp(n + 1, INT_MAX);
         dp[0] = 0;
         for (int i = 1; i <= n; ++i) {
             for (int j = 1; j * j <= i; ++j) {
-                dp[i] = min(dp[i], dp[i-j*j] + 1);
+                dp[i] = min(dp[i], dp[i - j*j] + 1);
             }
         }
         return dp[n];
@@ -38,7 +38,7 @@ public:
     int numSquares(int n) {
         queue<pair<int, int>> q;    // 借用队列解决 无权图结构的 BFS
         q.push(make_pair(n, 0));    // 建立图结构
-        vector<bool> visited(n+1, false);
+        vector<bool> visited(n + 1, false);
         visited[n] = true;          // 图结构搜索路经可能重复
         while (!q.empty()) {
             int num = q.front().first;
