@@ -1,9 +1,9 @@
-/* �ҳ����������Ĺ����ڵ㣺
- * �ֱ�����������Ľ���������ջ���������������β����λ������ջ��ջ�����������Ƚ�����ջ���Ľ���Ƿ���ͬ��
- * �����ͬ�����ջ���������űȽ���һ��ջ����ֱ���ҵ����һ����ͬ�Ľ�㡣
+/* 找出两个链表的公共节点：
+ * 分别把两个链表的结点放入两个栈里，这样两个链表的尾结点就位于两个栈的栈顶，接下来比较两个栈顶的结点是否相同。
+ * 如果相同，则把栈顶弹出接着比较下一个栈顶，直到找到最后一个相同的结点。
  *
- * ���ȱ������������õ����ǵĳ��ȣ�����֪���ĸ������Ƚϳ����Լ����������ȶ̵������༸����㡣
- * �ڵڶ��α�����ʱ���ڽϳ����������������ɲ���������ͬʱ�����������ϱ������ҵ��ĵ�һ����ͬ�Ľ��������ǵĵ�һ��������㡣
+ * 首先遍历两个链表得到它们的长度，就能知道哪个链表比较长，以及长的链表比短的链表多几个结点。
+ * 在第二次遍历的时候，在较长的链表上先走若干步，接着再同时在两个链表上遍历，找到的第一个相同的结点就是它们的第一个公共结点。
  */
 class Solution {
 public:
@@ -11,15 +11,15 @@ public:
         if (!headA || !headB) return NULL;
         ListNode *pa = headA;
         ListNode *pb = headB;
-        while (pa != pb) {  // ʹ pa pb �߹���ͬ���ȵľ���, ֱ���ཻ
+        while (pa != pb) {  // 使 pa pb 走过相同长度的距离, 直到相交
             pa = (pa != NULL) ? pa->next : headB;
             pb = (pb != NULL) ? pb->next : headA;
         }
-        return pa;  // �ҵ������������ཻ����ʼ�ڵ�
+        return pa;  // 找到两个单链表相交的起始节点
     }
 };
 
-// �õݹ�ͷǵݹ鷽����ת����
+// 用递归和非递归方法反转链表
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
@@ -69,7 +69,7 @@ public:
     }
 };
 
-// �����еĽڵ�ÿK��һ�鷭ת
+// 链表中的节点每K个一组翻转
 /**
  * struct ListNode {
  *	int val;
@@ -100,7 +100,7 @@ public:
     }
 };
 
-// ��ת������ÿ2��Ԫ�أ����� 1,2,3,4,5 ���2,1,4,3,5
+// 翻转链表的每2个元素：例如 1,2,3,4,5 变成2,1,4,3,5
 class Solution {
 public:
     ListNode* swapPairs(ListNode* head) {
@@ -135,7 +135,7 @@ public:
     }
 };
 
-// ���������������ϲ�Ϊһ���µ� ���� ���������ء���������ͨ��ƴ�Ӹ������������������нڵ���ɵġ�
+// 将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
@@ -174,29 +174,29 @@ public:
     }
 };
 
-// ���ж�һ�������Ƿ�Ϊ����������
+// 请判断一个链表是否为回文链表。
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
         ListNode *slow = head, *pre = NULL, *fast = head;
-        while (fast && fast->next) {  // fastȷ��slow�ߵ������м�
+        while (fast && fast->next) {  // fast确保slow走到链表中间
             ListNode* temp = slow;
             slow = slow->next;
             fast = fast->next->next;
             temp->next = pre;
             pre = temp;
         }
-        if (fast) slow = slow->next;  // ����Ԫ�ظ���Ϊ����, �������м�Ԫ��
+        if (fast) slow = slow->next;  // 链表元素个数为奇数, 跳过最中间元素
         while (pre && slow) {
             if (pre->val != slow->val) return false;
             pre = pre->next;
             slow = slow->next;
         }
-        return true;  // �ж�һ�������Ƿ�Ϊ�������� (��������ǰ�벿��)
+        return true;  // 判断一个链表是否为回文链表 (逆序链表前半部分)
     }
 };
 
-// �ϲ�������������
+// 合并两个有序链表
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -214,7 +214,7 @@ public:
             return a->val > b->val;
         }
     };
-    /* �������ȶ��У�����Ҫȫ��Ԫ��һ������ӣ�ֻ��������ͷԪ����Ӽ��ɣ�������Ԫ�غ󣬸����������ơ�*/
+    /* 建立优先队列，不需要全部元素一次性入队；只需让链表头元素入队即可，弹出该元素后，该链表往后移。*/
     ListNode* mergeKLists(vector<ListNode*>& lists) {
         if (lists.empty()) return nullptr;
         priority_queue<ListNode*, vector<ListNode*>, Comp> q;
