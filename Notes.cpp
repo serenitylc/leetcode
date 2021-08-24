@@ -7,14 +7,14 @@
  * $ git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
  * $ gitk   							            图形化查看分支演变
  * $ git config merge.tool vimdiff				    使用 git mergetool
- * 
+ *
  * $ git config --global user.name "Your Name"		配置所有 Git 仓库的 用户名 和 email, 去掉--global 则配置当前 Git 仓库的 用户名 和 email
- * $ git config --global user.email "email@example.com" 
+ * $ git config --global user.email "email@example.com"
  *
  * $ git config --global user.name    				查看全局配置的 用户名 和 email
  * $ git config --global user.email
  *
- * 
+ *
  * $ git init              					        把当前目录初始化为 git 仓库, 不想要 git 管理跟踪的文件, 可以在仓库根目录添加 .gitignore 文件, 在里面写对应的规则
  * $ ls -ah                					        查看当前目录下的文件, 包含隐藏文件
  *
@@ -48,7 +48,7 @@
  * $ git branch       						        查看分支列表及当前分支
  * $ git branch -v    						        查看各个分支最后一个提交信息
  * $ git branch -r    						        查看远程分支
- * $ git branch -a    						        查看所有本地和远程分支   
+ * $ git branch -a    						        查看所有本地和远程分支
  * $ git branch dev   						        创建 dev 分支
  * $ git branch -d dev                           	删除 dev 分支
  * $ git branch -D dev                              强制删除 dev 分支
@@ -114,11 +114,11 @@
  * Windows + X 按 A 		    打开命令提示符的管理员模式
  * Alt + F4 或 exit 		    关闭命令提示符
  * Alt + Enter 		            在全屏或窗口模式之间切换
- * 
+ *
  * 移动光标
  * Ctrl + ← / →		            将光标移动到上一个或下一个单词
  * Ctrl + ↑ / ↓		            上/下滚动内容
- * 
+ *
  * 选择文本
  * Shift + ← / →		        向左或右扩展一个字符的选区范围
  * Shift + ↑ / ↓		        向上或下扩展选区范围
@@ -126,7 +126,7 @@
  * Shift + Home		            选中当前字符至行首
  * Shift + End		            选中当前字符至行尾
  * Ctrl + Shift + Home / End	选中当前字符至屏幕缓冲区开头或结尾
- * 
+ *
  * 浏览器
  * Ctrl + N 			        打开新窗口
  * Ctrl + T 			        打开新标签页
@@ -1897,11 +1897,204 @@ lsof -i : 6379
 方法三：显示tcp的端口和进程等相关情况
 netstat -tnlp
 
-在现在的网络中，IP地址分为公网IP和私有IP地址。公网IP是在Internet使用的IP地址，而私有IP地址是在局域网中使用的IP地址。 
+在现在的网络中，IP地址分为公网IP和私有IP地址。公网IP是在Internet使用的IP地址，而私有IP地址是在局域网中使用的IP地址。
 由于IPV4协议的限制，现在IP地址的数量是有限的。这样就不能为居于网中的每一台计算机分配一个公网IP。所以局域网中的每台计算机就只能使用私有IP地址。
-私有IP地址是一段保留的IP地址。只是使用在局域网中，在Internet上是不使用的。 
-私有IP地址的范围有： 
-    10.0.0.0-10.255.255.255 
-    172.16.0.0—172.31.255.255 
-    192.168.0.0-192.168.255.255 
+私有IP地址是一段保留的IP地址。只是使用在局域网中，在Internet上是不使用的。
+私有IP地址的范围有：
+    10.0.0.0-10.255.255.255
+    172.16.0.0—172.31.255.255
+    192.168.0.0-192.168.255.255
 
+静态成员 -- 解决数据共享问题 -- 本源文件中可见 -- 全局数据区 -- 本类所有对象共享，在没产生类对象时其作用域就可见，类内声明，类外初始化
+静态成员变量必须初始化，而且只能在类外进行。否则，编译能通过，链接不能通过。
+
+三次握手能不能两次
+目的：防止已失效的连接请求报文段突然又传送到了服务端, 因而产生错误(网络中存在延迟的重复分组)
+本质：信道不可靠, 但是通信双发需要就某个问题达成一致(三次确保双方都知道对方能正确收发数据). 要解决这个问题, 无论你在消息中包含什么信息, 三次通信是理论上的最小值.
+
+四次挥手：因为TCP是全双工通信的
+第一次挥手：当主动方发送断开连接的请求（即FIN报文）给被动方时，仅仅代表主动方不会再发送数据报文了，但主动方仍可以接收数据报文。
+第二次挥手：被动方此时有可能还有相应的数据报文需要发送，因此需要先发送ACK报文，告知主动方“我知道你想断开连接的请求了”。这样主动方便不会因为没有收到应答而继续发送断开连接的请求（即FIN报文）。
+第三次挥手：被动方在处理完数据报文后，便发送给主动方FIN报文；这样可以保证数据通信正常可靠地完成。发送完FIN报文后，被动方进入LAST_ACK阶段（超时等待）。
+第四次挥手：如果主动方及时发送ACK报文进行连接中断的确认，这时被动方就直接释放连接，进入可用状态。
+
+
+lc61
+
+同步/异步关注的是消息通信机制（synchronous communication/asynchronous communication）
+所谓同步，就是在发出一个调用时，在没有得到结果之前，该调用就不返回，即由调用者主动等待调用的结果。
+而异步则是相反，调用在发出之后，这个调用就直接返回了，所以就没有返回结果。被调用者通过“状态”(定期检查，效率低)、“通知”、“回调”三种途径通知调用者。
+
+阻塞/非阻塞关注的是程序在等待调用结果时的状态。
+阻塞调用是指调用结果返回之前，当前线程会被挂起。调用线程只有在得到结果之后才会返回。
+非阻塞调用指在不能立刻得到结果之前，该调用不会阻塞当前线程。
+
+Linux 查 timewait：
+netstat -ant | awk '/^tcp/ {++S[$NF]} END {for(a in S) print (a,S[a])}'
+LAST_ACK 14
+SYN_RECV 348
+ESTABLISHED 70
+FIN_WAIT1 229
+FIN_WAIT2 30
+CLOSING 33
+TIME_WAIT 18122
+
+CLOSED：无连接是活动的或正在进行
+LISTEN：服务器在等待进入呼叫
+SYN_RECV：一个连接请求已经到达，等待确认
+SYN_SENT：应用已经开始，打开一个连接
+ESTABLISHED：正常数据传输状态
+FIN_WAIT1：应用说它已经完成
+FIN_WAIT2：另一边已同意释放
+ITMED_WAIT：等待所有分组死掉
+CLOSING：两边同时尝试关闭
+TIME_WAIT：另一边已初始化一个释放
+LAST_ACK：等待所有分组死掉
+
+命令解释：
+netstat -n
+Active Internet connections (w/o servers)
+Proto Recv-Q Send-Q Local Address Foreign Address State
+tcp 0 0 123.123.123.123:80 234.234.234.234:12345 TIME_WAIT
+你实际执行这条命令的时候，可能会得到成千上万条类似上面的记录，不过我们就拿其中的一条就足够了。
+
+再来看看awk：
+/^tcp/
+滤出tcp开头的记录，屏蔽udp, socket等无关记录。
+state[]相当于定义了一个名叫state的数组
+NF
+表示记录的字段数，如上所示的记录，NF等于6
+$NF
+表示某个字段的值，如上所示的记录，$NF也就是$6，表示第6个字段的值，也就是TIME_WAIT
+state[$NF]表示数组元素的值，如上所示的记录，就是state[TIME_WAIT]状态的连接数
+++state[$NF]表示把某个数加一，如上所示的记录，就是把state[TIME_WAIT]状态的连接数加一
+END
+表示在最后阶段要执行的命令
+for(key in state)
+遍历数组
+
+list::splice(是C++ STL中的内置函数，用于将元素从一个列表传输到另一个列表。
+list.splice (iterator position, list2, iterator first, iterator last)
+
+class LRUCache {
+public:
+    LRUCache(int capacity) : _capacity(capacity) {}
+
+    int get(int key) {
+        auto it = H.find(key);
+        if (it != H.end()) {
+            L.splice(L.begin(), L, it->second);
+            return it->second->second;
+        }
+        return -1;
+    }
+
+    void put(int key, int value) {
+        auto it = H.find(key);
+        if (it != H.end()) {
+            L.splice(L.begin(), L, it->second);
+            it->second->second = value;
+            return;
+        }
+
+        L.emplace_front(key, value);
+        H[key] = L.begin();
+
+        if (H.size() > _capacity) {
+            H.erase(L.back().first);
+            L.pop_back();
+        }
+    }
+private:
+    unordered_map<int, list<pair<int, int>>::iterator> H;
+    list<pair<int, int>> L;
+    int _capacity;
+};
+
+redis应用场景
+mysql、redis数据一致性问题
+
+python gc垃圾回收
+1、爬楼梯，斐波那契数列
+2、中等难度的常规回溯
+3、LRU缓存类实现
+
+操作系统
+1、协程线程进程的区别
+2、进程间通信
+3、协程和进程
+数据库
+1、索引的原理、实现结构  为什么用B+树
+2、展开后问的害蛮难答的，如何创建索引，每一列都设置为索引为什么不行，从哪几个方面考虑
+计网
+1、http和https区别、3开头状态码
+2、三次握手四次挥手
+3、https的ssl连接如何建立，加密如何实现，公钥密钥有几对，怎么混合加密（由以前老的网页的非法弹窗为什么会出现引出的问题）
+4、MD5算法是否可反编译
+linux
+1、查看系统日志文件
+2、你用过的命令列举
+
+谈谈你对tRPC框架的理解
+使用IDL 在gRPC上增加插件化管理 微服务框架  123平台(基于腾讯云服务的支持tRPC的容器运营平台，上线/部署服务
+北极星(名字服务插件，用于解决远程调用（RPC）的服务注册发现、动态路由、负载均衡和容错问题，在分布式和微服务架构中至关重要
+IO多路复用中的select系统调用和Go语言中的select有什么区别
+讲讲Go语言中的协程goroutine
+Go语言如何对并发goroutine进行处理
+死锁概念、如何解决死锁
+并发问题可不可以不用锁处理
+无锁编程如何实现
+
+TIME_WAIT状态出现在连接哪个阶段
+TIME_WAIT状态连接过多如何解决
+长连接会有什么问题
+通用的连接池应该如何实现
+TCP的滑动窗口机制
+数据库+分布式
+
+Redis为什么采用单线程
+Redis的单线程模型是如何实现的
+Redis如何实现分布式锁、锁的过期时间如何设置、如何避免加锁过程中的单点问题
+Redis主从哨兵模式下master宕机，进行故障自动转移时，如何挑选新master
+了解Redis的Gossip协议吗，讲讲
+Redis是如何进行rehash的
+你怎么看待最终一致性和强一致性，业务选用最终一致性时要考虑哪些因素
+最终一致性的补偿性措施了解吗
+讲讲你对MySQL事务的理解
+了解2PC、3PC吗
+
+撕题(二选一)
+螺旋矩阵【lc54】
+和为s的连续正数序列【剑指57】
+
+设计题(二选一)
+以拉链法实现一个哈希表【要求手写链表】
+实现一个大根堆【实现建堆、弹堆顶两个操作】
+
+syn泛洪攻击
+
+合并有序链表 15min AC
+最长公共子序列变种，卡住了，对0的处理不到位，dp写对了，但是值没出来（耗时30min 叫停了）
+二维数组查找 15min AC
+redoLog, undoLog, binLog 详细区别，主从同步的过程，是拉还是推
+间隙锁
+
+从操作系统的角度说一下epoll模型
+14.从网络通信的角度说一下epoll模型
+15.epoll涉及的用户态和内核态的转换问题
+16.C++11智能指针
+=delete，=default
+
+唯一索引和主键索引？存储方式？使用唯一索引和主键索引哪个效率高？
+事务怎么实现的？
+
+第一道：简单走迷宫
+第二道：n阶非递归楼梯
+第三道：手撕LRU
+
+mysql注入的原理
+SQL注入攻击是什么，然后如何防范
+
+管道爷爷进程和孙子进程能不能通信？
+共享内存有哪几种形势？
+内存映射是什么？
