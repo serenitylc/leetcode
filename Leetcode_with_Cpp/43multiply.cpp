@@ -1,8 +1,7 @@
 class Solution {
 public:
     string multiply(string num1, string num2) {
-        int l1 = num1.size();
-        int l2 = num2.size();
+        int l1 = num1.size(), l2 = num2.size();
         string res(l1 + l2, '0');
         for (int i = l1 - 1; i >= 0; i--) {
             for (int j = l2 - 1; j >= 0; j--) {
