@@ -4,15 +4,15 @@ public:
         vector<vector<int>> res;
         sort(nums.begin(), nums.end());
         for (int i = 0; i < nums.size(); i++) {
-            if (i > 0 && nums[i] == nums[i - 1])
-                continue;
+            if (i > 0 && nums[i] == nums[i - 1]) continue;
             int l = i + 1, r = nums.size() - 1;
             while (l < r) {
-                if (nums[l] + nums[r] + nums[i] < 0)
+                int sum = nums[l] + nums[r] + nums[i];
+                if (sum < 0) {
                     ++l;
-                else if (nums[l] + nums[r] + nums[i] > 0)
+                } else if (sum > 0) {
                     --r;
-                else {
+                } else {
                     res.push_back({nums[i], nums[l], nums[r]});
                     ++l,
                     --r;
