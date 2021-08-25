@@ -1432,6 +1432,7 @@ innoDB是集聚引擎，5.6以后才有全文索引；支持事务；它是行�
 -index(id,name)：联合普通索引
 4.全文索引fulltext：用于搜索很长一篇文章的时候，效果最好。
 5.空间索引spatial :了解就好，几乎不用
+普通索引保存的是主键地址，然后再根据主键去查询，所以要检索两次，主键索引只需要检索一次。
 
 主从复制可以实现数据备份、故障转移、MySQL集群、高可用、读写分离
 实现服务器负载均衡(读写分离)
@@ -1926,49 +1927,16 @@ netstat -tnlp
 阻塞调用是指调用结果返回之前，当前线程会被挂起。调用线程只有在得到结果之后才会返回。
 非阻塞调用指在不能立刻得到结果之前，该调用不会阻塞当前线程。
 
-Linux 查 timewait：
-netstat -ant | awk '/^tcp/ {++S[$NF]} END {for(a in S) print (a,S[a])}'
-LAST_ACK 14
-SYN_RECV 348
-ESTABLISHED 70
-FIN_WAIT1 229
-FIN_WAIT2 30
-CLOSING 33
-TIME_WAIT 18122
+time_wait 状态的影响：TCP 连接中，「主动发起关闭连接」的一端，会进入 time_wait 状态，默认会持续 2 MSL（报文的最大生存时间），TCP 连接占用的端口，无法被再次使用。
+大量 time_wait 状态存在，会导致新建 TCP 连接会出错，address already in use : connect异常
+解决办法：服务器端允许 time_wait 状态的 socket 被重用 / 缩减 time_wait 时间
 
-CLOSED：无连接是活动的或正在进行
-LISTEN：服务器在等待进入呼叫
-SYN_RECV：一个连接请求已经到达，等待确认
-SYN_SENT：应用已经开始，打开一个连接
-ESTABLISHED：正常数据传输状态
-FIN_WAIT1：应用说它已经完成
-FIN_WAIT2：另一边已同意释放
-ITMED_WAIT：等待所有分组死掉
-CLOSING：两边同时尝试关闭
-TIME_WAIT：另一边已初始化一个释放
-LAST_ACK：等待所有分组死掉
-
-命令解释：
-netstat -n
-Active Internet connections (w/o servers)
-Proto Recv-Q Send-Q Local Address Foreign Address State
-tcp 0 0 123.123.123.123:80 234.234.234.234:12345 TIME_WAIT
-你实际执行这条命令的时候，可能会得到成千上万条类似上面的记录，不过我们就拿其中的一条就足够了。
-
-再来看看awk：
-/^tcp/
-滤出tcp开头的记录，屏蔽udp, socket等无关记录。
-state[]相当于定义了一个名叫state的数组
-NF
-表示记录的字段数，如上所示的记录，NF等于6
-$NF
-表示某个字段的值，如上所示的记录，$NF也就是$6，表示第6个字段的值，也就是TIME_WAIT
-state[$NF]表示数组元素的值，如上所示的记录，就是state[TIME_WAIT]状态的连接数
-++state[$NF]表示把某个数加一，如上所示的记录，就是把state[TIME_WAIT]状态的连接数加一
-END
-表示在最后阶段要执行的命令
-for(key in state)
-遍历数组
+查询 TCP 连接状态
+netstat -nat | grep TIME_WAIT
+查询 TCP 连接状态，其中 -E 表示 grep 或的匹配逻辑
+netstat -nat | grep -E "TIME_WAIT|Local Address"
+统计各种连接的数量
+netstat -n | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'
 
 list::splice(STL内置函数，用于将元素从一个列表传输到另一个列表。
 list.splice (iterator position, list2, iterator first, iterator last)
@@ -2016,38 +1984,19 @@ mmap内存共享映射
 XSI共享内存
 POSIX共享内存
 
-1、索引的原理、实现结构  为什么用B+树
-2、展开后问的害蛮难答的，如何创建索引，每一列都设置为索引为什么不行，从哪几个方面考虑
-3、https的ssl连接如何建立，加密如何实现，公钥密钥有几对，怎么混合加密（由以前老的网页的非法弹窗为什么会出现引出的问题）
+python采用的是引用计数机制为主，标记-清除和分代收集（隔代回收）两种机制为辅的策略。
+gc模块提供一个接口给开发者设置垃圾回收的选项，且一个主要功能就是解决循环引用的问题。
 
 linux查看系统日志文件：cat / tail -f
 
 谈谈你对tRPC框架的理解
 使用IDL 在gRPC上增加插件化管理 微服务框架  123平台(基于腾讯云服务的支持tRPC的容器运营平台，上线/部署服务
-北极星(名字服务插件，用于解决远程调用（RPC）的服务注册发现、动态路由、负载均衡和容错问题，在分布式和微服务架构中至关重要
+北极星(名字服务插件，用于解决远程调用的服务注册发现、动态路由、负载均衡和容错问题，在分布式和微服务架构中至关重要
 
-IO多路复用中的select系统调用和Go语言中的select有什么区别
-讲讲Go语言中的协程goroutine
-Go语言如何对并发goroutine进行处理
+C 语言中的 select 关键字可以同时监听多个文件描述符的可读或者可写的状态，在文件描述符发生状态改变之前，select 会一直阻塞当前的线程，
+Go语言中的 select 关键字与其类似，它能够让一个 Goroutine 同时等待多个 Channel 达到准备状态(在语言层面实现)。
 
-
-TIME_WAIT状态出现在连接哪个阶段
-TIME_WAIT状态连接过多如何解决
-长连接会有什么问题
-通用的连接池应该如何实现
-
-
-Redis的单线程模型是如何实现的
-Redis如何实现分布式锁、锁的过期时间如何设置、如何避免加锁过程中的单点问题
-Redis主从哨兵模式下master宕机，进行故障自动转移时，如何挑选新master
-你怎么看待最终一致性和强一致性，业务选用最终一致性时要考虑哪些因素
-最终一致性的补偿性措施了解吗
-唯一索引和主键索引？存储方式？使用唯一索引和主键索引哪个效率高？
-事务怎么实现的？
-mysql注入的原理     
-SQL注入攻击是什么，然后如何防范？
-
-
-设计题(二选一)
-以拉链法实现一个哈希表【要求手写链表】
-实现一个大根堆【实现建堆、弹堆顶两个操作】
+实现多个goroutine间的同步与通信大致有：
+- 全局共享变量
+- channel通信（CSP模型）
+- Context包
