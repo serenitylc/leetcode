@@ -1,18 +1,18 @@
-/* ¶ş²æÊ÷±éÀú¿ò¼Ü */
+/* äºŒå‰æ ‘éå†æ¡†æ¶ */
 class TreeNode {
 	int val;
 	TreeNode left, right;
 };
 
 void traverse(TreeNode root) {
-	// Ç°Ğò±éÀú
+	// å‰åºéå†
 	traverse(root.left);
-	// ÖĞĞò±éÀú
+	// ä¸­åºéå†
 	traverse(root.right);
-	// ºóĞò±éÀú
+	// ååºéå†
 }
 
-// Ç°Ğò±éÀú
+// å‰åºéå†
 class Solution {
 public:
     vector<int> preorderTraversal(TreeNode* root) {
@@ -34,7 +34,7 @@ public:
         return res;
     }
 };
-// ÖĞĞò±éÀú
+// ä¸­åºéå†
 class Solution {
 public:
     vector<int> inorderTraversal(TreeNode* root) {
@@ -56,7 +56,7 @@ public:
         return res;
     }
 };
-// ºóĞò±éÀú
+// ååºéå†
 class Solution {
 public:
     vector<int> postorderTraversal(TreeNode* root) {
@@ -76,7 +76,7 @@ public:
     }
 };
 
-/* N²æÊ÷±éÀú¿ò¼Ü */
+/* Nå‰æ ‘éå†æ¡†æ¶ */
 class TreeNode {
 	int val;
 	TreeNode [] children;
@@ -87,7 +87,7 @@ void traverse(TreeNode root) {
 		traverse(child);
 }
 
-/* For example: LeetCode 124 Çó¶ş²æÊ÷ÖĞ×î´óÂ·¾¶ºÍ */
+/* For example: LeetCode 124 æ±‚äºŒå‰æ ‘ä¸­æœ€å¤§è·¯å¾„å’Œ */
 class Solution {
 private:
     int res = INT_MIN;
@@ -105,15 +105,14 @@ public:
     }
 };
 
-/* For example: LeetCode 105 ¸ù¾İÇ°Ğò±éÀúºÍÖĞĞò±éÀú»¹Ô­¶ş²æÊ÷ */
+/* For example: LeetCode 105 æ ¹æ®å‰åºéå†å’Œä¸­åºéå†è¿˜åŸäºŒå‰æ ‘ */
 class Solution {
 public:
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
         return build(preorder, 0, preorder.size() - 1, inorder, 0, inorder.size() - 1);
     }
     TreeNode* build(vector<int>& preorder, int preStart, int preEnd, vector<int>& inorder, int inStart, int inEnd) {
-        if (preStart > preEnd)
-            return NULL;
+        if (preStart > preEnd) return NULL;
         int rootVal = preorder[preStart];
         int idx = -1;
         for (int i = inStart; i <= inEnd; ++i) {
