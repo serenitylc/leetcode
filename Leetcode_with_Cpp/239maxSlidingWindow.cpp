@@ -1,6 +1,6 @@
 class Solution {
 private:
-    class MonotonicQueue {  // 单调队列
+    class MonotonicQueue {  // 鍗曡皟闃熷垪
     private:
         deque<int> data;
     public:
@@ -36,9 +36,9 @@ public:
         vector<int> res;
         deque<int> deque;
         for (int i = 0; i < nums.size(); i++) {
-            if (!deque.empty() && deque.front() == i-k)  // 窗口大小超过 k, 弹出队头 (i-k+1即为首元素index)
+            if (!deque.empty() && deque.front() == i-k)  // 绐楀彛澶у皬瓒呰繃 k, 寮瑰嚭闃熷ご (i-k+1鍗充负棣栧厓绱爄ndex)
                 deque.pop_front();
-            while (!deque.empty() && nums[i] > nums[deque.back()])  // deque 实现单调队列
+            while (!deque.empty() && nums[i] > nums[deque.back()])  // deque 瀹炵幇鍗曡皟闃熷垪
                 deque.pop_back();
             deque.push_back(i);
             if (i-k+1 >= 0) res.push_back(nums[deque.front()]);
