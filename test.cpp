@@ -1,17 +1,17 @@
-ÓÐÎÊÌâ£¬¿ÉÒÔÔÚÒ³ÃæÉÏÃæÁôÑÔ
+æœ‰é—®é¢˜ï¼Œå¯ä»¥åœ¨é¡µé¢ä¸Šé¢ç•™è¨€
 
-µÚÒ»ÌâNext·½·¨ÒÆ¶¯½ÚµãÊÇ°´ÕÕÖÐÐò±éÀúÒÆ¶¯Âð£¿
-ÊÇµÄ
+ç¬¬ä¸€é¢˜Nextæ–¹æ³•ç§»åŠ¨èŠ‚ç‚¹æ˜¯æŒ‰ç…§ä¸­åºéåŽ†ç§»åŠ¨å—ï¼Ÿ
+æ˜¯çš„
 
-µçÌÝµÄ¹¦ÄÜ×Ô¼º¶¨Òå¾ÍÐÐ£¿¡¢
-»ù±¾¹¦ÄÜÉÏÉý£¬ÏÂ½µ
+ç”µæ¢¯çš„åŠŸèƒ½è‡ªå·±å®šä¹‰å°±è¡Œï¼Ÿã€
+åŸºæœ¬åŠŸèƒ½ä¸Šå‡ï¼Œä¸‹é™
 
 
-1. ÊµÏÖÒ»¸ö¶þ²æËÑË÷Ê÷µÄµü´úÆ÷Àà
-ÀàµÄ¹¹Ôìº¯ÊýÈë²ÎÊÇ¶þ²æËÑË÷Ê÷µÄ¸ù½Úµã
-ÀàÓÐÒ»¸öNext·½·¨Ö§³ÖÒÆ¶¯µü´úÆ÷²¢·µ»Øµü´úÆ÷µ±Ç°Ö¸ÏòµÄ½Úµã
+1. å®žçŽ°ä¸€ä¸ªäºŒå‰æœç´¢æ ‘çš„è¿­ä»£å™¨ç±»
+ç±»çš„æž„é€ å‡½æ•°å…¥å‚æ˜¯äºŒå‰æœç´¢æ ‘çš„æ ¹èŠ‚ç‚¹
+ç±»æœ‰ä¸€ä¸ªNextæ–¹æ³•æ”¯æŒç§»åŠ¨è¿­ä»£å™¨å¹¶è¿”å›žè¿­ä»£å™¨å½“å‰æŒ‡å‘çš„èŠ‚ç‚¹
 
-¶þ²æËÑË÷Ê÷½Úµã¶¨ÒåÈçÏÂ
+äºŒå‰æœç´¢æ ‘èŠ‚ç‚¹å®šä¹‰å¦‚ä¸‹
 struct TreeNode {
 		int value;
 		struct TreeNode * left, * right;
@@ -39,8 +39,8 @@ private:
     vector<int> vec;
 }
 
-2. Ò»¸ö³¤¶ÈÎªNµÄÊýÁÐ£¬¿ÉÒÔÈÎÒâÒÆ¶¯ÊýÁÐÖÐµÄÊý£¬ÇëÊµÏÖÒ»¸öº¯Êý¸ø³öÈÃÊýÁÐ±äÎªÉýÐòµÄ×îÉÙÒÆ¶¯´ÎÊý
-Ê¾Àý£¬ÊýÁÐ4,1,2,3,5,6,7,8 °Ñ4ÒÆ¶¯µ½3ºÍ5Ö®¼ä£¬ËãÒ»´ÎÒÆ¶¯
+2. ä¸€ä¸ªé•¿åº¦ä¸ºNçš„æ•°åˆ—ï¼Œå¯ä»¥ä»»æ„ç§»åŠ¨æ•°åˆ—ä¸­çš„æ•°ï¼Œè¯·å®žçŽ°ä¸€ä¸ªå‡½æ•°ç»™å‡ºè®©æ•°åˆ—å˜ä¸ºå‡åºçš„æœ€å°‘ç§»åŠ¨æ¬¡æ•°
+ç¤ºä¾‹ï¼Œæ•°åˆ—4,1,2,3,5,6,7,8 æŠŠ4ç§»åŠ¨åˆ°3å’Œ5ä¹‹é—´ï¼Œç®—ä¸€æ¬¡ç§»åŠ¨
 
 int minExchange(vector<int>& nums) {
     int n = nums.size();
@@ -60,9 +60,9 @@ int minExchange(vector<int>& nums) {
     return res;
 }
 
-3. ¸ø¶¨Á½¸öµ¥´Ê£¨startºÍend£©ºÍÒ»¸ö×Öµä£¬Ã¿´ÎÖ»ÄÜ¸Ä±äÒ»¸ö×ÖÄ¸£¬±ä»»¹ý³ÌÖÐµÄµ¥´Ê±ØÐëÔÚ×ÖµäÖÐ³öÏÖ£¬Çë¸ø³ö´Óstartµ½endµÄ×î¶Ì×ª»»ÐòÁÐ³¤¶È¡£
-×¢Òâ£¬Èç¹ûÃ»ÓÐ×ª»»ÐòÁÐÔò·µ»Ø0£¬ËùÓÐµ¥´Ê¾ßÓÐÏàÍ¬µÄ³¤¶È£¬ËùÓÐµ¥´Ê¶¼Ö»°üº¬Ð¡Ð´×ÖÄ¸¡£
-Ê¾Àý£ºstart = "abc"£¬end = "xyz"£¬dict = ["aoc","xoc","xoz","not"]
+3. ç»™å®šä¸¤ä¸ªå•è¯ï¼ˆstartå’Œendï¼‰å’Œä¸€ä¸ªå­—å…¸ï¼Œæ¯æ¬¡åªèƒ½æ”¹å˜ä¸€ä¸ªå­—æ¯ï¼Œå˜æ¢è¿‡ç¨‹ä¸­çš„å•è¯å¿…é¡»åœ¨å­—å…¸ä¸­å‡ºçŽ°ï¼Œè¯·ç»™å‡ºä»Žstartåˆ°endçš„æœ€çŸ­è½¬æ¢åºåˆ—é•¿åº¦ã€‚
+æ³¨æ„ï¼Œå¦‚æžœæ²¡æœ‰è½¬æ¢åºåˆ—åˆ™è¿”å›ž0ï¼Œæ‰€æœ‰å•è¯å…·æœ‰ç›¸åŒçš„é•¿åº¦ï¼Œæ‰€æœ‰å•è¯éƒ½åªåŒ…å«å°å†™å­—æ¯ã€‚
+ç¤ºä¾‹ï¼šstart = "abc"ï¼Œend = "xyz"ï¼Œdict = ["aoc","xoc","xoz","not"]
 
 int minDistance(string start, string end, vector<string>& dict) {
     queue<string> q;
@@ -93,7 +93,7 @@ int minDistance(string start, string end, vector<string>& dict) {
     return 0;
 }
 
-4. Ò»¸öÐ´×ÖÂ¥ÀïÃæÓÐ¶à²¿µçÌÝ ÇëÄãÉè¼ÆÒ»¸öÀàÀ´ÊµÏÖµçÌÝµÄ¹¦ÄÜ ÐèÒª¸ø³öÀàµÄ½Ó¿Ú¶¨Òå¡¢¹Ø¼üµÄÊý¾Ý½á¹¹
+4. ä¸€ä¸ªå†™å­—æ¥¼é‡Œé¢æœ‰å¤šéƒ¨ç”µæ¢¯ è¯·ä½ è®¾è®¡ä¸€ä¸ªç±»æ¥å®žçŽ°ç”µæ¢¯çš„åŠŸèƒ½ éœ€è¦ç»™å‡ºç±»çš„æŽ¥å£å®šä¹‰ã€å…³é”®çš„æ•°æ®ç»“æž„
 
 class elevator {
 public:
