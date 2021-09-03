@@ -29,7 +29,7 @@ list_node * input_list(void) {
 }
 
 list_node * check(list_node * head) {
-    //////��������ɴ���
+    //////在下面完成代码
     if (!head) cout << "true" << endl;
     list_node *slow = head, *pre = NULL, *fast = head;
     while (fast && fast->next) {
@@ -94,7 +94,7 @@ int main() {
 using namespace std;
 
 string LCS(vector<vector<string>>& mark, string & s1, const int & i, const int & j, string & res) {
-    // (0-m * 0-n)������������½ǣ��յ������Ͻ�
+    // (0-m * 0-n)网格，起点在右下角，终点是左上角
     if (i == 0 || j == 0) {
         return res;
     }
@@ -143,10 +143,10 @@ int main() {
 }
 
 
-// �������ġ������������
-// ��Դ����ƽ̨�ѵ�
-// ���ݿ����ֱ�����ô��  -- ʹ�� mysqldump ��������ݿ�(ʹ�� mysqlhotcopy ���߿��ٱ���) / ʵʱ�������ӷ����� / ʹ���Ʒ���(�ṩ���ӣ��߿���(��̨ʹ��˫���ṹ)�ȷ���
+// 链表回文、最长公共子序列
+// 资源管理平台难点
+// 数据库容灾备份怎么做  -- 使用 mysqldump 命令备份数据库(使用 mysqlhotcopy 工具快速备份) / 实时备份主从服务器 / 使用云服务(提供主从，高可用(后台使用双主结构)等方案
 // https
-// ��ֹsqlע�� -- δ����ּ����û��������ݣ��������˴��뱻ִ�С� -- û�У�����ʱ�����룬��û��ע�롣
-// ���ڵ����ݿ�ϵͳ���ṩSQL���Ԥ����Ͳ�ѯ�����󶨹��ܣ���SQL����з���ռλ��'?'��Ȼ�󽫴���ռλ����SQL��䴫�����ݿ���룬ִ��ʱ�Ž��û�������Ϊִ�в��������û���
-// ������������ʹ��SQL�������д��ʱ������Ҫƴ�ӣ�������Ҳ��ֱ�ӣ������û����������Ҳû�л��ᱻ�͵����ݿ��SQL������������ִ�У�Ҳ����ԽȨ��ɴ��롣
+// 防止sql注入 -- 未经充分检查的用户输入数据，意外变成了代码被执行。 -- 没有（运行时）编译，就没有注入。
+// 现在的数据库系统都提供SQL语句预编译和查询参数绑定功能，在SQL语句中放置占位符'?'，然后将带有占位符的SQL语句传给数据库编译，执行时才将用户输入作为执行参数传给用户。
+// 这样操作不仅使得SQL语句在书写的时候不再需要拼接，看起来也更直接，而且用户输入的数据也没有机会被送到数据库的SQL解释器被编译执行，也不会越权变成代码。
