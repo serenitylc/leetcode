@@ -1,13 +1,14 @@
 class Solution {
 public:
     int lengthOfLIS(vector<int>& nums) {
-        if (nums.size() < 1) return 0;
+        int n = nums.size();
+        if (n < 1) return 0;
         int res = 1;
-        vector<int> dp(nums.size(), 1);
-        for (int i = 1; i < nums.size(); ++i) {
+        vector<int> dp(n, 1);
+        for (int i = 1; i < n; ++i) {
             for (int j = 0; j < i; ++j) {
                 if (nums[i] > nums[j]) {
-                    dp[i] = max(dp[i], dp[j]+1);
+                    dp[i] = max(dp[i], dp[j] + 1);
                     res = max(res, dp[i]);
                 }
             }
@@ -19,12 +20,11 @@ public:
 class Solution {
 public:
     int lengthOfLIS(vector<int>& nums) {
-        // 二分查找 O(nlogn)
-        if (nums.size() < 1) return 0;
-        // 存放找到的上升子序列 (其中元素值越小越好，这样当加入一个新值的时候，构成上升子序列的可能性就越大.)
-        vector<int> dp;
+        int n = nums.size();
+        if (n < 1) return 0;
+        vector<int> dp;  // 存放找到的上升子序列 (其中元素值越小越好，这样当加入一个新值的时候，构成上升子序列的可能性就越大.)
         dp.push_back(nums[0]);
-        for (int i = 1; i < nums.size(); ++i) {
+        for (int i = 1; i < n; ++i) {
             if (nums[i] > dp.back()) {
                 dp.push_back(nums[i]);
             } else {
@@ -44,7 +44,7 @@ using namespace std;
 class Solution {
 public:
     vector<int> LIS(vector<int>& arr) {
-        // 第一步：利用贪心+二分求最长递增子序列长度
+        // 第一步：利用贪心求最长递增子序列长度
         vector<int> res;
         vector<int> maxLen;
         if (arr.size() < 1) return res;
@@ -61,7 +61,7 @@ public:
             }
         }
         // 第二步：填充最长递增子序列
-        for (int i = arr.size()-1, j = res.size(); j > 0; --i) {
+        for (int i = arr.size() - 1, j = res.size(); j > 0; --i) {
             if (maxLen[i] == j) {
                 res[--j] = arr[i];
             }
