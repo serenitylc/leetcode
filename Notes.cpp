@@ -14,7 +14,6 @@
  * $ git config --global user.name    				查看全局配置的 用户名 和 email
  * $ git config --global user.email
  *
- *
  * $ git init              					        把当前目录初始化为 git 仓库, 不想要 git 管理跟踪的文件, 可以在仓库根目录添加 .gitignore 文件, 在里面写对应的规则
  * $ ls -ah                					        查看当前目录下的文件, 包含隐藏文件
  *
@@ -103,7 +102,6 @@
  */
 
 /* 命令提示符
- * Windows + L                  快速锁屏
  * Windows + E                  打开我的电脑(文件资源管理器)
  * Windows + ← → ↑ ↓            分屏操作
  * Windows + I                  打开Windows设置
@@ -115,29 +113,14 @@
  * Alt + F4 或 exit 		    关闭命令提示符
  * Alt + Enter 		            在全屏或窗口模式之间切换
  *
- * 移动光标
- * Ctrl + ← / →		            将光标移动到上一个或下一个单词
- * Ctrl + ↑ / ↓		            上/下滚动内容
- *
- * 选择文本
- * Shift + ← / →		        向左或右扩展一个字符的选区范围
- * Shift + ↑ / ↓		        向上或下扩展选区范围
- * Shift + Ctrl + ← / →	        向左或右扩展一个单词的选区范围
- * Shift + Home		            选中当前字符至行首
- * Shift + End		            选中当前字符至行尾
- * Ctrl + Shift + Home / End	选中当前字符至屏幕缓冲区开头或结尾
- *
  * 浏览器
  * Ctrl + N 			        打开新窗口
- * Ctrl + T 			        打开新标签页
  * Ctrl + Shift + T 		    重新打开上次关闭的标签页
  * Ctrl + W			            关闭当前标签页或弹出窗口
  * Ctrl + L  /  Alt + D 		突出显示网址
  * Ctrl + R                     刷新
  * Ctrl + 1 - 8 		        切换到标签栏中指定位置编号所对应的标签页
  * Ctrl + 9 			        切换到最后一个标签页
- * Ctrl + Tab 		            切换到下一个标签页
- * Ctrl + Shift +Tab 		    切换到上一个标签页
  * Alt + F4 			        关闭当前窗口
  * Ctrl + F5 / Shift + F5 	    重新载入当前网页，忽略缓存的内容
  * Ctrl + D 			        将当前网页保存为书签
@@ -203,26 +186,6 @@
  * void clear();									删除字符串中所有字符
  *
  * 大小写转换：tolower() 和 toupper() 或者 STL中的 transform 算法
- *
- * 查找：find
- * string s("dog bird chicken bird cat");
- * 字符串查找-----找到后返回首字母在字符串中的下标
- * 1. 查找一个字符串
- * cout << s.find("chicken") << endl;  结果是：9
- * 2. 从下标为6开始找字符'i'，返回找到的第一个i的下标
- * cout << s.find('i', 6) << endl;  结果是：11
- * 3. 从字符串的末尾开始查找字符串，返回的还是首字母在字符串中的下标
- * cout << s.rfind("chicken") << endl;  结果是：9
- * 4. 从字符串的末尾开始查找字符
- * cout << s.rfind('i') << endl;  结果是：18
- * 5. 在该字符串中查找第一个属于字符串s的字符
- * cout << s.find_first_of("13br98") << endl;  结果是：4("b")
- * 6. 在该字符串中查找第一个不属于字符串s的字符，先匹配dog，然后bird匹配不到，所以打印4
- * cout << s.find_first_not_of("hello dog 2006") << endl;  结果是：4
- * 7. 在该字符串从后往前查找第一个属于字符串s的字符
- * cout << s.find_last_of("13r98") << endl;   结果是：19
- * 8. 在该字符串从后往前查找第一个不属于字符串s的字符，先匹配tac，然后空格匹配不到，所以打印21
- * cout << s.find_last_not_of("teac") << endl;  结果是：21
  *
  * 排序
  * sort(iterator iter1, iterator iter2);  对[iter1, iter2)进行排序
@@ -662,38 +625,6 @@ public:
  *	struct TreeNode *right;
  * };
  */
-class Solution {
-private:
-    vector<int> pre, mid, post;
-public:
-    vector<vector<int> > threeOrders(TreeNode* root) {
-        vector<vector<int>> res;
-        if (!root) return res;
-        preorder(root);
-        midorder(root);
-        postorder(root);
-        res = {pre, mid, post};
-        return res;
-    }
-    void preorder(TreeNode* root) {
-        if (!root) return;
-        pre.push_back(root->val);
-        preorder(root->left);
-        preorder(root->right);
-    }
-    void midorder(TreeNode* root) {
-        if (!root) return;
-        midorder(root->left);
-        mid.push_back(root->val);
-        midorder(root->right);
-    }
-    void postorder(TreeNode* root) {
-        if (!root) return;
-        postorder(root->left);
-        postorder(root->right);
-        post.push_back(root->val);
-    }
-};
 
 // 406--根据身高重建队列
 class Solution {
@@ -748,13 +679,6 @@ linux查看栈上限和设置上限: ulimit -a (查看进程所有资源上限)
 独享的资源有：栈、寄存器
 
 select和epoll对于用户态和内核态消耗的不同：select基于用户态，epoll红黑树基于内核态
-
-第一次握手失败：第一次SYN传输失败，两端都不会申请资源。
-第二次握手失败：服务端发送的SYN+ACK传输失败，客户端未收到响应，不会申请资源，虽然服务端申请了资源，但是迟迟收不到客户端的ACK，也会将该资源释放。
-第三次握手失败:
-第三次握手的ACK传输失败，导致服务端迟迟没有收到ACK，就会释放资源，这时客户端认为自己已经连接好了，就会给服务端发送数据，
-服务端由于没有收到第三次握手，就会以RST包对客户端响应。
-但是实际上服务端会因为没有收到客户端的ACK多次发送SYN+ACK，次数是可以设置的，如果最后还是没有收到客户端的ACK，则释放资源。
 
 拥塞控制：防止过多数据注入到网络中，使网络中的路由器或链路不致过载。
 拥塞控制所要做的有一个前提：网络能够承受现有的网络负荷。
@@ -815,8 +739,6 @@ TCP/IP：应用层、传输层、网际层、网络接口层（强调这一层�
 
 connect()在第二次握手后返回，accept()过程发生在三次握手之后，三次握手完成后，客户端和服务器就建立了tcp连接并可以进行数据交互了。这时可以调用accept函数获得此连接。
 
-为什么重载与函数返回类型无关：如果不去关心函数返回值，仅仅只是调用
-
 构造函数能不能是虚函数：不能，在调用构造函数时，虚表指针并未在对象内存空间，必须构造函数调用完成后才能形成虚表指针
 
 static可以修饰构造函数？
@@ -843,9 +765,6 @@ malloc、vmalloc、kmalloc的区别：
 糟糕的是，通过vmalloc获得的页必须一个个地进行映射，因为它们物理上是不连续的，这就会导致比直接内存映射大得多的TLB抖动。
 vmalloc仅在不得已时才会用--典型的就是为了获得大块内存时。
 
-cl /d1 reportSingleClasslayout类名 文件名
-typeid(x).name()
-
 当调用一个对象的非静态成员函数时，系统会把该对象的起始地址赋给成员函数的this指针。
 而静态成员函数不属于某一对象（所有对象共有，没有this指针，不能访问本类中非静态成员），它与任何对象都无关。
 
@@ -868,7 +787,7 @@ template<> 返回值 函数名<具体类型>(参数)
 
 栈解旋：从try开始，到throw抛出异常之前，所有栈上的对象都会被释放，这个过程即栈解旋。
 
-异常的接口声明(抛出特定类型异常)  void func() throw(int,char) {}
+异常的接口声明(抛出特定类型异常)  void func() throw(int, char) {}
 
 string转char *： .c_str()
 
@@ -903,27 +822,6 @@ mc();
 equal_range():返回两个迭代器  lower_bound()  upper_bound()
 
 谓词：普通函数或者仿函数返回值bool类型
-
-匿名函数 lambda表达式： [](){};
-
-常用算法：
-find()     // 查值
-find_if()  // 按条件查找
-binary_search()
-count()
-count_if()
-merge()
-random_shuffle()
-sort()
-reverse()
-copy()
-copy(v.begin(), v.end(), ostream_iterator<int>(cout, " "));  // 打印vector v中的元素
-resize()
-replace()
-replace_if()
-swap()
-accumulate()
-fill()
 
 C++中public、protect、private的访问权限控制
 访问权限
@@ -1288,15 +1186,6 @@ set和map都是基于红黑树实现的。
 (2)在可能泄漏的调用前后生成块的快照，比较前后的状态，定位泄漏的位置
 (3)Linux下通过工具valgrind检测
 
-Trie树(字典树)
-每个节点保存一个字符
-根节点不保存字符
-每个节点最多有n个子节点(n是所有可能出现字符的个数)
-查询的复杂父为O(k)，k为查询字符串长度
-
-C语言程序能不能直接调用C++语言编写的动态链接库。
-不能，因为C++支持重载，在编译函数的声明时，会改写函数名（可以通过链接指示进行解决）；另外，C语言不支持类，无法直接调用类的成员函数（可以通过加入中间层进行解决）；C语言也不能调用返回类型或形参类型是类类型的函数。
-
 类之间的关系
 （1）继承：is a子类继承父类的方法（鹅和鸟的关系）
 （2）组合：has-a整体和部分的关系，整体和部分之间是不可可分离的，它们具有相同的生命周期（鸟和翅膀的关系）
@@ -1615,6 +1504,12 @@ linux中查看某个端口是哪个进程在运行: netstat -anp | grep 3306 (�
 free：显示内存状态，包括实体内存，虚拟的交换文件内存，共享内存区段，以及系统核心使用的缓冲区等。
 以总和形式查询内存使用信息：free -t
 tcpdump：用于倾倒网络传输数据，列出经过指定网络界面的数据包文件头
+ps主要看进程，关注点在于查看需要查看的进程
+top主要看cpu、内存使用情况，及占用资源最多的进程由高到低排序，关注点在于资源占用情况，监视系统性能
+
+tail -f /var/log/messages  参数-f使tail不停地去读最新的内容，这样有实时监视的效果 用Ctrl＋c来终止
+
+查看文件的第5行到第10行: sed -n '5,10p' /etc/passwd
 
 自旋锁：指当一个线程在获取锁时，如果锁已经被其它线程获取，那么该线程将循环等待，不断的判断锁是否能够被成功获取，直到获取到锁才会退出循环。
 自旋锁不会使线程状态发生切换，一直处于用户态，即线程一直都是active的，不会使线程进入阻塞状态，减少了不必要的上下文切换，执行速度快；
@@ -1832,6 +1727,12 @@ mmap 映射区向下扩展，堆向上扩展，两者相对扩展，直到耗尽
 服务端收到客户端发起的 SYN 请求后，内核会把该连接存储到半连接队列，并向客户端响应 SYN+ACK，接着客户端会返回 ACK，
 服务端收到第三次握手的 ACK 后，内核会把连接从半连接队列移除，然后创建新的完全的连接，并将其添加到 accept 队列，等待进程调用 accept 函数时把连接取出来。
 
+TCP顺序传输
+1. 主机每次发送数据时，TCP就给每个数据包分配一个序列号，并且在一个特定的时间内等待接收主机对分配的这个序列号进行确认
+2. 如果发送主机在一个特定时间内没有收到接收主机的确认，则发送主机会重传此数据包
+3. 接收主机利用序列号对接收的数据进行确认，以便检测对方发送的数据是否有丢失或者乱序等
+4. 接收主机一旦收到已经顺序化的数据，它就将这些数据按正确的顺序重组成数据流并传递到高层进行处理。
+
 UDP 可以在应用层来实现可靠传输，比如设计数据校验、确认和重传等功能。
 
 HTTP 的 keep-alive 是长连接，TCP 的 keep-alive 是保活机制，用来探测对端 TCP 是否还存活。
@@ -2021,6 +1922,11 @@ undo log 是逻辑日志, 不是物理日志. 在多用户并发系统中,还有
 6、在 Innodb上用 select count(*)，因为 Innodb 会存储统计信息；
 7、慎用 Oder by rand()。
 
+A, B列联合做主键
+create table T(A int not null, B int not null, C int)
+alter table T
+add constraint pk primary key(A, B)
+
 使用MD5加密算法, 将明文加密存在数据库中, 由于MD5是不可逆的, 所以在验证密码的时候需要将要验证的密码也用MD5加密, 然后和数据库中的数据进行对比.
 
 为什么数据量小的时候用压缩列表: set是基于ziplist和skiplist实现的。数据量小的时候ziplist，当超过一定的阈值升级.
@@ -2052,8 +1958,6 @@ C++ 中使用 const 来代替宏常量；
 
 函数声明时指定默认参数值可以吗？
 可以。C++ 在声明函数的时候，如果指定了参数的默认值，再调用函数的时候可以省略后面的参数。
-
-#include<a.cpp>文件可以吗: #include 操作只是单纯的把头文件加入，以方便预编译的时候把文件引入进来。
 
 GET：URL发送请求，请求可被缓存，保留在浏览器历史记录中，可被收藏为书签，有长度限制
 POST：HTTP消息主体中发送，请求不会被缓存，不会保留在浏览器历史记录中，不能被收藏为书签，对数据长度没有要求
