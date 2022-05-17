@@ -1,4 +1,3 @@
-
 /* Git 分布式版本控制系统
  * $ git --help
  * $ git --version
@@ -1988,6 +1987,3 @@ QPS 每秒查询率
 实现方式      InnoDB 引擎层实现的，并不是所有引擎都有                            Server层实现的，所有引擎都可以使用 binlog 日志
 记录方式      Redo log采用循环写的方式, 当写到结尾时, 会回到开头循环写日志        Bin log采用追加方式记录，当文件尺寸大于给配置值后，后续日志会记录到新文件上
 文件大小      Redo log 的大小是固定的                                           Bin log 可通过配置参数 max_binlog_size 设置每个binlog文件的大小
-
-
-

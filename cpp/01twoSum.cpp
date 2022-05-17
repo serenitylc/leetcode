@@ -1,25 +1,25 @@
-class Solution {
-public:
-    vector<int> twoSum(vector<int>& nums, int target) {
-        vector<int> res;
-        for (int i = 0; i < nums.size(); i++) {
-            for (int j = i; j < nums.size(); j++) {
-                if (nums[i] + nums[j] == target && i != j) {
-                    res.push_back(i);
-                    res.push_back(j);
-                }
-            }
-        }
-        return res;
-    }
-};
-
-/* #include <iostream>
+#include <iostream>
 #include <vector>
 #include <cassert>
-#include <unordered_map> */
-#include <bits/stdc++.h>
+#include <unordered_map>
+// #include <bits/stdc++.h>
 using namespace std;
+
+// class Solution {
+// public:
+//     vector<int> twoSum(vector<int>& nums, int target) {
+//         vector<int> res;
+//         for (int i = 0; i < nums.size(); i++) {
+//             for (int j = i; j < nums.size(); j++) {
+//                 if (nums[i] + nums[j] == target && i != j) {
+//                     res.push_back(i);
+//                     res.push_back(j);
+//                 }
+//             }
+//         }
+//         return res;
+//     }
+// };
 
 class Solution {
 public:
@@ -46,6 +46,6 @@ int main() {
 	res = s.twoSum(nums, 9);
 	for (vector<int>::iterator it = res.begin(); it != res.end(); it++)
 		cout << *it << endl;
-	system("pause");
+	// system("pause");
 	return 0;
 }
