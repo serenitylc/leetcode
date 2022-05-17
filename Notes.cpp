@@ -101,50 +101,6 @@
  * git pull -r (git pull --rebase): git fetch + git rebase
  */
 
-/* 命令提示符
- * Windows + E                  打开我的电脑(文件资源管理器)
- * Windows + ← → ↑ ↓            分屏操作
- * Windows + I                  打开Windows设置
- * Ctrl + N                     快速创建同级界面
- * Shift + Ctrl + Esc           打开任务管理器
- * Ctrl + Shift + N             快速创建文件夹
- * Windows + Shift + S          可以全屏截图和区域截图
- * Windows + X 按 A 		    打开命令提示符的管理员模式
- * Alt + F4 或 exit 		    关闭命令提示符
- * Alt + Enter 		            在全屏或窗口模式之间切换
- *
- * 浏览器
- * Ctrl + N 			        打开新窗口
- * Ctrl + Shift + T 		    重新打开上次关闭的标签页
- * Ctrl + W			            关闭当前标签页或弹出窗口
- * Ctrl + L  /  Alt + D 		突出显示网址
- * Ctrl + R                     刷新
- * Ctrl + 1 - 8 		        切换到标签栏中指定位置编号所对应的标签页
- * Ctrl + 9 			        切换到最后一个标签页
- * Alt + F4 			        关闭当前窗口
- * Ctrl + F5 / Shift + F5 	    重新载入当前网页，忽略缓存的内容
- * Ctrl + D 			        将当前网页保存为书签
- * Ctrl + j 			        在新标签页中打开“下载内容”页
- * Ctrl + Shift + j / F12 	    打开“开发者工具”
- * shift + delete               删除当前行
- * Ctrl + delete                删除光标到下一个空格
- */
-
-/* Vscode
- * Alt + ↑ / ↓                  行移动
- * Shift + Alt + ↑ / ↓          行复制
- * Shit + Alt + A               块注释
- * Ctrl + ] / [                 向右/左缩进
- * Alt + → / ←                  切换到下一个/上一个文件编辑点
- * Ctrl + Shift + \             跳转到相应括号位置
- * Ctrl + Shift + [ / ]         打开/折叠代码区域
- * Alt + F12                    代码定义以浮窗形式覆盖在当前页面上
- * F12                          跳转到代码定义位置
- * Ctrl + F / H                 文件内查找/替换
- * Ctrl + Shift + F / H         工作区内查找/替换
- * Ctrl + Shift + D             打开调试面板
- */
-
 /* sort(v.begin(), v,end(), compare);
  * bool compare(int a, int b) { return a < b; }  升序排列(默认)
  * #include <functional>
