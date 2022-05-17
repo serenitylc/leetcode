@@ -4,7 +4,7 @@ public:
         vector<vector<int> > res;
         int l = 1, r = 2;
         while (r > l) {
-            int tmp = (l+r)*(r-l+1)/2;  // ¼ÆËãÇø¼äºÍ [l,r]
+            int tmp = (l+r)*(r-l+1)/2;  // è®¡ç®—åŒºé—´å’Œ [l,r]
             if (tmp < sum) ++r;
             else if (tmp > sum) ++l;
             else {

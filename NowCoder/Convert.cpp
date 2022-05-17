@@ -20,8 +20,8 @@ public:
     void inOrder(TreeNode* root) {
         if (!root) return;
         inOrder(root->left);
-        root->left = pre;  // ¸üÐÂµ±Ç°½ÚµãµÄleftÖ¸ÏòÁ´±íÉÏÒ»¸ö½Úµã
-        if (pre) pre->right = root;  // ¸üÐÂÁ´±íÉÏÒ»¸ö½ÚµãµÄrightÖ¸Ïòµ±Ç°½Úµã
+        root->left = pre;  // æ›´æ–°å½“å‰èŠ‚ç‚¹çš„leftæŒ‡å‘é“¾è¡¨ä¸Šä¸€ä¸ªèŠ‚ç‚¹
+        if (pre) pre->right = root;  // æ›´æ–°é“¾è¡¨ä¸Šä¸€ä¸ªèŠ‚ç‚¹çš„rightæŒ‡å‘å½“å‰èŠ‚ç‚¹
         pre = root;
         inOrder(root->right);
     }

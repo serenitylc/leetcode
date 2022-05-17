@@ -1,4 +1,4 @@
-// 01背包
+// 01鑳屽寘
 class Solution {
 public:
     /**
@@ -25,7 +25,7 @@ public:
     }
 };
 
-// O(m*n) 时间复杂度，O(m) 空间复杂度，for循环从大到小
+// O(m*n) 鏃堕棿澶嶆潅搴︼紝O(m) 绌洪棿澶嶆潅搴︼紝for寰幆浠庡ぇ鍒板皬
 class Solution {
 public:
     int backPack(int m, vector<int> W, vector<int> V) {
@@ -40,7 +40,7 @@ public:
     }
 };
 
-// 完全背包问题
+// 瀹屽叏鑳屽寘闂
 int backPack(int m, vector<int> W, vector<int> V) {
     int k = W.size();
     vector<int> f(m + 1, 0);
@@ -52,7 +52,7 @@ int backPack(int m, vector<int> W, vector<int> V) {
     return f[m];
 }
 
-// 多重背包问题
+// 澶氶噸鑳屽寘闂
 int backPack(int m, vector<int> W, vector<int> cot, vector<int> V) {
     vector<int> f(m + 1, 0);
     for (int i = 0; i < W.size(); i++) {

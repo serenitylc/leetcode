@@ -3,10 +3,10 @@
 #include <assert.h>
 using namespace std;
 
-// 删除first中所有出现在second中的字符
+// 鍒犻櫎first涓墍鏈夊嚭鐜板湪second涓殑瀛楃
 char *deleteChars(char *first, char *second) {
 	assert((NULL != first) && (NULL != second));
-	// 标记字符是否在字符串second中出现过
+	// 鏍囪瀛楃鏄惁鍦ㄥ瓧绗︿覆second涓嚭鐜拌繃
 	const int tableSize = 256;
 	bool hashTable[tableSize];
 	memset(hashTable, 0, sizeof(hashTable));
@@ -29,8 +29,8 @@ char *deleteChars(char *first, char *second) {
 	return first;
 }
 
-void test1() { // second中的字符没有出现在first中的
-	cout << "*****test1 second中的字符没有出现在first中的:*****";
+void test1() { // second涓殑瀛楃娌℃湁鍑虹幇鍦╢irst涓殑
+	cout << "*****test1 second涓殑瀛楃娌℃湁鍑虹幇鍦╢irst涓殑:*****";
 	char text[] = "abcdbbad";
 	char *first = text;
 	char second[] = "lmni";
@@ -38,8 +38,8 @@ void test1() { // second中的字符没有出现在first中的
 	cout << first << endl;
 }
 
-void test2() { // second中的字符有出现在first中的
-	cout << "*****test1 second中的字符有出现在first中的:*****";
+void test2() { // second涓殑瀛楃鏈夊嚭鐜板湪first涓殑
+	cout << "*****test1 second涓殑瀛楃鏈夊嚭鐜板湪first涓殑:*****";
 	char text[] = "abcdbbad";
 	char *first = text;
 	char second[] = "adfghb";
