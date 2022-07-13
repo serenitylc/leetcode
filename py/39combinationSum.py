@@ -23,5 +23,5 @@ class Solution(object):
         backtrace(candidates, target, [])
         return res
 
-# �����㷨�ؼ�����: �����ʾ��˻���һ��
-# Ȼ��ͨ��Լ������, ����ʱ�临�Ӷ�.
+# 回溯算法关键在于: 不合适就退回上一步
+# 然后通过约束条件, 减少时间复杂度.

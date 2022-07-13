@@ -14,7 +14,7 @@ class Solution(object):
         """
         if not root: return None
         res = []
-        # Ê¹ÓÃflag±ê¼Çµ±Ç°½ÚµãµÄ¸¸½ÚµãÊÇ·ñĞèÒªÉ¾³ı
+        # ä½¿ç”¨flagæ ‡è®°å½“å‰èŠ‚ç‚¹çš„çˆ¶èŠ‚ç‚¹æ˜¯å¦éœ€è¦åˆ é™¤
         def dfs(root, flag):
             if not root: return
             if root.val in to_delete:
@@ -24,9 +24,9 @@ class Solution(object):
             else:
                 root.left = dfs(root.left, 0)
                 root.right = dfs(root.right, 0)
-                # ¸¸½ÚµãÔÚĞèÒªÉ¾³ıµÄÊ±ºò²Å¼ÓÈë½á¹û
+                # çˆ¶èŠ‚ç‚¹åœ¨éœ€è¦åˆ é™¤çš„æ—¶å€™æ‰åŠ å…¥ç»“æœ
                 flag and res.append(root)
             return root
-        # ¸ù½ÚµãµÄ¸¸½ÚµãÄ¬ÈÏĞèÒªÉ¾³ı
+        # æ ¹èŠ‚ç‚¹çš„çˆ¶èŠ‚ç‚¹é»˜è®¤éœ€è¦åˆ é™¤
         dfs(root, 1)
         return res

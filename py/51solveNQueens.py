@@ -4,9 +4,9 @@ class Solution(object):
         :type n: int
         :rtype: List[List[str]]
         """
-        # queens:╟з╥е╩й╨С╣дн╩жц
-        # xy_dif:╢свСио╣╫сроб╤т╫гоъx║╒yж╣оЮ╪Уё╗оЮ╣хё╘
-        # xy_sum:╢ссрио╣╫вЬоб╤т╫гоъx║╒yж╣оЮ╪сё╗оЮ╣хё╘
+        # queens:Ф▒├Ф■╬Г ┤Е░▌Г └Д╫█Г╫╝
+        # xy_dif:Д╩▌Е╥╕Д╦┼Е┬╟Е▐ЁД╦▀Е╞╧Х╖▓Г╨©xЦ─│yЕ─╪Г⌡╦Е┤▐О╪┬Г⌡╦Г╜┴О╪┴
+        # xy_sum:Д╩▌Е▐ЁД╦┼Е┬╟Е²░Д╦▀Е╞╧Х╖▓Г╨©xЦ─│yЕ─╪Г⌡╦Е┼═О╪┬Г⌡╦Г╜┴О╪┴
         def dfs(queens, xy_dif, xy_sum):
             row = len(queens)
             if row == n:

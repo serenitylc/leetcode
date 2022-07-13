@@ -18,7 +18,7 @@ public:
             tmp += flag;
             flag = tmp / 10;
             tmp %= 10; 
-            // 利用已有节点构成新链条 破坏了原链表结构 节约了空间
+            // 利用已有节点构成新链条, 破坏了原链表结构, 节约了空间
             // ListNode *next = l1 ? l1 : l2;
             // if (next == nullptr) next = new ListNode(tmp); 
             ListNode *next = new ListNode(tmp);

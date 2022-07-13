@@ -2,22 +2,22 @@ class Solution(object):
     def eraseOverlapIntervals(self, intervals):
         if not intervals:
             return 0
-        intervals = sorted(intervals, key = lambda x: x[1])  # ¸ù¾İÇø¼äÓÒ¶ËµãÅÅĞò
+        intervals = sorted(intervals, key = lambda x: x[1])  # æ ¹æ®åŒºé—´å³ç«¯ç‚¹æ’åº
         res = 0
-        new_interval = intervals[0]     # ±»Ñ¡µÄ×îĞÂÇø¼ä
+        new_interval = intervals[0]     # è¢«é€‰çš„æœ€æ–°åŒºé—´
         for interval in intervals[1:]:
-            if interval[0] < new_interval[1]:   # ÖØµşÔòÉ¾³ıÇø¼ä
+            if interval[0] < new_interval[1]:   # é‡å åˆ™åˆ é™¤åŒºé—´
                 res += 1
-            else:  # ²»ÖØµşÔò¸üĞÂnew_interval
+            else:  # ä¸é‡å åˆ™æ›´æ–°new_interval
                 new_interval = interval
         return res
 
 # sorted(iterable, cmp=None, key=None, reverse=False)
-# iterable -- ¿Éµü´ú¶ÔÏó
-# cmp -- ±È½ÏµÄº¯Êı
-# key -- Ö÷ÒªÊÇÓÃÀ´½øĞĞ±È½ÏµÄÔªËØ£¬Ö»ÓĞÒ»¸ö²ÎÊı
-# reverse -- reverse = False ÉıĞò£¨Ä¬ÈÏ£©
+# iterable -- å¯è¿­ä»£å¯¹è±¡
+# cmp -- æ¯”è¾ƒçš„å‡½æ•°
+# key -- ä¸»è¦æ˜¯ç”¨æ¥è¿›è¡Œæ¯”è¾ƒçš„å…ƒç´ ï¼Œåªæœ‰ä¸€ä¸ªå‚æ•°
+# reverse -- reverse = False å‡åºï¼ˆé»˜è®¤ï¼‰
 
-# sort()ÊÇÓ¦ÓÃÔÚ list ÉÏµÄ·½·¨£¬sorted()¿ÉÒÔ¶ÔËùÓĞ¿Éµü´úµÄ¶ÔÏó½øĞĞÅÅĞò²Ù×÷¡£
-# list µÄsort()ÊÇ¶ÔÒÑ¾­´æÔÚµÄÁĞ±í½øĞĞ²Ù×÷£¬ÎŞ·µ»ØÖµ; 
-# ¶øÄÚ½¨º¯Êısorted()·½·¨·µ»ØµÄÊÇÒ»¸öĞÂµÄ list£¬²»ÊÇÔÚÔ­À´µÄ»ù´¡ÉÏ½øĞĞµÄ²Ù×÷¡£
+# sort()æ˜¯åº”ç”¨åœ¨ list ä¸Šçš„æ–¹æ³•ï¼Œsorted()å¯ä»¥å¯¹æ‰€æœ‰å¯è¿­ä»£çš„å¯¹è±¡è¿›è¡Œæ’åºæ“ä½œã€‚
+# list çš„sort()æ˜¯å¯¹å·²ç»å­˜åœ¨çš„åˆ—è¡¨è¿›è¡Œæ“ä½œï¼Œæ— è¿”å›å€¼; 
+# è€Œå†…å»ºå‡½æ•°sorted()æ–¹æ³•è¿”å›çš„æ˜¯ä¸€ä¸ªæ–°çš„ listï¼Œä¸æ˜¯åœ¨åŸæ¥çš„åŸºç¡€ä¸Šè¿›è¡Œçš„æ“ä½œã€‚
